@@ -1,4 +1,4 @@
-# py_matrix
+# py_gmm
 
 
 A Fortran 90 implementation of the **Generalized Multiparticle Mie** method. If you find py_gmm useful for generating results included in publications, please consider citing the following paper:
