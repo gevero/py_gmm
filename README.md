@@ -1,6 +1,6 @@
 # py_gmm
 
-<img src="https://github.com/gevero/py_gmm/blob/master/images/array.png" width="300">
+<img src="https://github.com/gevero/py_gmm/blob/master/images/array.png" width="600">
 
 A Fortran 90 implementation of the **Generalized Multiparticle Mie** method. If you find py_gmm useful for generating results included in publications, please consider citing the following paper:
 
