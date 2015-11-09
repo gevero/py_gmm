@@ -6,7 +6,7 @@ MODULE vec_trans
 ! Indice Subroutines
 ! 1) j3minimum(j1,j2,m1,m2) f
 !		COMMENT: finds the minimum value to start the w3jm recursion
-!	
+!
 ! 2) nw(j1,j2,m1,m2) f
 !		COMMENT: number of calculated terms in the recursion
 !
@@ -21,10 +21,10 @@ MODULE vec_trans
 !
 ! 6) dr(j1,j2,m1,m2) f
 !		COMMENT: calculates the second coefficent for the recursion formula
-!			
+!
 ! 7) wigner3jm(j1,j2,m1,m2,j3min,j3max,v_w3jm) s
 !		COMMENT: calculates the vector containing the values of 3jm simbols
-!			
+!
 !		INPUT: REAL(dbl): j1,j2,m1,m2,
 !		       INTEGER(lo): j3min,j3max
 !
@@ -37,9 +37,9 @@ MODULE vec_trans
 ! Indice Subroutines and Functions
 ! 1) idx(m,n,mu,nu,nstop) f
 !		COMMENT: if the coefficient matrix is tought as a linear vector, this function calculates the the position
-!				 the current value in the linear vector from indexes m,n,mu,nu and number of multipolar expansions 
+!				 the current value in the linear vector from indexes m,n,mu,nu and number of multipolar expansions
 !				 nstop
-!	
+!
 ! 2) c0sub(nstop,v_c0) s
 !		COMMENT: given nstop, it calculates a 1-dim vector containing c0 coefficients for the calculations of vector
 !				 translation coefficients
@@ -84,7 +84,7 @@ MODULE vec_trans
 ! Indice Subroutines and Functions
 ! 1) gaunt_cz(m,n,mu,nu,qmaxa,v_aq,error) s
 !		COMMENT: calculates a series of gaunt coefficients for a quadruplet of given indexes
-!	
+!
 !		INPUT: REAL(dbl): m,n,mu,nu
 !			   INTEGER(lo): qmaxa
 !
@@ -128,7 +128,7 @@ MODULE vec_trans
 !
 ! 7) f_aqmax(m,n,mu,nu,qmax) f
 !		COMMENT: starting value v_aq(q=qmax) for the forward recursion of gaunt coefficients
-!				
+!
 ! 8) f_aqmax_1(m,n,mu,nu,qmax) f
 !		COMMENT: starting value v_aq(q=qmax) for the forward recursion of gaunt coefficients
 !
@@ -147,7 +147,7 @@ MODULE vec_trans
 ! LEGENDRE SUBROUTINES INDEX
 !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ! Indice Subroutines and Functions
-! 1) legendre(nmin,nmax,m,mm,theta,v_leg,error) 
+! 1) legendre(nmin,nmax,m,mm,theta,v_leg,error)
 !		COMMENT: calculates a series of legendre functions in cos(theta) from nmin to nmax with fixed m
 !
 !		INPUT: INTEGER(lo): nmin,nmax,m,mm
@@ -156,7 +156,7 @@ MODULE vec_trans
 !		OUTPUT: REAL(dbl): 1-dim array, v_leg
 !				INTEGER(lo): error
 !
-! 2) pi_mn(nstop,theta,v_pimn,error) 
+! 2) pi_mn(nstop,theta,v_pimn,error)
 !		COMMENT: calculates a series of angular functions Pi_mn in cos(theta) n=1,nstop; m=-n,n
 !
 !		INPUT: INTEGER(lo): nstop
@@ -166,7 +166,7 @@ MODULE vec_trans
 !				INTEGER(lo): error
 !
 !
-! 3) tau_mn(nstop,theta,v_pimn,v_taumn,error) 
+! 3) tau_mn(nstop,theta,v_pimn,v_taumn,error)
 !		COMMENT: calculates a series of angular functions tau_mn in cos(theta) n=1,nstop; m=-n,n
 !
 !		INPUT: INTEGER(lo): nstop
@@ -225,34 +225,34 @@ MODULE vec_trans
 !		OUTPUT:	COMPLEX(dbl): 2-dim array: m_AB
 !
 ! 5) field_exp_sub(nstop,ns,v_z,m_a,m_b,v_patt,v_pmn,v_qmn,v_p)
-! 
+!
 ! 		INPUT: 	INTEGER(lo): nstop,ns
 !				INTEGER(lo): 1-dim array: v_patt
 !				REAL(dbl): 1-dim array: v_z
 !				COMPLEX(dbl): 2-dim array: m_a,m_b
 !
-!		OUTPUT:	COMPLEX(dbl): 1-dim array: v_pmn,v_qmn,v_p 
-! 
+!		OUTPUT:	COMPLEX(dbl): 1-dim array: v_pmn,v_qmn,v_p
+!
 !
 ! 6) cext_sub(nstop,ns,k,v_z,v_ab,v_cext)
-! 
+!
 ! 		INPUT:	INTEGER(lo): nstop,ns
 !				REAL(dbl): k
 !				REAL(dbl): 1-dim array: v_z
 !				COMPLEX(dbl): 1-dim array: v_ab
 !
 !		OUTPUT:	REAL(dbl): 1-dim array: v_cext
-! 
+!
 !
 ! 7) cext_sub_exp(nstop,ns,k,v_z,v_ab,m_cext)
-! 
+!
 ! 		INPUT:	INTEGER(lo): nstop,ns
 !				REAL(dbl): k
 !				REAL(dbl): 1-dim array: v_z
 !				COMPLEX(dbl): 1-dim array: v_ab
 !
 !		OUTPUT:	REAL(dbl): 2-dim array: m_cext
-! 
+!
 !$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
@@ -334,7 +334,7 @@ INTEGER(lo) :: r
 
 logw=0.5D0*(lnf(2.0D0*j1,r)+lnf(2.0D0*j2,r)+lnf(j1+j2-m1-m2,r)+lnf(j1+j2+m1+m2,r) - &
 		&  	lnf(2.0D0*j1+2.0D0*j2+1.0D0,r)-lnf(j1-m1,r)-lnf(j1+m1,r)-lnf(j2-m2,r)-lnf(j2+m2,r))
-			
+
 wdown0=((-1.0D0)**INT(j1+j2+m1+m2,lo))*EXP(logw)
 
 END FUNCTION wdown0
@@ -360,33 +360,33 @@ INTEGER(lo) :: r
 
 ! Funzione vera e propria
 wup0_if : IF ( (INT(j1-j2)>=0) .AND. ( ABS(INT(j1-j2))>=ABS(INT(m1+m2))) ) THEN
-			
+
 			logw=0.5D0 * ( lnf(j1-m1,r)+lnf(j1+m1,r)+lnf(2.0D0*j1-2.0D0*j2,r)+lnf(2.0D0*j2,r) - &
 			& lnf(j2-m2,r)-lnf(j2+m2,r)-lnf(j1-j2-m1-m2,r)-lnf(j1-j2+m1+m2,r)-lnf(2.0D0*j1+1.0D0,r) )
-			
+
 			wup0=((-1.0D0)**INT(j1+m1))*EXP(logw)
-			
+
 		  ELSE IF ( (INT(j1-j2)<0) .AND. ( ABS(INT(j1-j2))>=ABS(INT(m1+m2))) ) THEN
 
 			logw=0.5D0 * ( lnf(j2-m2,r)+lnf(j2+m2,r)+lnf(2.0D0*j2-2.0D0*j1,r)+lnf(2.0D0*j1,r) - &
-			& lnf(j1-m1,r)-lnf(j1+m1,r)-lnf(j2-j1-m1-m2,r)-lnf(j2-j1+m1+m2,r)-lnf(2.0D0*j2+1.0D0,r) )			
-			
+			& lnf(j1-m1,r)-lnf(j1+m1,r)-lnf(j2-j1-m1-m2,r)-lnf(j2-j1+m1+m2,r)-lnf(2.0D0*j2+1.0D0,r) )
+
 			wup0=((-1.0D0)**INT(j2+m2))*EXP(logw)
 
 		  ELSE IF ( (INT(m1+m2)>0) .AND. (ABS(INT(j1-j2))<ABS(INT(m1+m2))) ) THEN
 
 			logw=0.5D0 * ( lnf(j1+m1,r)+lnf(j2+m2,r)+lnf(j1+j2-m1-m2,r)+lnf(2.0D0*m1+2.0D0*m2,r) - &
 			& lnf(j1-m1,r)-lnf(j2-m2,r)-lnf(j1-j2+m1+m2,r)-lnf(j2-j1+m1+m2,r)-lnf(j1+j2+m1+m2+1.0D0,r) )
-			
+
 			wup0=((-1.0D0)**INT(j2+m2))*EXP(logw)
 
 		  ELSE IF ( (INT(m1+m2)<0) .AND. (ABS(INT(j1-j2))<ABS(INT(m1+m2))) ) THEN
 
 			logw=0.5D0 * ( lnf(j1-m1,r)+lnf(j2-m2,r)+lnf(j1+j2+m1+m2,r)+lnf(-2.0D0*m1-2.0D0*m2,r) - &
 			& lnf(j1+m1,r)-lnf(j2+m2,r)-lnf(j1-j2-m1-m2,r)-lnf(j2-j1-m1-m2,r)-lnf(j1+j2-m1-m2+1.0D0,r) )
-			
+
 			wup0=((-1.0D0)**INT(j1+m1))*EXP(logw)
-			
+
 END IF wup0_if
 
 END FUNCTION wup0
@@ -458,44 +458,44 @@ j3int=j3max
 ! WRITE(*,*) "j3min,j3max:",j3min,j3max
 
 
-! In questo if separo i casi in cui ho un vettore di lunghezza uno da quelli che 
+! In questo if separo i casi in cui ho un vettore di lunghezza uno da quelli che
 ! necessitano dell'uso della ricorsione
 big_if: IF (j3min==j3max) THEN
 
 	v_w3jm(j3max)=wdown0(j1,j2,m1,m2) ! Unico termine da calcolare
-	
-ELSE 
-	
+
+ELSE
+
 	! Si inizializza la ricorsione
 	v_w3jm(j3max)=wdown0(j1,j2,m1,m2)
 	v_w3jm(j3max-1)=-(dr(j1,j2,j1+j2,m1,m2,-m1-m2)/( (j1+j2+1)*cr(j1,j2,j1+j2,m1,m2,-m1-m2) ))*v_w3jm(j3max)
-	
+
 
 	! Ciclo per il calcolo ricorsivo
-	down_do: DO 		
-			
+	down_do: DO
+
 			!Condizione di uscita
 			IF (j3int-2<j3min) EXIT
-				
+
 			!Primo coeff della ricorsione
 			cd1=dr(j1,j2,j3-1.0D0,m1,m2,-m1-m2)/(j3*cr(j1,j2,j3-1.0D0,m1,m2,-m1-m2))
-			cd2=((j3-1.0D0)*cr(j1,j2,j3,m1,m2,-m1-m2))/(j3*cr(j1,j2,j3-1.0D0,m1,m2,-m1-m2)) 						
+			cd2=((j3-1.0D0)*cr(j1,j2,j3,m1,m2,-m1-m2))/(j3*cr(j1,j2,j3-1.0D0,m1,m2,-m1-m2))
 			!Ricorsione
 			v_w3jm(j3int-2)=-cd1*v_w3jm(j3int-1)-cd2*v_w3jm(j3int)
-			
+
 			!Aggiorno gli indici
 			j3=j3-1.0D0
 			j3int=INT(j3,lo)
-			
+
 	END DO down_do
-	
+
 	! Inizializzo gli indici per la upward recursion
 	j3int=j3min
 	j3=REAL(j3min,dbl)
-	
+
 	! Calcolo del primo termine di wigner dal basso
 	v_w3jm(j3int)=wup0(j1,j2,m1,m2)
-	
+
 	! Calcolo del secondo termine di wigner dal basso
 	! Pongo anche la condizione sul coefficienti nel caso ci sia signolarita'
 	cu3_if: IF (j3min==0) THEN
@@ -503,44 +503,44 @@ ELSE
 	ELSE
 			cu3=dr(j1,j2,j3,m1,m2,-m1-m2)/(j3*cr(j1,j2,j3+1.0D0,m1,m2,-m1-m2))
 	END IF cu3_if
-	
+
 	w3jm_temp=-cu3*v_w3jm(j3int)
-	
+
 	! If legato alla monotonia della successione
 	up_if: IF (ABS(w3jm_temp)>ABS(v_w3jm(j3min))) THEN
-	
+
 			! Aggiorno gli indici e metto nell'array il secondo valore
 			! in questo modo sono pronto per iniziale la upward recursion
 			! a tre termini
 			j3int=j3int+1
 			v_w3jm(j3int)=w3jm_temp
-					
+
 			up_do: DO
 					!Aggiorno gli indici
 					j3int=j3int+1
 					j3=REAL(j3int,dbl)
-					
+
 					IF (j3int-1==j3max) EXIT
-					
+
 ! 					IF ((INT(-m1)==-1).AND.(INT(j1)==1).AND.(INT(m2)==1).AND.(INT(j2)==2)) THEN
 ! 					WRITE(*,*) "j3-1,cr1,cr2",j3-1,cr(j1,j2,j3,m1,m2,-m1-m2),cr(j1,j2,j3,m1,m2,-m1-m2)
 ! 					END IF
-										
+
 					!Primo e secondo coeff della ricorsione
 					cu1=dr(j1,j2,j3-1.0D0,m1,m2,-m1-m2)/((j3-1.0D0)*cr(j1,j2,j3,m1,m2,-m1-m2))
-					cu2=(j3*cr(j1,j2,j3-1.0D0,m1,m2,-m1-m2))/((j3-1.0D0)*cr(j1,j2,j3,m1,m2,-m1-m2)) 
-				
+					cu2=(j3*cr(j1,j2,j3-1.0D0,m1,m2,-m1-m2))/((j3-1.0D0)*cr(j1,j2,j3,m1,m2,-m1-m2))
+
 					!Assegnazione temporanea della ricorsione
 					w3jm_temp=-cu1*v_w3jm(j3int-1)-cu2*v_w3jm(j3int-2)
 
 					IF ((ABS(w3jm_temp)<ABS(v_w3jm(j3int-1)))  .OR. ((j3int-1)==j3max) ) EXIT ! Cond. di uscita
-					
+
 					v_w3jm(j3int)=w3jm_temp	!Assegno perche' e' ok
-					
+
 			END DO up_do
-			
+
 	END IF up_if
-			
+
 END IF big_if
 
 END SUBROUTINE wigner3jm
@@ -617,20 +617,20 @@ gaunt_do: DO q=0,qmaxa
 			! Calcolo dell'indice p, sia reale che intero
 			p=INT(n+nu,lo)-2*q
 			pr=REAL(p,dbl)
-			
+
 			!Calcolo del fattoriale
 			logw = 0.5D0* (lnf(n+m,r)+lnf(nu+mu,r)+lnf(pr-m-mu,r) - &
 				 		   lnf(n-m,r)-lnf(nu-mu,r)-lnf(pr+m+mu,r))
 			fac= EXP(logw)
- 			
+
 			! Calcolo del coefficiente di gaunt
 			v_aq(q)=((-1.0D0)**INT(m+mu,lo))*(2.0D0*pr+1.0D0)*fac*v_w3jm(p)*v_w3jm0(p)
-			
+
 END DO gaunt_do
 
 ! Disalloco i vettori di wigner a lavoro finito
 DEALLOCATE(v_w3jm,v_w3jm0)
-			
+
 END SUBROUTINE gaunt_cz
 
 
@@ -694,15 +694,15 @@ gaunt_do: DO q=0,qmaxa
 			! Calcolo dell'indice p, sia reale che intero
 			p=INT(n+nu,lo)-2*q
 			pr=REAL(p,dbl)
-			
+
 			!Calcolo del fattoriale
 			logw = 0.5D0* (lnf(n+m,r)+lnf(nu+mu,r)+lnf(pr-m-mu,r) - &
 				 		   lnf(n-m,r)-lnf(nu-mu,r)-lnf(pr+m+mu,r))
 			fac= EXP(logw)
- 			
+
 			! Calcolo del coefficiente di gaunt
 			v_aq(q)=((-1.0D0)**INT(m+mu,lo))*(2.0D0*pr+1.0D0)*fac*v_w3jm(p)*v_w3jm0(p)
-			
+
 END DO gaunt_do
 
 
@@ -716,22 +716,22 @@ ELSE
 				! Calcolo dell'indice p, sia reale che intero
 				p=INT(n+nu,lo)-2*q
 				pr=REAL(p,dbl)
-				
+
 				!Calcolo del fattoriale
 				logw = 0.5D0* (lnf(n+m,r)+lnf(nu+mu,r)+lnf(pr-m-mu+1.0D0,r) - &
 					 		   lnf(n-m,r)-lnf(nu-mu,r)-lnf(pr+m+mu+1.0D0,r))
 				fac= EXP(logw)
- 			
+
 				! Calcolo del coefficiente di gaunt
 				v_bq(q)=((-1.0D0)**INT(m+mu,lo))*(2.0D0*pr+3.0D0)*fac*v_w3jm(p+1)*v_w3jm0(p)
-			
+
 	END DO bq_do
-	
+
 END IF qmaxb_if
 
 ! Disalloco i vettori di wigner a lavoro finito
 DEALLOCATE(v_w3jm,v_w3jm0)
-			
+
 END SUBROUTINE aqbq_cz
 
 ! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -754,7 +754,7 @@ IMPLICIT NONE
 REAL(dbl) :: f_alpha
 
 ! Dichiarazione argomenti
-REAL(dbl), INTENT(IN) :: n,nu,p		! Indici consueti e indice costruito p 
+REAL(dbl), INTENT(IN) :: n,nu,p		! Indici consueti e indice costruito p
 
 ! Funzione vera e propria
 f_alpha= ((p**2 -(n-nu)**2)*(p**2-(n+nu+1)**2))/(4*(p**2)-1)
@@ -865,8 +865,8 @@ f_a2norm=((n2nu-1.0D0)*(n2nu-7.0D0)/4.0D0) * &
 		   2.0D0*mn*(mn+1.0D0)*munu*(munu+1.0D0)/((2.0D0*n-1.0D0)*(2.0D0*nu-1.0D0)) + &
 		   munu*(munu+1.0D0)*(munu+2.0D0)*(munu+3.0D0)/((2.0D0*nu-1.0D0)*(2.0D0*nu-3.0D0)) &
 		   ) - mn*(mn+1.0D0)/(2.0D0*n-1.0D0) - munu*(munu+1.0D0)/(2.0D0*nu-1.0D0) ) +0.5D0)
-		   
-		   
+
+
 END FUNCTION f_a2norm
 
 
@@ -906,37 +906,37 @@ Ap_if: IF ((INT(Ap4,lo)==0) .AND. (INT(Ap6,lo)==0)) THEN
 
 		c0=(p+2.0D0)*(p1+1.0D0)*alphap1
 		c1=(p+1.0D0)*(p2+2.0D0)*alphap2
-		
+
 		f_a2normr=(c1/c0)*a1norm
-		
+
 	   ELSE IF ((INT(Ap4,lo)==0) .AND. (INT(Ap6,lo)/=0)) THEN
-	   
+
 	   	Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 	   	Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 		Ap5=f_Ap(m,n,mu,nu,p+5.0D0)
 		alphap5=f_alpha(n,nu,p+5.0D0)
-		
+
 		c0=(p+2.0D0)*(p+3.0D0)*(p+5.0D0)*(p1+1.0D0)*(p1+2.0D0)*(p1+4.0D0)*Ap6*alphap1
 		c1=(p+5.0D0)*(p1+4.0D0)*Ap6*(Ap2*Ap3+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*alphap2)
 		c2=(p+2.0D0)*(p2+3.0D0)*Ap2*(Ap5*Ap6+(p+4.0D0)*(p+6.0D0)*(p1+5.0D0)*(p2+5.0D0)*alphap5)
-		
+
 		f_a2normr=(c1/c0)*a1norm+(c2/c0)
-		
+
 	  ELSE
-	  
+
 	  	Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 	   	Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 	   	alphap3=f_alpha(n,nu,p+3.0D0)
 	   	alphap4=f_alpha(n,nu,p+4.0D0)
-	   	
+
 	   	c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 	   	c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2 &
 	   	 + (p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 	   	c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-	   	
+
 	   	f_a2normr=(c1/c0)*a1norm+(c2/c0)
-		   
-END IF Ap_if   
+
+END IF Ap_if
 
 END FUNCTION f_a2normr
 
@@ -969,20 +969,20 @@ pmin_if: IF (pmin_i==INT(n-nu,lo)) THEN
 
 	logw=lnf(n+m,ierr)+lnf(2.0D0*pmin+1.0D0,ierr) &
 		-lnf(nu-mu,ierr)-lnf(n-nu,ierr)-lnf(pmin+m+mu,ierr)
-	
-	logp=lpoch(nu+1.0D0,nu,ierr)-lpoch(n+1.0D0,n+1.0D0,ierr)
-	
-! 	f_aqmax=((-1.0D0)**INT(mu,lo))*dpoch(nu+1.0D0,nu)*EXP(logw)/dpoch(n+1,n+1)	
 
-	f_aqmax=((-1.0D0)**INT(mu,lo))*EXP(logw+logp)	
+	logp=lpoch(nu+1.0D0,nu,ierr)-lpoch(n+1.0D0,n+1.0D0,ierr)
+
+! 	f_aqmax=((-1.0D0)**INT(mu,lo))*dpoch(nu+1.0D0,nu)*EXP(logw)/dpoch(n+1,n+1)
+
+	f_aqmax=((-1.0D0)**INT(mu,lo))*EXP(logw+logp)
 
 ELSE IF (pmin_i==INT(nu-n,lo)) THEN
 
 	logw=lnf(nu+mu,ierr)+lnf(2.0D0*pmin+1.0D0,ierr) &
 		-lnf(n-m,ierr)-lnf(nu-n,ierr)-lnf(pmin+m+mu,ierr)
-		
-	logp=lpoch(n+1.0D0,n,ierr)-lpoch(nu+1.0D0,nu+1.0D0,ierr)	
-	
+
+	logp=lpoch(n+1.0D0,n,ierr)-lpoch(nu+1.0D0,nu+1.0D0,ierr)
+
 ! 	f_aqmax=((-1.0D0)**INT(m,lo))*dpoch(n+1.0D0,n)*EXP(logw)/dpoch(nu+1,nu+1)
 
 	f_aqmax=((-1.0D0)**INT(m,lo))*EXP(logw+logp)
@@ -998,7 +998,7 @@ ELSE IF (pmin_I==INT(-m-mu,lo)) THEN
 
 	logw=lpoch(qmaxr+1.0D0,qmaxr,ierr)+lnf(n+nu-qmaxr,ierr)+lnf(pmin-m-mu,ierr) &
 		-lnf(n-qmaxr,ierr)-lnf(nu-qmaxr,ierr)-lnf(n+nu+pmin+1.0D0,ierr)
-	
+
 	f_aqmax=((-1.0D0)**INT(nu+mu-qmaxr,lo))*(2.0D0*pmin+1.0D0)*EXP(logw)
 
 ELSE IF (pmin_i==INT(m+mu+1,lo)) THEN
@@ -1007,7 +1007,7 @@ ELSE IF (pmin_i==INT(m+mu+1,lo)) THEN
 
 	logw=lpoch(qmaxr+1.0D0,qmaxr,ierr)+lnf(n+nu-qmaxr,ierr)+lnf(n+m,ierr)+lnf(nu+mu,ierr) &
 		-lnf(n+nu+pmin+1.0D0,ierr)-lnf(n-qmaxr,ierr)-lnf(nu-qmax,ierr)-lnf(n-m,ierr)-lnf(nu-mu,ierr)
-	
+
 	f_aqmax=((-1.0D0)**INT(n+m-qmaxr,lo))*Apmin*(2.0D0*pmin+1.0D0)*EXP(logw) &
 		   /(pmin-1.0D0)
 
@@ -1017,7 +1017,7 @@ ELSE IF (pmin_i==INT(-m-mu+1,lo)) THEN
 
 	logw=lpoch(qmaxr+1.0D0,qmaxr,ierr)+lnf(n+nu-qmaxr,ierr)+lnf(pmin-m-mu,ierr) &
 		-lnf(n+nu+pmin+1.0D0,ierr)-lnf(n-qmaxr,ierr)-lnf(nu-qmaxr,ierr)
-	
+
 	f_aqmax=((-1.0D0)**INT(nu+mu-qmaxr,lo))*Apmin*(2.0D0*pmin+1.0D0)*EXP(logw) &
 		   /(pmin-1.0D0)
 
@@ -1060,14 +1060,14 @@ pmin_if: IF (pmin_i==INT(m+mu+1.0D0,lo)) THEN
 
 	f2=(n-qmaxr)*(nu-qmaxr)*(2.0D0*qmaxr+1.0D0) &
 	  /((pmin+m+mu+1.0D0)*(pmin+m+mu+2.0D0)*(2*qmaxr-1.0D0))
-	  
+
 	f_aqmax_1=f1*f2*EXP(logw)
-	  	
+
 ELSE IF (pmin_i==INT(-m-mu+1.0D0,lo)) THEN
 
 	logw=lpoch(qmaxr+1.0D0,qmaxr+1.0D0,ierr)+lnf(n+nu-qmaxr,ierr)+lnf(pmin-m-mu,ierr) &
 		-lnf(n+nu+pmin,ierr)-lnf(n-qmaxr+1.0D0,ierr)-lnf(nu-qmaxr+1.0D0,ierr)
-		
+
 	f1=((-1.0D0)**INT(nu+mu-qmaxr,lo))*Apmin2*(2.0D0*pmin+3.0D0)*(2.0D0*pmin+5.0D0) &
 	  /(6.0D0*pmin*(n+nu+pmin+3.0D0))
 
@@ -1131,131 +1131,131 @@ CASE (0) !qmax=0
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	!WRITE(*,*) f_a0(m,n,mu,nu),v_aq(0)
-	
+
 CASE (1) !qmax=1
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
-	
+
 CASE (2) !qmax=2
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
 	v_aq(2)=v_aq(0)*f_a2normr(m,n,mu,nu,v_aq(1)/v_aq(0))
-	
+
 CASE (3:) !qmax>2
 
 	!:::::::::::::::::::::::::::::::::::::::::::::::
 	!Struttura if, per i diversi casi di ricorsione
 	!:::::::::::::::::::::::::::::::::::::::::::::::
-	
+
 	big_if: IF ((INT(m,lo)==0) .AND. (INT(mu,lo)==0)) THEN
-	
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=m=0 (1)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!BACKWARD
-		
+
 		!Primo valore per la backward recursion
-		v_aq(0)=f_a0(m,n,mu,nu) 
-	
+		v_aq(0)=f_a0(m,n,mu,nu)
+
 		!Backward recursion
 		uno_b_do: DO q=1,qmax
-					
+
 					p=n+nu-2.0D0*REAL(q,dbl)
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=f_alpha(n,nu,p+2.0D0)
-					
+
 					v_aq(q)=(c1/c0)*v_aq(q-1)
-					
+
 		END DO uno_b_do
-		
+
 	ELSE IF ((INT(mu,lo)==INT(m,lo)) .AND. (INT(nu,lo)==INT(n,lo))) THEN
-	
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=m e nu=n (2)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!BACKWARD
-		
+
 		!Primo valore per la backward recursion
-		v_aq(0)=f_a0(m,n,mu,nu) 
-	
+		v_aq(0)=f_a0(m,n,mu,nu)
+
 		!Backward recursion
 		due_b_do: DO q=1,qmax
-					
+
 					!Calcolo pre-coefficienti
 					p=n+nu-2.0D0*REAL(q,dbl)
 					p1=p-m-mu
 					p2=p+m+mu
-					
+
 					!Calcolo coefficienti ricorsione
 					c0=(p+2.0D0)*(p1+1.0D0)*f_alpha(n,nu,p+1.0D0)
 					c1=(p+1.0D0)*(p2+2.0D0)*f_alpha(n,nu,p+2.0D0)
-					
+
 					!Ricorsione
 					v_aq(q)=(c1/c0)*v_aq(q-1)
-					
+
 		END DO due_b_do
-			
-	ELSE IF (INT(mu,lo)==INT(-m,lo)) THEN		
-	
+
+	ELSE IF (INT(mu,lo)==INT(-m,lo)) THEN
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=-m (3)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!-----------------------------------
 		!BACKWARD
 		!-----------------------------------
-		
+
 		!Primo valore per la backward recursion
 		v_aq(0)=f_a0(m,n,mu,nu)
-		v_aq(1)=f_a1norm(m,n,mu,nu)*v_aq(0) 
-	
+		v_aq(1)=f_a1norm(m,n,mu,nu)*v_aq(0)
+
 		!Backward recursion
 		tre_b_do: DO q=2,qmax
-					
+
 					!Calcolo pre-coefficienti
 					p=n+nu-2.0D0*REAL(q,dbl)
-				
+
 					!Calcolo coefficienti ricorsione
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
-					
+
 					!Ricorsione
 					v_aq(q)=(c1/c0)*v_aq(q-1)+(c2/c0)*v_aq(q-2)
-					
+
 		END DO tre_b_do
-		
+
 		!--------------------------------
 		!FORWARD
 		!--------------------------------
-		
+
 		!Primo valore per la forward recursion,errore relativo e suo swap
 		aq_fwd=f_aqmax(m,n,mu,nu,qmax)
 		res=ABS(aq_fwd-v_aq(qmax))/ABS(aq_fwd)
-		
+
 		!Se non ho precisione, sostituisco i valori
-		tre_f_if: IF (res>(10.0D0**(-prec))) THEN 
-		
+		tre_f_if: IF (res>(10.0D0**(-prec))) THEN
+
 			v_aq(qmax)=aq_fwd
 			qi=1
-			
+
 			!Entro nel ciclo della sostituzione valori
 			tre_f_do: DO q=qmax-1,0,-1
-				
+
 				tre_q_case:SELECT CASE (qmax-q)
-				
+
 				CASE(1) tre_q_case	!q=qmax-1
-					
+
 					!Calcolo v_aq(qmax-1)
 					p=n+nu-2.0D0*REAL(q+2,dbl)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
 					aq_fwd=-(c1/c2)*v_aq(qmax)
-					
+
 					!If a secondo che v_aq(qmax-1) sia zero o no
 					zero1_if: IF ((aq_fwd/v_aq(qmax))<(10.0D0**(-8))) THEN
 						v_aq(q)=aq_fwd	!Zero
@@ -1264,25 +1264,25 @@ CASE (3:) !qmax>2
 					ELSE
 						res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)	!Diverso da zero
 					END IF zero1_if
-					
+
 				CASE DEFAULT tre_q_case !Per tutti gli altri q
-				
+
 					!Calcolo v_aq(qmax-1)
 					p=n+nu-2.0D0*REAL(q+2.0D0,dbl)
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
 					aq_fwd=-(c1/c2)*v_aq(q+1)+(c0/c2)*v_aq(q+2)
-				
+
 					!Case a seconda che il valore appena precedente sia zero o meno
 					tre_switch_case: SELECT CASE (switch)
-					
+
 					CASE(1) tre_switch_case !Il valore precedente e' zero
-					
+
 						res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)
-						
+
 					CASE(0) tre_switch_case !Il valore precedente e' diverso da zero
-					
+
 						!If a secondo che v_aq(q) sia zero o no
 						zero2_if: IF ((aq_fwd/v_aq(q+1))<(10.0D0**(-8))) THEN
 							v_aq(q)=aq_fwd	!Zero
@@ -1291,18 +1291,18 @@ CASE (3:) !qmax>2
 						ELSE
 							res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)	!Diverso da zero
 						END IF zero2_if
-						
+
 					END SELECT tre_switch_case
-				
+
 				END SELECT tre_q_case
 
 			!Adesso se la precisione e' raggiunta esco dal ciclo, se no sostituisco e rimango
 			IF ((res<(10.0D0**(-prec))) .OR. (q==0)) EXIT
-			
+
 			!Sono nel ciclo, allora sostituisco eaggiorno indice e residuo
 			v_aq(q)=aq_fwd
 			qi=q
-			
+
 			END DO tre_f_do
 
 		! Check sul ciclo di sostituzione
@@ -1315,41 +1315,41 @@ CASE (3:) !qmax>2
 					error=1
 					RETURN
 		END IF error_if1
-		
-		
+
+
 		END IF tre_f_if
-			
+
 	ELSE
-	
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso generale (4)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!-----------------------------------
 		!BACKWARD
 		!-----------------------------------
-		
+
 		!Calcolo Ap4 per q=0, se e' uguale a zero chiamo cruzan ed esco dal ciclo
 		Ap4=f_Ap(m,n,mu,nu,n+nu-REAL(qmax,dbl)+4.0D0)
-	
+
 		cz_if1:IF (Ap4==0) THEN
 ! 			WRITE(*,*) "cz Ap4"
 			CALL gaunt_cz(m,n,mu,nu,qmax,v_aq,error)
 			RETURN
 		END IF cz_if1
-	
+
 		!Calcolo direttamente i primi tre valori della ricorsione
 		v_aq(0)=f_a0(m,n,mu,nu)
 		v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
-	
+
 		gen_b_do: DO q=2,qmax
-		
+
 					!Calcolo pre-coeff. : questi li calcoli qui per poter uscire
 					p=n+nu-2.0D0*REAL(q,dbl)
 					Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
-					
+
 					IF (Ap2==0) EXIT	!Esco dal loop perche non posso fare la fwd recursion
-					
+
 					!Calcolo pre-coefficienti
 					p1=p-m-mu
 					p2=p+m+mu
@@ -1359,56 +1359,56 @@ CASE (3:) !qmax>2
 					alphap4=f_alpha(n,nu,p+4.0D0)
 					Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 					Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-					
+
 					!Calcolo coefficienti ricorsione
 					c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 					c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2+ &
 					  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 					c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-				
+
 					!Ricorsione
 					v_aq(q)=(c1/c0)*v_aq(q-1)+(c2/c0)*v_aq(q-2)
-			
+
 		END DO gen_b_do
-		
+
 		cz_if2:IF (Ap2==0) THEN
 ! 			WRITE(*,*) "cz Ap2"
 			CALL gaunt_cz(m,n,mu,nu,qmax,v_aq,error)
 			RETURN
 		END IF cz_if2
-	
-	
+
+
 		!-----------------------------------
 		!FORWARD
 		!-----------------------------------
-		
+
 		!Calcolo pmin,Apmin e la mia variabile logica
 		pmin=n+nu-2.0D0*REAL(qmax,dbl)
 		Apmin=f_Ap(m,n,mu,nu,pmin)
 		test=((INT(Apmin,lo)==0) .AND. &
 		    &((INT(pmin,lo)==INT(m+mu+1.0D0,lo)).OR.(INT(pmin,lo)==INT(-m-mu+1.0D0,lo))))
-		
+
 		!........................................................
 		!Se la mia variabile logica e' vera, Faccio il mio conto
 		!........................................................
 		Apmin_if: IF (test) THEN
 
-			!Il valore per qmax allora e' zero		
+			!Il valore per qmax allora e' zero
 			v_aq(qmax)=0.0D0
-			
+
 			!Calcolo il secondo valore, e se la precisione e' raggiunta esco
 			aq_fwd=f_aqmax_1(m,n,mu,nu,qmax)
 			res=ABS(aq_fwd-v_aq(qmax-1))/ABS(aq_fwd)
 			IF (res<(10.0D0**(-prec))) THEN
 				RETURN
 			END IF
-		
+
 			!Assegno il secondo valore e faccio il ciclo
 			v_aq(qmax-1)=aq_fwd
 			qi=1
-			
+
 			Apmin_do: DO q=(qmax-2),0,-1
-			
+
 				!Calcolo pre-coefficienti
 				p=n+nu-2.0D0*REAL(q+2,dbl)
 				p1=p-m-mu
@@ -1420,24 +1420,24 @@ CASE (3:) !qmax>2
 				Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 				Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 				Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-				
+
 				!Calcolo coefficienti ricorsione
 				c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 				c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2+ &
 				  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 				c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-						
+
 				!Ricorsione e residuo
 				aq_fwd=-(c1/c2)*v_aq(q+1)+(c0/c2)*v_aq(q+2)
 				res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)
-				
+
 				IF (res<(10.0D0**(-prec))) EXIT
-				
+
 				v_aq(q)=aq_fwd
 				qi=q
-				
-			END DO Apmin_do		
-			
+
+			END DO Apmin_do
+
 			! Check sul ciclo di sostituzione
 			Apmin_error_if1: IF (qi==0) THEN
 						WRITE(*,*)
@@ -1448,34 +1448,34 @@ CASE (3:) !qmax>2
 						error=1
 						RETURN
 			END IF Apmin_error_if1
-			
+
 			!Esco dalla subroutine gaunt_xu
 			RETURN
-			
+
 		END IF Apmin_if
-		
+
 		!..............................................
 		!Qui lavoro se la mia variabile logica e' falsa
 		!Tutto e' identico al caso (3)
 		!..............................................
-		
+
 		!Primo valore per la forward recursion,errore relativo e suo swap
 		aq_fwd=f_aqmax(m,n,mu,nu,qmax)
 		res=ABS(aq_fwd-v_aq(qmax))/ABS(aq_fwd)
 		qi=1
-		
+
 		!Se non ho precisione, sostituisco i valori
-		gen_f_if: IF (res>(10.0D0**(-prec))) THEN 
-		
+		gen_f_if: IF (res>(10.0D0**(-prec))) THEN
+
 			v_aq(qmax)=aq_fwd
-			
+
 			!Entro nel ciclo della sostituzione valori
 			gen_f_do: DO q=qmax-1,0,-1
-				
+
 				gen_q_case:SELECT CASE (qmax-q)
-				
+
 				CASE(1) gen_q_case	!q=qmax-1
-					
+
 					!Calcolo aq
 					p=n+nu-2.0D0*REAL(q+2,dbl)
 					p1=p-m-mu
@@ -1491,7 +1491,7 @@ CASE (3:) !qmax>2
 					  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 					c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
 					aq_fwd=-(c1/c2)*v_aq(qmax) !E' qui che lo calcolo
-						
+
 					!If a secondo che v_aq(qmax-1) sia zero o no
 					gen_zero1_if: IF ((aq_fwd/v_aq(qmax))<(10.0D0**(-8))) THEN
 							v_aq(q)=aq_fwd	!Zero
@@ -1500,9 +1500,9 @@ CASE (3:) !qmax>2
 					ELSE
 							res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)	!Diverso da zero
 					END IF gen_zero1_if
-					
+
 				CASE DEFAULT gen_q_case !Per tutti gli altri q
-				
+
 					!Calcolo aq
 					p=n+nu-2.0D0*REAL(q+2,dbl)
 					p1=p-m-mu
@@ -1519,16 +1519,16 @@ CASE (3:) !qmax>2
 					  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 					c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
 					aq_fwd=-(c1/c2)*v_aq(q+1)+(c0/c2)*v_aq(q+2)
-				
+
 					!Case a seconda che il valore appena precedente sia zero o meno
 					gen_switch_case: SELECT CASE (switch)
-					
+
 					CASE(1) gen_switch_case !Il valore precedente e' zero
-					
+
 						res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)
-						
+
 					CASE(0) gen_switch_case !Il valore precedente e' diverso da zero
-					
+
 						!If a secondo che v_aq(q) sia zero o no
 						gen_zero2_if: IF ((aq_fwd/v_aq(q+1))<(10.0D0**(-9))) THEN
 							v_aq(q)=aq_fwd	!Zero
@@ -1537,18 +1537,18 @@ CASE (3:) !qmax>2
 						ELSE
 							res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)	!Diverso da zero
 						END IF gen_zero2_if
-						
+
 					END SELECT gen_switch_case
-				
+
 				END SELECT gen_q_case
 
 			!Adesso se la precisione e' raggiunta esco dal ciclo, se no sostituisco e rimango
 			IF ((res<(10.0D0**(-prec))) .OR. (q==0)) EXIT
-			
+
 			!Sono nel ciclo, allora sostituisco eaggiorno indice e residuo
 			v_aq(q)=aq_fwd
 			qi=q
-			
+
 			END DO gen_f_do
 
 			! Check sul ciclo di sostituzione
@@ -1561,12 +1561,12 @@ CASE (3:) !qmax>2
 						error=1
 						RETURN
 			END IF gen_error_if1
-		
-		
+
+
 		END IF gen_f_if
 
 	END IF big_if
-		
+
 END SELECT qmax_case
 
 
@@ -1630,228 +1630,228 @@ CASE (0) !qmax=0
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	!WRITE(*,*) f_a0(m,n,mu,nu),v_aq(0)
-	
+
 CASE (1) !qmax=1
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
-	
+
 	!Controllo gli zeri
 	zg_if_1_0: IF (ABS(v_aq(1)/v_aq(0))<10.0D0**(-tol)) THEN
 				v_aq(1)=0.0D0
 				v_zero(1)=0
 	END IF zg_if_1_0
-	
+
 CASE (2) !qmax=2
 
 	v_aq(0)=f_a0(m,n,mu,nu)
 	v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
-	
+
 	!Controllo gli zeri
 	zg_if_1_1: IF (ABS(v_aq(1)/v_aq(0))<10.0D0**(-tol)) THEN
 				v_aq(1)=0.0D0
 				v_zero(1)=0
 	END IF zg_if_1_1
-	
+
 	v_aq(2)=v_aq(0)*f_a2normr(m,n,mu,nu,v_aq(1)/v_aq(0))
-	
+
 	!Controllo gli zeri
 	zg_if_1_2: IF (ABS(v_aq(2)/v_aq(0))<10.0D0**(-tol)) THEN
 				v_aq(2)=0.0D0
 				v_zero(2)=0
 	END IF zg_if_1_2
-	
+
 CASE (3:) !qmax>2
 
 	!:::::::::::::::::::::::::::::::::::::::::::::::
 	!Struttura if, per i diversi casi di ricorsione
 	!:::::::::::::::::::::::::::::::::::::::::::::::
-	
+
 	big_if: IF ((INT(m,lo)==0) .AND. (INT(mu,lo)==0)) THEN
-	
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=m=0 (1)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!BACKWARD
-		
+
 		!Primo valore per la backward recursion
-		v_aq(0)=f_a0(m,n,mu,nu) 
-	
+		v_aq(0)=f_a0(m,n,mu,nu)
+
 		!Backward recursion
 		uno_b_do: DO q=1,qmax
-					
+
 					p=n+nu-2.0D0*REAL(q,dbl)
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=f_alpha(n,nu,p+2.0D0)
-					
+
 					v_aq(q)=(c1/c0)*v_aq(q-1)
-					
+
 					!Vedo se il q-esimo valore e' zero
 					v_zero_if_1: IF (v_zero(q-1)==1) THEN
 						zg_if_1: IF (ABS(v_aq(q)/v_aq(q-1))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
-						END IF zg_if_1 
+						END IF zg_if_1
 					ELSE IF ((v_zero(q-1)==0).AND.(v_zero(q-2)/=0)) THEN
 						zg_if1_1: IF (ABS(v_aq(q)/v_aq(q-2))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
 						END IF zg_if1_1
 					END IF v_zero_if_1
-					
+
 		END DO uno_b_do
-		
+
 	ELSE IF ((INT(mu,lo)==INT(m,lo)) .AND. (INT(nu,lo)==INT(n,lo))) THEN
-	
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=m e nu=n (2)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!BACKWARD
-		
+
 		!Primo valore per la backward recursion
-		v_aq(0)=f_a0(m,n,mu,nu) 
-	
+		v_aq(0)=f_a0(m,n,mu,nu)
+
 		!Backward recursion
 		due_b_do: DO q=1,qmax
-					
+
 					!Calcolo pre-coefficienti
 					p=n+nu-2.0D0*REAL(q,dbl)
 					p1=p-m-mu
 					p2=p+m+mu
-					
+
 					!Calcolo coefficienti ricorsione
 					c0=(p+2.0D0)*(p1+1.0D0)*f_alpha(n,nu,p+1.0D0)
 					c1=(p+1.0D0)*(p2+2.0D0)*f_alpha(n,nu,p+2.0D0)
-					
+
 					!Ricorsione
 					v_aq(q)=(c1/c0)*v_aq(q-1)
-					
+
 					!Vedo se il q-esimo valore e' zero
 					v_zero_if_2: IF (v_zero(q-1)==1) THEN
 						zg_if_2: IF (ABS(v_aq(q)/v_aq(q-1))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
-						END IF zg_if_2 
+						END IF zg_if_2
 					ELSE IF ((v_zero(q-1)==0).AND.(v_zero(q-2)/=0)) THEN
 						zg_if1_2: IF (ABS(v_aq(q)/v_aq(q-2))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
 						END IF zg_if1_2
 					END IF v_zero_if_2
-					
+
 		END DO due_b_do
-			
-	ELSE IF (INT(mu,lo)==INT(-m,lo)) THEN		
-	
+
+	ELSE IF (INT(mu,lo)==INT(-m,lo)) THEN
+
 		!'''''''''''''''''''''''''''''''''''
 		!Caso mu=-m (3)
 		!'''''''''''''''''''''''''''''''''''
-		
+
 		!-----------------------------------
 		!BACKWARD
 		!-----------------------------------
-		
+
 		!Primo valore per la backward recursion
 		v_aq(0)=f_a0(m,n,mu,nu)
-		v_aq(1)=f_a1norm(m,n,mu,nu)*v_aq(0) 
-	
+		v_aq(1)=f_a1norm(m,n,mu,nu)*v_aq(0)
+
 		!Controllo gli zeri
 		zg_if_3_0: IF (ABS(v_aq(1)/v_aq(0))<10.0D0**(-tol)) THEN
 					v_aq(1)=0.0D0
 					v_zero(1)=0
 		END IF zg_if_3_0
-	
+
 		!Backward recursion
 		tre_b_do: DO q=2,qmax
-					
+
 					!Calcolo pre-coefficienti
 					p=n+nu-2.0D0*REAL(q,dbl)
-				
+
 					!Calcolo coefficienti ricorsione
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
-					
+
 					!Ricorsione
 					v_aq(q)=(c1/c0)*v_aq(q-1)+(c2/c0)*v_aq(q-2)
-					
+
 					!Vedo se il q-esimo valore e' zero
 					v_zero_if_3: IF (v_zero(q-1)==1) THEN
 						zg_if_3: IF (ABS(v_aq(q)/v_aq(q-1))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
-						END IF zg_if_3 
+						END IF zg_if_3
 					ELSE IF ((v_zero(q-1)==0).AND.(v_zero(q-2)/=0)) THEN
 						zg_if1_3: IF (ABS(v_aq(q)/v_aq(q-2))<10.0D0**(-tol)) THEN
 							v_aq(q)=0.0D0
 							v_zero(q)=0
 						END IF zg_if1_3
 					END IF v_zero_if_3
-					
+
 		END DO tre_b_do
-		
+
 		!--------------------------------
 		!FORWARD
 		!--------------------------------
-		
+
 		!Primo valore per la forward recursion,errore relativo e suo swap
 		aq_fwd=f_aqmax(m,n,mu,nu,qmax)
 		res=ABS(aq_fwd-v_aq(qmax))/ABS(aq_fwd)
-		
-		
+
+
 		!Se non ho precisione, sostituisco i valori
-		tre_f_if: IF (res>(10.0D0**(-prec))) THEN 
-		
+		tre_f_if: IF (res>(10.0D0**(-prec))) THEN
+
 			v_aq(qmax)=aq_fwd
 			qi=1
-			
+
 			!Entro nel ciclo della sostituzione valori
 			tre_f_do: DO q=qmax-1,0,-1
-				
+
 				tre_q_case:SELECT CASE (qmax-q)
-				
+
 				CASE(1) tre_q_case	!q=qmax-1
-					
+
 					!Calcolo v_aq(qmax-1)
 					p=n+nu-2.0D0*REAL(q+2,dbl)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
 					aq_fwd=-(c1/c2)*v_aq(qmax)
-					
+
 					z_3_1_case: SELECT CASE (v_zero(q))
 					CASE (0) z_3_1_case
 						v_aq(q)=0.0D0
 					CASE (1) z_3_1_case
 						res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)
 					END SELECT z_3_1_case
-					
+
 				CASE DEFAULT tre_q_case !Per tutti gli altri q
-				
+
 					!Calcolo v_aq(qmax-1)
 					p=n+nu-2.0D0*REAL(q+2.0D0,dbl)
 					c0=f_alpha(n,nu,p+1.0D0)
 					c1=4.0D0*(m**2)+f_alpha(n,nu,p+2.0D0)+f_alpha(n,nu,p+3.0D0)
 					c2=-f_alpha(n,nu,p+4.0D0)
 					aq_fwd=-(c1/c2)*v_aq(q+1)+(c0/c2)*v_aq(q+2)
-				
+
 					z_3_2_case: SELECT CASE (v_zero(q))
 					CASE (0) z_3_2_case
 						v_aq(q)=0.0D0
 					CASE (1) z_3_2_case
 						res=ABS(aq_fwd-v_aq(q))/ABS(aq_fwd)
 					END SELECT z_3_2_case
-				
+
 				END SELECT tre_q_case
 
 			!Adesso se la precisione e' raggiunta esco dal ciclo, se no sostituisco e rimango
 			IF ((res<(10.0D0**(-prec))) .OR. (q==0) .OR. (ABS(aq_fwd)<ABS(v_aq(q+1)))) EXIT
-			
+
 			!Sono nel ciclo, allora sostituisco eaggiorno indice e residuo
 			v_aq(q)=aq_fwd
 			qi=q
-			
+
 			END DO tre_f_do
 
 		! Check sul ciclo di sostituzione
@@ -1864,15 +1864,15 @@ CASE (3:) !qmax>2
 					error=1
 					RETURN
 		END IF error_if1
-		
-		
+
+
 		END IF tre_f_if
-			
+
 	ELSE
-	
-	
-	
-	
+
+
+
+
 		!''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 		!''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 		!''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
@@ -1880,25 +1880,25 @@ CASE (3:) !qmax>2
 		!'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 		!''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 		!''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-		
+
 		!---------------------------------------------------------------------------------------------------------
 		!BACKWARD
 		!---------------------------------------------------------------------------------------------------------
-		
+
 		!........................................................
 		!Calcolo direttamente i primi due valori della ricorsione
 		!........................................................
 		v_aq(0)=f_a0(m,n,mu,nu)
 		v_aq(1)=v_aq(0)*f_a1norm(m,n,mu,nu)
-	
+
 		!Vedo se il secondo valore e' zero
 		zg1_if: IF (ABS(v_aq(1)/v_aq(0))<10.0D0**(-tol)) THEN
 			v_aq(1)=0.0D0
 			v_zero(1)=0
 		END IF zg1_if
-	
-	
-	
+
+
+
 		!...........................................................
 		!Calcolo il terzo valore della ricorsione in funzione di Ap4
 		!...........................................................
@@ -1911,16 +1911,16 @@ CASE (3:) !qmax>2
 		Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 		Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 		Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-		
+
 		!Con questo if decido se mi serve la ricorsione a 3 o 4 termini
 		Ap4_2_if: IF (Ap4==0) THEN
-		
+
 			!Calcolo i restanti valori preliminari
 			Ap5=f_Ap(m,n,mu,nu,p+5.0D0)
 			Ap6=f_Ap(m,n,mu,nu,p+6.0D0)
 			alphap5=f_alpha(n,nu,p+5.0D0)
 			alphap6=f_alpha(n,nu,p+6.0D0)
-			
+
 			!Calcolo i coefficienti per la ricorsione ma non c3 perche' qui e solo qui non mi serve
 			c0=(p+2.0D0)*(p+3.0D0)*(p+5.0D0)*(p1+1.0D0)*(p1+2.0D0)*(p1+4.0D0)*Ap6*alphap1
 			c1=(p+5.0D0)*(p1+4.0D0)*Ap6*(Ap2*Ap3 + (p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*alphap2)
@@ -1928,27 +1928,27 @@ CASE (3:) !qmax>2
 
 			!Calcolo il mio coefficiente
 			v_aq(2)=(c1/c0)*v_aq(1)+(c2/c0)*v_aq(0)
-		
+
 			!Assegno l'indice segnaposto per Ap4=0
 			q4=2
-		
+
 		ELSE
 
-			!Calcolo i restanti valori preliminari		
+			!Calcolo i restanti valori preliminari
 			alphap3=f_alpha(n,nu,p+3.0D0)
 			alphap4=f_alpha(n,nu,p+4.0D0)
-		
+
 			!Calcolo coefficienti ricorsione
 			c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 			c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2+ &
 			  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 			c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-		
+
 			!Calcolo il mio coefficiente
 			v_aq(2)=(c1/c0)*v_aq(1)+(c2/c0)*v_aq(0)
-		
+
 		END IF Ap4_2_if
-	
+
 		!Vedo se il terzo valore e' zero
 		v_zero_if1: IF (v_zero(1)==1) THEN
 			zg2_if: IF (ABS(v_aq(2)/v_aq(1))<10.0D0**(-tol)) THEN
@@ -1961,13 +1961,13 @@ CASE (3:) !qmax>2
 				v_zero(2)=0
 			END IF zg2_if1
 		END IF v_zero_if1
-	
-	
+
+
 		!...........................................................
 		!Calcolo i restanti valori nel loop
 		!...........................................................
 		gen_bwd_do: DO q=3,qmax
-		
+
 			!Inizializzo i valori comuni per i coefficienti
 			p=n+nu-2.0D0*REAL(q,dbl)
 			p1=p-m-mu
@@ -1977,45 +1977,45 @@ CASE (3:) !qmax>2
 			Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 			Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 			Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-			
+
 			!Con questo if decido se mi serve la ricorsione a 3 o 4 termini
 			Ap4_bwd_if: IF (Ap4==0) THEN
-			
+
 				!Calcolo i restanti valori preliminari
 				Ap5=f_Ap(m,n,mu,nu,p+5.0D0)
 				Ap6=f_Ap(m,n,mu,nu,p+6.0D0)
 				alphap5=f_alpha(n,nu,p+5.0D0)
 				alphap6=f_alpha(n,nu,p+6.0D0)
-				
+
 				!Calcolo i coefficienti per la ricorsione ma non c3 perche' qui e solo qui non mi serve
 				c0=(p+2.0D0)*(p+3.0D0)*(p+5.0D0)*(p1+1.0D0)*(p1+2.0D0)*(p1+4.0D0)*Ap6*alphap1
 				c1=(p+5.0D0)*(p1+4.0D0)*Ap6*(Ap2*Ap3 + (p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*alphap2)
 				c2=(p+2.0D0)*(p2+3.0D0)*Ap2*(Ap5*Ap6 + (p+4.0D0)*(p+6.0D0)*(p1+5.0D0)*(p2+5.0D0)*alphap5)
 				c3=-(p+2.0D0)*(p+4.0D0)*(p+5.0D0)*(p2+3.0D0)*(p2+5.0D0)*(p2+6.0D0)*Ap2*alphap6
-	
+
 				!Calcolo il mio coefficiente
 				v_aq(q)=(c1/c0)*v_aq(q-1)+(c2/c0)*v_aq(q-2)+(c3/c0)*v_aq(q-3)
-			
+
 				!Assegno l'indice segnaposto per Ap4=0
 				q4=q
-			
+
 			ELSE
-	
-				!Calcolo i restanti valori preliminari		
+
+				!Calcolo i restanti valori preliminari
 				alphap3=f_alpha(n,nu,p+3.0D0)
 				alphap4=f_alpha(n,nu,p+4.0D0)
-			
+
 				!Calcolo coefficienti ricorsione
 				c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 				c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2+ &
 				  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 				c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-			
+
 				!Calcolo il mio coefficiente
 				v_aq(q)=(c1/c0)*v_aq(q-1)+(c2/c0)*v_aq(q-2)
-			
+
 			END IF Ap4_bwd_if
-			
+
 			!Vedo se il q-esimo valore e' zero
 			v_zero_ifq: IF (v_zero(q-1)==1) THEN
 				zgq_if: IF (ABS(v_aq(q)/v_aq(q-1))<10.0D0**(-tol)) THEN
@@ -2028,45 +2028,45 @@ CASE (3:) !qmax>2
 					v_zero(q)=0
 				END IF zgq_if1
 			END IF v_zero_ifq
-			
+
 		END DO gen_bwd_do
-		
-		
-	
-	
-	
-	
+
+
+
+
+
+
 		!---------------------------------------------------------------------------------
 		!FORWARD
 		!---------------------------------------------------------------------------------
-		
+
 		!Calcolo pmin,Apmin e la mia variabile logica
 		pmin=n+nu-2.0D0*REAL(qmax,dbl)
 		Apmin=f_Ap(m,n,mu,nu,pmin)
 		test=((INT(Apmin,lo)==0) .AND. &
 		    &((INT(pmin,lo)==INT(m+mu+1.0D0,lo)).OR.(INT(pmin,lo)==INT(-m-mu+1.0D0,lo))))
-		
+
 		!........................................................
 		!Se la mia variabile logica e' vera, Faccio il mio conto
 		!........................................................
 		Apmin_if: IF (test) THEN
 
-			!Il valore per qmax allora e' zero		
+			!Il valore per qmax allora e' zero
 			v_aq(qmax)=0.0D0
-			
+
 			!Calcolo il secondo valore, e se la precisione e' raggiunta esco
 			aq_fwd=f_aqmax_1(m,n,mu,nu,qmax)
 			res=ABS(aq_fwd-v_aq(qmax-1))/ABS(aq_fwd)
 			IF (res<(10.0D0**(-prec))) THEN
 				RETURN
 			END IF
-		
+
 			!Assegno il secondo valore e faccio il ciclo
 			v_aq(qmax-1)=aq_fwd
 			qi=1
-			
+
 			Apmin_do: DO q=qmax,2,-1
-			
+
 				!Calcolo pre-coefficienti
 				p=n+nu-2.0D0*REAL(q,dbl)
 				p1=p-m-mu
@@ -2078,24 +2078,24 @@ CASE (3:) !qmax>2
 				Ap2=f_Ap(m,n,mu,nu,p+2.0D0)
 				Ap3=f_Ap(m,n,mu,nu,p+3.0D0)
 				Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-				
+
 				!Calcolo coefficienti ricorsione
 				c0=(p+2.0D0)*(p+3.0D0)*(p1+1.0D0)*(p1+2.0D0)*Ap4*alphap1
 				c1=Ap2*Ap3*Ap4+(p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*Ap4*alphap2+ &
 				  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 				c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
-						
+
 				!Ricorsione e residuo
 				aq_fwd=-(c1/c2)*v_aq(q-1)+(c0/c2)*v_aq(q)
 				res=ABS(aq_fwd-v_aq(q-2))/ABS(aq_fwd)
-				
+
 				IF (res<(10.0D0**(-prec))) EXIT
-				
+
 				v_aq(q-2)=aq_fwd
 				qi=q-2
-				
-			END DO Apmin_do		
-			
+
+			END DO Apmin_do
+
 			! Check sul ciclo di sostituzione
 			Apmin_error_if1: IF (qi==0) THEN
 						WRITE(*,*)
@@ -2106,45 +2106,45 @@ CASE (3:) !qmax>2
 						error=1
 						RETURN
 			END IF Apmin_error_if1
-			
+
 			!Esco dalla subroutine gaunt_xu
 			RETURN
-			
+
 		END IF Apmin_if
-		
+
 		!..........................................................................
 		!CASO GENERALE PER LA FORWARD RECURRENCE
 		!..........................................................................
-		
+
 		!Primo valore per la forward recursion,errore relativo e suo swap
 		aq_fwd=f_aqmax(m,n,mu,nu,qmax)
 		res=ABS(aq_fwd-v_aq(qmax))/ABS(aq_fwd)
 		qi=1
-		
-		gen_f_if: IF (res>(10.0D0**(-prec))) THEN 
+
+		gen_f_if: IF (res>(10.0D0**(-prec))) THEN
 		!Se non ho precisione, sostituisco i valori
-		
+
 			v_aq(qmax)=aq_fwd
-			
+
 			qi=qmax-1
-			
+
 			!Entro nel ciclo della sostituzione valori
-			gen_f_do: DO 
-				
+			gen_f_do: DO
+
 				gen_q_case:SELECT CASE (qmax-qi)
-				
+
 									!$$$$$$$$$$$$$$$$
 				CASE(1) gen_q_case	!q=qmax-1
 									!$$$$$$$$$$$$$$$$
-				
-					
+
+
 					!Calcolo Ap4 per qi+2 per vedere quale schema usare
 					p=n+nu-2.0D0*REAL(qi+2,dbl)
 					Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-					
+
 					!Scelgo la ricorrenza a seconda del valore di Ap4
 					Ap4_q1_if: IF (Ap4==0) THEN
-					
+
 						!Calcolo aq secondo la ricorrenza a 4 termini: uso qi+3 perche' il termine piu' alto e'
 						!maggiore di 3 unita' rispetto a qi, pur essendo nullo e non comparendo nella ricorsione
 						p=n+nu-2.0D0*REAL(qi+3,dbl)
@@ -2157,8 +2157,8 @@ CASE (3:) !qmax>2
 						Ap6=f_Ap(m,n,mu,nu,p+6.0D0)
 						c2=(p+2.0D0)*(p2+3.0D0)*Ap2*(Ap5*Ap6 + (p+4.0D0)*(p+6.0D0)*(p1+5.0D0)*(p2+5.0D0)*alphap5)
 						c3=-(p+2.0D0)*(p+4.0D0)*(p+5.0D0)*(p2+3.0D0)*(p2+5.0D0)*(p2+6.0D0)*Ap2*alphap6
-						aq_fwd=-(c2/c3)*v_aq(qi+1) 
-					
+						aq_fwd=-(c2/c3)*v_aq(qi+1)
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp41_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp41_case
@@ -2167,12 +2167,12 @@ CASE (3:) !qmax>2
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 							IF (res<10.0D0**(-prec)) EXIT gen_f_do
 						END SELECT zAp41_case
-						
+
 						!Qui calcolo il valore successivo dopo aver aggiornato qi:
-						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chamo e 
+						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chamo e
 						!tengo un solo valore
 						qi=qi-1
-						
+
 						zcz1_case:SELECT CASE (v_zero(qi))
 						CASE (0) zcz1_case
 							v_aq(qi)=0.0D0
@@ -2183,11 +2183,11 @@ CASE (3:) !qmax>2
 							aq_fwd=v_aq_cz(qi)
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 						END SELECT zcz1_case
-					
+
 							!-----------------
 					ELSE	!Qui Ap4/=0
 							!-----------------
-					
+
 						!Calcolo aq
 						p=n+nu-2.0D0*REAL(qi+2,dbl)
 						p1=p-m-mu
@@ -2202,7 +2202,7 @@ CASE (3:) !qmax>2
 						  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 						c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
 						aq_fwd=-(c1/c2)*v_aq(qi+1) !E' qui che lo calcolo
-					
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp4d1_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp4d1_case
@@ -2212,16 +2212,16 @@ CASE (3:) !qmax>2
 						CASE (1) zAp4d1_case
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 						END SELECT zAp4d1_case
-					
+
 					END IF Ap4_q1_if
 
 
 
 
-					
-					
+
+
 									!$$$$$$$$$$$$$$$$
-				CASE(2) gen_q_case	!q=qmax-2	
+				CASE(2) gen_q_case	!q=qmax-2
 									!$$$$$$$$$$$$$$$$
 
 
@@ -2232,10 +2232,10 @@ CASE (3:) !qmax>2
 					!Calcolo Ap4 per qi+2 per vedere quale schema usare
 					p=n+nu-2.0D0*REAL(qi+2,dbl)
 					Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-					
+
 					!Scelgo la ricorrenza a seconda del valore di Ap4
 					Ap4_q2_if: IF (Ap4==0) THEN
-					
+
 						!Calcolo aq secondo la ricorrenza a 4 termini: uso qi+3 perche' il termine piu' alto e'
 						!maggiore di 3 unita' rispetto a qi, pur essendo nullo e non comparendo nella ricorsione
 						p=n+nu-2.0D0*REAL(qi+3,dbl)
@@ -2251,8 +2251,8 @@ CASE (3:) !qmax>2
 						c1=(p+5.0D0)*(p1+4.0D0)*Ap6*(Ap2*Ap3 + (p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*alphap2)
 						c2=(p+2.0D0)*(p2+3.0D0)*Ap2*(Ap5*Ap6 + (p+4.0D0)*(p+6.0D0)*(p1+5.0D0)*(p2+5.0D0)*alphap5)
 						c3=-(p+2.0D0)*(p+4.0D0)*(p+5.0D0)*(p2+3.0D0)*(p2+5.0D0)*(p2+6.0D0)*Ap2*alphap6
-						aq_fwd=-(c1/c3)*v_aq(qi+2) -(c2/c3)*v_aq(qi+1) 
-					
+						aq_fwd=-(c1/c3)*v_aq(qi+2) -(c2/c3)*v_aq(qi+1)
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp42_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp42_case
@@ -2261,12 +2261,12 @@ CASE (3:) !qmax>2
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 							IF (res<10.0D0**(-prec)) EXIT gen_f_do
 						END SELECT zAp42_case
-						
+
 						!Qui calcolo il valore successivo dopo aver aggiornato qi:
-						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chamo e 
+						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chamo e
 						!tengo un solo valore
 						qi=qi-1
-						
+
 						zcz2_case:SELECT CASE (v_zero(qi))
 						CASE (0) zcz2_case
 							v_aq(qi)=0.0D0
@@ -2277,11 +2277,11 @@ CASE (3:) !qmax>2
 							aq_fwd=v_aq_cz(qi)
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 						END SELECT zcz2_case
-					
+
 							!-----------------
 					ELSE	!Qui Ap4/=0
 							!-----------------
-					
+
 						!Calcolo aq
 						p=n+nu-2.0D0*REAL(qi+2,dbl)
 						p1=p-m-mu
@@ -2297,7 +2297,7 @@ CASE (3:) !qmax>2
 						  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 						c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
 						aq_fwd=(c0/c2)*v_aq(qi+2)-(c1/c2)*v_aq(qi+1) !E' qui che lo calcolo
-					
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp4d2_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp4d2_case
@@ -2307,27 +2307,27 @@ CASE (3:) !qmax>2
 						CASE (1) zAp4d2_case
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 						END SELECT zAp4d2_case
-					
+
 					END IF Ap4_q2_if
 
 
 
-					
+
 										!$$$$$$$$$$$$$$$$$$$$$$
 				CASE DEFAULT gen_q_case !Per tutti gli altri q
 										!$$$$$$$$$$$$$$$$$$$$$$
 
 
 
-				
-				
+
+
 					!Calcolo Ap4 per qi+2 per vedere quale schema usare
 					p=n+nu-2.0D0*REAL(qi+2,dbl)
 					Ap4=f_Ap(m,n,mu,nu,p+4.0D0)
-					
+
 					!Scelgo la ricorrenza a seconda del valore di Ap4
 					Ap4_qq_if: IF (Ap4==0) THEN
-					
+
 						!Calcolo aq secondo la ricorrenza a 4 termini: uso qi+3 perche' il termine piu' alto e'
 						!maggiore di 3 unita' rispetto a qi, pur essendo nullo e non comparendo nella ricorsione
 						p=n+nu-2.0D0*REAL(qi+3,dbl)
@@ -2344,8 +2344,8 @@ CASE (3:) !qmax>2
 						c1=(p+5.0D0)*(p1+4.0D0)*Ap6*(Ap2*Ap3 + (p+1.0D0)*(p+3.0D0)*(p1+2.0D0)*(p2+2.0D0)*alphap2)
 						c2=(p+2.0D0)*(p2+3.0D0)*Ap2*(Ap5*Ap6 + (p+4.0D0)*(p+6.0D0)*(p1+5.0D0)*(p2+5.0D0)*alphap5)
 						c3=-(p+2.0D0)*(p+4.0D0)*(p+5.0D0)*(p2+3.0D0)*(p2+5.0D0)*(p2+6.0D0)*Ap2*alphap6
-						aq_fwd=(c0/c3)*v_aq(qi+3)-(c1/c3)*v_aq(qi+2) -(c2/c3)*v_aq(qi+1) 
-					
+						aq_fwd=(c0/c3)*v_aq(qi+3)-(c1/c3)*v_aq(qi+2) -(c2/c3)*v_aq(qi+1)
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp4q_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp4q_case
@@ -2354,15 +2354,15 @@ CASE (3:) !qmax>2
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 							IF (res<10.0D0**(-prec)) EXIT gen_f_do
 						END SELECT zAp4q_case
-						
+
 						!Qui calcolo il valore successivo dopo aver aggiornato qi:
-						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chiamo e 
+						!Se v_aq(qi)=0 allora non chiamo cruzan, se no lo chiamo e
 						!tengo un solo valore.L'if c'e' per non far sballare qi
-						
+
 						qi_if:IF (qi>0) THEN
-						
+
 							qi=qi-1
-						
+
 							zczq_case:SELECT CASE (v_zero(qi))
 							CASE (0) zczq_case
 								v_aq(qi)=0.0D0
@@ -2373,13 +2373,13 @@ CASE (3:) !qmax>2
 								aq_fwd=v_aq_cz(qi)
 								res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 							END SELECT zczq_case
-					
+
 						END IF qi_if
-					
+
 							!-----------------
 					ELSE	!Qui Ap4/=0
 							!-----------------
-					
+
 						!Calcolo aq
 						p=n+nu-2.0D0*REAL(qi+2,dbl)
 						p1=p-m-mu
@@ -2395,7 +2395,7 @@ CASE (3:) !qmax>2
 						  &(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*Ap2*alphap3
 						c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*Ap2*alphap4
 						aq_fwd=(c0/c2)*v_aq(qi+2)-(c1/c2)*v_aq(qi+1) !E' qui che lo calcolo
-					
+
 						!A seconda che il mio valore sia 0 o meno confronto i valori
 						zAp4dq_case:SELECT CASE (v_zero(qi))
 						CASE (0) zAp4dq_case
@@ -2405,18 +2405,18 @@ CASE (3:) !qmax>2
 						CASE (1) zAp4dq_case
 							res=ABS(aq_fwd-v_aq(qi))/ABS(aq_fwd)
 						END SELECT zAp4dq_case
-					
+
 					END IF Ap4_qq_if
-				
+
 				END SELECT gen_q_case
 
 			!Adesso se la precisione e' raggiunta esco dal ciclo, se no sostituisco e rimango
 			IF ((res<(10.0D0**(-prec))) .OR. (qi==0) .OR. (ABS(aq_fwd)<ABS(v_aq(qi+1)))) EXIT
-			
+
 			!Sono nel ciclo, allora sostituisco eaggiorno indice e residuo
 			v_aq(qi)=aq_fwd
 			qi=qi-1
-			
+
 			END DO gen_f_do
 
 			! Check sul ciclo di sostituzione
@@ -2429,12 +2429,12 @@ CASE (3:) !qmax>2
 						error=1
 						RETURN
 			END IF gen_error_if1
-		
-		
+
+
 		END IF gen_f_if
 
 	END IF big_if
-		
+
 END SELECT qmax_case
 
 
@@ -2478,10 +2478,10 @@ REAL(dbl), INTENT(IN) :: theta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(nmin:nmax), INTENT(OUT) :: v_leg	! Vettore di output valori funzioni di Legendre
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 REAL(dbl) :: x											! x=Cos(thetain)
-REAL(dbl) :: fact,somx2									! Semifattoriale e (1-x^2)			
+REAL(dbl) :: fact,somx2									! Semifattoriale e (1-x^2)
 REAL(dbl), DIMENSION(mm:nmax) :: v_legin			 	! Vettore interno legendre
 REAL(dbl) :: mr,lr,logw,sig								! Indici reali,log dell'exp e segno
 INTEGER(lo) :: i,l									! Indici
@@ -2518,7 +2518,7 @@ END IF thetain_check
 
 !Controllo se thetain e' zero, perche' cosi' i conti sono semplificati
 !e non devo chiamare la routine
-!m_if: IF (mm==0) THEN 
+!m_if: IF (mm==0) THEN
 
 !     theta1_if: IF (ABS(theta)<10.0D0**(-prec)) THEN
 
@@ -2527,10 +2527,10 @@ END IF thetain_check
 !          RETURN
 
 !          !Questo gruppo e' commentato perche' produce un errore, il caso e' da approfondire
-!          !				
+!          !
 !          ! 			ELSE IF (ABS(Pi_D-theta)<10.0D0**(-prec)) THEN
-!          ! 			
-!          ! 				!Theta=+-Pigreco 				
+!          !
+!          ! 				!Theta=+-Pigreco
 !          ! 				DO i=nmin,nmax
 !          ! 					v_leg(i)=-1.0D0**(i)
 !          ! 				END DO
@@ -2538,15 +2538,15 @@ END IF thetain_check
 
 !     END IF theta1_if
 
-!ELSE 
+!ELSE
 !     theta2_if: IF (theta<10.0D0**(-prec)) THEN
 
 !          !			La linea sottostante e' commentata per sicurezza, e uso quella
-!          !			Immediatamente sottostante 			
+!          !			Immediatamente sottostante
 !          !  			theta2_if: IF ((theta<10.0D0**(-prec)) .OR. (ABS(Pi_D-theta)<10.0D0**(-prec)) ) THEN
 
 !          !Theta=0 or +- Pigreco
-!          v_leg=0.0D0 		
+!          v_leg=0.0D0
 !          RETURN
 
 !     END IF theta2_if
@@ -2682,7 +2682,7 @@ REAL(dbl), INTENT(IN) :: theta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_pimn	! Vettore di output valori funzioni pi_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 INTEGER(lo) :: idx1,idx2,idx3,m,n					! Indice per riordinare i miei calcoli
 REAL(dbl) :: fact,mr,nr									! Semifattoriale e m reale
@@ -2691,12 +2691,12 @@ REAL(dbl) :: fact,mr,nr									! Semifattoriale e m reale
 !Subroutine vera e propria
 error=0
 
-!!$WRITE(*,*) 
+!!$WRITE(*,*)
 !!$WRITE(*,*) "inside pi_mn"
 !!$WRITE(*,*) "theta",theta
 !!$WRITE(*,*) "nstop",nstop
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
      WRITE(*,*) "nstop<0, la procedura pi_mn si ferma"
      error=1
@@ -2790,7 +2790,7 @@ v_pimn=0.0D0
 
 !     END DO pi2_mdo
 
-!ELSE	
+!ELSE
 
 !Qui c'e' il caso generale
 m_do: DO m=1,nstop
@@ -2800,7 +2800,7 @@ m_do: DO m=1,nstop
   !A seconda del valore di m,devo calcolare 1 o 2 o piu' valori
   m_case: SELECT CASE (nstop-m)
 
-  CASE(0) m_case	
+  CASE(0) m_case
 
 	   !******************************
 	   !Caso in cui nstop=m
@@ -2808,12 +2808,12 @@ m_do: DO m=1,nstop
 
 	   one_case_ns: SELECT CASE(m)
 
-	   CASE(1)			!m=1,m=nstop 
+	   CASE(1)			!m=1,m=nstop
 
 			idx1=3
 			v_pimn(idx1)=1.0D0
 
-	   CASE DEFAULT	!m/=1,m=nstop 
+	   CASE DEFAULT	!m/=1,m=nstop
 
 			idx1=nstop*(nstop+2)
 			fact=fact2(2.0D0*mr-1.0D0)
@@ -2821,7 +2821,7 @@ m_do: DO m=1,nstop
 
 	   END SELECT one_case_ns
 
-  CASE(1) m_case 
+  CASE(1) m_case
 
 	   !******************************
 	   !Caso in cui nstop=m+1
@@ -2829,7 +2829,7 @@ m_do: DO m=1,nstop
 
 	   one_case_ns1: SELECT CASE(m)
 
-	   CASE(1)			!m=1,m=nstop-1 
+	   CASE(1)			!m=1,m=nstop-1
 
 			!Indici del vettore
 			idx1=3
@@ -2839,7 +2839,7 @@ m_do: DO m=1,nstop
 			v_pimn(idx2)=3.0D0*COS(theta)*v_pimn(idx1)
 
 
-	   CASE DEFAULT	!m/=1,m=nstop-1 
+	   CASE DEFAULT	!m/=1,m=nstop-1
 
 			!Indici del vettore
 			idx1=(nstop**2)-1
@@ -2860,7 +2860,7 @@ m_do: DO m=1,nstop
 	   !Calcolo gli starting values a seconda che sia m=1 o meno
 	   start_case: SELECT CASE(m)
 
-	   CASE(1)			!m=1 
+	   CASE(1)			!m=1
 
 			!Indici del vettore
 			idx1=3
@@ -2870,7 +2870,7 @@ m_do: DO m=1,nstop
 			v_pimn(idx2)=3.0D0*COS(theta)*v_pimn(idx1)
 
 
-	   CASE DEFAULT	!m/=1,m=nstop-1 
+	   CASE DEFAULT	!m/=1,m=nstop-1
 
 			!Indici del vettore
 			idx1=m*(m+2)
@@ -2914,7 +2914,7 @@ nminus_do: DO n=1,nstop
           idx2=n*(n+1)-m
 
           !Faccio i conti
-          fact=lnf(nr-mr,error)-lnf(nr+mr,error) 
+          fact=lnf(nr-mr,error)-lnf(nr+mr,error)
           v_pimn(idx2)=((-1.0D0)**(m+1))*EXP(fact)*v_pimn(idx1)
           ! v_pimn(idx2)=((-1.0D0)**(m+1))*m_fact(n-m,n+m)*v_pimn(idx1)
           !WRITE(*,*) "pmn",EXP(fact),m_fact(n-m,n+m)
@@ -2940,7 +2940,7 @@ INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_pimn			! Vettore di input valori funzioni pi_mn
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_taumn			! Vettore di output valori funzioni tau_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 INTEGER(lo) :: idx1,idx2,idx3,m,n						! Indice per riordinare i miei calcoli e non
 REAL(dbl) :: fact,mr,nr,sig								! Semifattoriale e m,n reali,variabile segno
@@ -2949,7 +2949,7 @@ REAL(dbl) :: fact,mr,nr,sig								! Semifattoriale e m,n reali,variabile segno
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
      WRITE(*,*) "nstop<0, la procedura pi_mn si ferma"
      error=1
@@ -3020,13 +3020,13 @@ m_do: DO m=0,nstop
      !A seconda del valore di m,devo calcolare 1 o 2 o piu' valori
      m_case: SELECT CASE (m)
 
-     CASE(0) m_case	
+     CASE(0) m_case
 
           !******************************
           !Caso in cui m=0
           !******************************
 
-!          m0_thetaif: IF (ABS(PIO2_D-theta)<10.0D0**(-prec)) THEN 
+!          m0_thetaif: IF (ABS(PIO2_D-theta)<10.0D0**(-prec)) THEN
 
 !               !******************************
 !               !Caso theta=Pi/2
@@ -3044,7 +3044,7 @@ m_do: DO m=0,nstop
 !                    idx1=(n-2)*(n-1)
 !                    idx2=n*(n+1)
 
-!                    !Calcolo	
+!                    !Calcolo
 !                    v_taumn(idx2)=-(nr)*v_taumn(idx1)/(nr-1)
 
 !               END DO m0_pi2ndo
@@ -3077,7 +3077,7 @@ m_do: DO m=0,nstop
 
                          !Calcolo
                          v_taumn(idx3)=COS(theta)*(2.0D0*nr-1.0D0)*v_taumn(idx2)/(nr-1.0D0) - &
-                              & nr*v_taumn(idx1)/(nr-1.0D0)   
+                              & nr*v_taumn(idx1)/(nr-1.0D0)
 
                     END DO m0_ndo
 
@@ -3085,7 +3085,7 @@ m_do: DO m=0,nstop
 
 !          END IF m0_thetaif
 
-     CASE DEFAULT 
+     CASE DEFAULT
 
           !******************************
           !Caso in cui m/=0
@@ -3150,7 +3150,7 @@ nminus_do: DO n=1,nstop
           idx2=n*(n+1)-m
 
           !Faccio i conti
-          fact=lnf(nr-mr,error)-lnf(nr+mr,error) 
+          fact=lnf(nr-mr,error)-lnf(nr+mr,error)
           v_taumn(idx2)=((-1.0D0)**(m))*EXP(fact)*v_taumn(idx1)
           !v_taumn(idx2)=((-1.0D0)**(m))*m_fact(n-m,n+m)*v_taumn(idx1)
           ! WRITE(*,*) "tmn",EXP(fact),m_fact(n-m,n+m)
@@ -3185,7 +3185,7 @@ REAL(dbl), INTENT(IN) :: theta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_pimn	! Vettore di output valori funzioni pi_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 INTEGER(lo) :: idx1,idx2,idx3,m,n					! Indice per riordinare i miei calcoli
 REAL(dbl) :: fact,mr,nr									! Semifattoriale e m reale
@@ -3194,7 +3194,7 @@ REAL(dbl) :: fact,mr,nr									! Semifattoriale e m reale
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
 			WRITE(*,*) "nstop<0, la procedura pi_mn si ferma"
             error=1
@@ -3217,26 +3217,26 @@ v_pimn=0.0D0
 !	!Assegno i valori semplificati per theta=0
 !	theta0_ndo: DO n=1,nstop
 !		theta0_mdo: DO m=-n,n
-		
+
 !			!Calcolo per m=1 o m=-1
 !			theta0_mcase: SELECT CASE (m)
-			
+
 !			CASE(-1)
-			
+
 !				idx1=n*(n+1)+m
 !				v_pimn(idx1)=0.5D0
-			
+
 !			CASE(1)
-			
+
 !				idx1=n*(n+1)+m
 !				nr=REAL(n,dbl)
 !				v_pimn(idx1)=0.5D0*nr*(nr+1.0D0)
-			
+
 !			END SELECT theta0_mcase
-	
+
 !		END DO theta0_mdo
 !	END DO theta0_ndo
-	
+
 !	RETURN
 
 !ELSE IF ((Pi_D-theta)<10.0D0**(-prec)) THEN
@@ -3244,23 +3244,23 @@ v_pimn=0.0D0
 !	!Assegno i valori semplificati per theta=pigreco
 !	thetaPi_ndo: DO n=1,nstop
 !		thetaPi_mdo: DO m=-n,n
-		
+
 !			!Calcolo per m=1 o m=-1
 !			thetaPi_mcase: SELECT CASE (m)
-			
+
 !			CASE(-1)
-			
+
 !				idx1=n*(n+1)+m
 !				v_pimn(idx1)=((-1.0D0)**(n+1)) * 0.5D0
-			
+
 !			CASE(1)
-			
+
 !				idx1=n*(n+1)+m
 !				nr=REAL(n,dbl)
 !				v_pimn(idx1)=((-1.0D0)**(n+1)) * 0.5D0 *nr*(nr+1.0D0)
-			
+
 !			END SELECT thetaPi_mcase
-	
+
 !		END DO thetaPi_mdo
 !	END DO thetaPi_ndo
 
@@ -3270,25 +3270,25 @@ v_pimn=0.0D0
 
 !	!Assegno i valori semplificati per theta=pigreco/2
 !	pi2_mdo: DO m=1,nstop
-	
+
 !		idx1=m*(m+1)+m
 !		mr=REAL(m,dbl)
 !		v_pimn(idx1)=mr*fact2(2.0D0*mr-1.0D0)
-	
+
 !		pi2_ndo: DO n=m+2,nstop,2
-		
+
 !			nr=REAL(n,dbl)
 !			idx1=(n-2)*(n-1)+m
 !			idx2=n*(n+1)+m
-		
+
 !			v_pimn(idx2)=-(nr+mr-1.0D0)*v_pimn(idx1)/(nr-mr)
-		
+
 !		END DO pi2_ndo
-	
-	
+
+
 !	END DO pi2_mdo
 
-!ELSE	
+!ELSE
 
 !Qui c'e' il caso generale
 m_do: DO m=1,nstop
@@ -3298,47 +3298,47 @@ mr=REAL(m,dbl)
 !A seconda del valore di m,devo calcolare 1 o 2 o piu' valori
 m_case: SELECT CASE (nstop-m)
 
-CASE(0) m_case	
+CASE(0) m_case
 
 	!******************************
 	!Caso in cui nstop=m
 	!******************************
 
 	one_case_ns: SELECT CASE(m)
-				
-	CASE(1)			!m=1,m=nstop 
-	
+
+	CASE(1)			!m=1,m=nstop
+
 		idx1=3
 		v_pimn(idx1)=1.0D0
 
-	CASE DEFAULT	!m/=1,m=nstop 
-	
+	CASE DEFAULT	!m/=1,m=nstop
+
 		idx1=nstop*(nstop+2)
 		fact=fact2(2.0D0*mr-1.0D0)
 		v_pimn(idx1)=mr*fact*(SIN(theta)**(m-1))
-		
+
 	END SELECT one_case_ns
-	
-CASE(1) m_case 
+
+CASE(1) m_case
 
 	!******************************
 	!Caso in cui nstop=m+1
 	!******************************
 
 	one_case_ns1: SELECT CASE(m)
-				
-	CASE(1)			!m=1,m=nstop-1 
-	
+
+	CASE(1)			!m=1,m=nstop-1
+
 		!Indici del vettore
 		idx1=3
 		idx2=7
 		!Valori
 		v_pimn(idx1)=1.0D0
 		v_pimn(idx2)=3.0D0*COS(theta)*v_pimn(idx1)
-		
-	
-	CASE DEFAULT	!m/=1,m=nstop-1 
-	
+
+
+	CASE DEFAULT	!m/=1,m=nstop-1
+
 		!Indici del vettore
 		idx1=(nstop**2)-1
 		idx2=nstop*(nstop+1)+nstop-1
@@ -3346,30 +3346,30 @@ CASE(1) m_case
 		fact=fact2(2.0D0*mr-1.0D0)
 		v_pimn(idx1)=mr*fact*(SIN(theta)**(m-1))
 		v_pimn(idx2)=(2.0D0*mr+1.0D0)*COS(theta)*v_pimn(idx1)
-			
+
 	END SELECT one_case_ns1
 
 CASE DEFAULT m_case
-	
+
 	!******************************
 	!Caso generale in cui nstop>m+1
 	!******************************
 
 	!Calcolo gli starting values a seconda che sia m=1 o meno
 	start_case: SELECT CASE(m)
-				
-	CASE(1)			!m=1 
-	
+
+	CASE(1)			!m=1
+
 		!Indici del vettore
 		idx1=3
 		idx2=7
 		!Valori
 		v_pimn(idx1)=1.0D0
 		v_pimn(idx2)=3.0D0*COS(theta)*v_pimn(idx1)
-		
-	
-	CASE DEFAULT	!m/=1,m=nstop-1 
-	
+
+
+	CASE DEFAULT	!m/=1,m=nstop-1
+
 		!Indici del vettore
 		idx1=m*(m+2)
 		idx2=(m+1)*(m+2)+m
@@ -3377,28 +3377,28 @@ CASE DEFAULT m_case
 		fact=fact2(2.0D0*mr-1.0D0)
 		v_pimn(idx1)=mr*fact*(SIN(theta)**(m-1))
 		v_pimn(idx2)=(2.0D0*mr+1.0D0)*COS(theta)*v_pimn(idx1)
-			
+
 	END SELECT start_case
 
 	!Calcolo i restanti valori per ricorsione
 	n_do: DO n=m+2,nstop
-		
+
 		!Sistemo indici reali ed interi
 		nr=REAL(n,dbl)
 		idx1=(n-2)*(n-1)+m
 		idx2=(n-1)*n+m
 		idx3=n*(n+1)+m
-		
+
 		!Faccio il conto
 		v_pimn(idx3)=((2.0D0*nr-1.0D0)/(nr-mr))*COS(theta)*v_pimn(idx2)- &
 					&((nr+mr-1.0D0)/(nr-mr))*v_pimn(idx1)
-	
-	END DO n_do 
+
+	END DO n_do
 
 END SELECT m_case
 
 END DO m_do
-	
+
 !END IF theta_if
 
 !Calcolo dei valori per m negativo
@@ -3410,11 +3410,11 @@ nminus_do: DO n=1,nstop
 		mr=REAL(m,dbl)
 		idx1=n*(n+1)+m
 		idx2=n*(n+1)-m
-		
+
 		!Faccio i conti
-		fact=lnf(nr-mr,error)-lnf(nr+mr,error) 
+		fact=lnf(nr-mr,error)-lnf(nr+mr,error)
 		v_pimn(idx2)=((-1.0D0)**(m+1))*EXP(fact)*v_pimn(idx1)
-		
+
 
 	END DO mminus_do
 END DO nminus_do
@@ -3436,7 +3436,7 @@ INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_pimn			! Vettore di input valori funzioni pi_mn
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_taumn			! Vettore di output valori funzioni tau_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 INTEGER(lo) :: idx1,idx2,idx3,m,n						! Indice per riordinare i miei calcoli e non
 REAL(dbl) :: fact,mr,nr,sig								! Semifattoriale e m,n reali,variabile segno
@@ -3445,7 +3445,7 @@ REAL(dbl) :: fact,mr,nr,sig								! Semifattoriale e m,n reali,variabile segno
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
 			WRITE(*,*) "nstop<0, la procedura pi_mn si ferma"
             error=1
@@ -3476,30 +3476,30 @@ v_taumn=0.0D0
 
 !	!Assegno i valori semplificati per theta=0
 !	theta0_ndo: DO n=1,nstop
-	
+
 !		nr=REAL(n,dbl)
-	
+
 !		theta0_mdo: DO m=-n,n
-		
+
 !			!Calcolo l'indice
 !			idx1=n*(n+1)+m
-			
+
 !			!Calcolo per m=1 o m=-1
 !			theta0_mcase: SELECT CASE (m)
-			
+
 !			CASE(-1)
 !				!m=-1
 !				v_taumn(idx1)=-0.5D0*(sig**(n))
-				
+
 !			CASE(1)
 !				!m=1
 !				v_taumn(idx1)=(sig**(n))*0.5D0*nr*(nr+1.0D0)
-				
+
 !			END SELECT theta0_mcase
-	
+
 !		END DO theta0_mdo
 !	END DO theta0_ndo
-	
+
 !	!Chiudo la subroutine
 !	RETURN
 
@@ -3515,124 +3515,124 @@ m_do: DO m=0,nstop
 
 	!A seconda del valore di m,devo calcolare 1 o 2 o piu' valori
 	m_case: SELECT CASE (m)
-	
-	CASE(0) m_case	
-	
+
+	CASE(0) m_case
+
 		!******************************
 		!Caso in cui m=0
 		!******************************
-	
-!		m0_thetaif: IF (ABS(PIO2_D-theta)<10.0D0**(-prec)) THEN 
-		
+
+!		m0_thetaif: IF (ABS(PIO2_D-theta)<10.0D0**(-prec)) THEN
+
 !			!******************************
 !			!Caso theta=Pi/2
 !			!******************************
-		
+
 !			!Starting value
 !			idx1=2
 !			v_taumn(idx1)=-1.0D0
-			
+
 !			!Ciclo per il calcolo
 !			m0_pi2ndo: DO n=3,nstop,2
-				
+
 !				!Indici
 !				nr=REAL(n,dbl)
 !				idx1=(n-2)*(n-1)
 !				idx2=n*(n+1)
-				
-!				!Calcolo	
+
+!				!Calcolo
 !				v_taumn(idx2)=-(nr)*v_taumn(idx1)/(nr-1)
-			
+
 !			END DO m0_pi2ndo
-		
+
 !		ELSE
-		
+
 			!******************************
 			!Caso generale theta/=Pi/2
 			!******************************
-		
+
 			!Starting value
 			idx1=2
 			v_taumn(idx1)=-SIN(theta)
-		
+
 			!If a seconda del valore di nstop
 			nstop_if: IF (nstop>1) THEN
-			
+
 				!Secondo starting value
 				idx1=6
 				v_taumn(idx1)=-3.0D0*COS(theta)*SIN(theta)
-				
+
 				!Ciclo per il calcolo
 				m0_ndo: DO n=3,nstop
-				
+
 					!Assegnazione degli indici
 					nr=REAL(n,dbl)
 					idx1=(n-2)*(n-1)
 					idx2=(n-1)*n
 					idx3=n*(n+1)
-					
+
 					!Calcolo
 					v_taumn(idx3)=COS(theta)*(2.0D0*nr-1.0D0)*v_taumn(idx2)/(nr-1.0D0) - &
-								 & nr*v_taumn(idx1)/(nr-1.0D0)   
-				
+								 & nr*v_taumn(idx1)/(nr-1.0D0)
+
 				END DO m0_ndo
-			
+
 			END IF nstop_if
-		
+
 !		END IF m0_thetaif
-	
-	CASE DEFAULT 
-	
+
+	CASE DEFAULT
+
 		!******************************
 		!Caso in cui m/=0
 		!******************************
-	
+
 !		m_thetaif: IF (ABS(PIO2_D-theta)<10.0D0**(-prec)) THEN
-		
+
 !			!******************************
 !			!Caso theta=Pi/2
 !			!******************************
-		
+
 !			!Ciclo per l'assegnazione dei valori
 !			pi2_ndo: DO n=m+1,nstop,2
-			
+
 !				!Indici
 !				nr=REAL(n,dbl)
 !				idx1=(n-1)*n+m
 !				idx2=n*(n+1)+m
-				
+
 !				!Calcolo
 !				v_taumn(idx2)=-(nr+mr)*v_pimn(idx1)/mr
-			
+
 !			END DO pi2_ndo
-			
+
 !		ELSE
-		
+
 			!******************************
 			!Caso generale theta/=Pi/2
 			!******************************
-		
+
 			!Starting value
 			idx1=m*(m+1)+m
 			v_taumn(idx1)=COS(theta)*v_pimn(idx1)
-			
+
 			!Ciclo per l'assegnazione dei valori
 			ndo: DO n=m+1,nstop
-			
+
 				!Indici
 				nr=REAL(n,dbl)
 				idx1=(n-1)*n+m
 				idx2=n*(n+1)+m
-				
+
 				!Calcolo
 				v_taumn(idx2)=COS(theta)*v_pimn(idx2)*(nr/mr)-(nr+mr)*v_pimn(idx1)/mr
-			
+
 			END DO ndo
-					
+
 !		END IF m_thetaif
-		
+
 	END SELECT m_case
-	
+
 END DO m_do
 
 !Calcolo dei valori per m negativo
@@ -3644,11 +3644,11 @@ nminus_do: DO n=1,nstop
 		mr=REAL(m,dbl)
 		idx1=n*(n+1)+m
 		idx2=n*(n+1)-m
-		
+
 		!Faccio i conti
-		fact=lnf(nr-mr,error)-lnf(nr+mr,error) 
+		fact=lnf(nr-mr,error)-lnf(nr+mr,error)
 		v_taumn(idx2)=((-1.0D0)**(m))*EXP(fact)*v_taumn(idx1)
-		
+
 	END DO mminus_do
 END DO nminus_do
 
@@ -3669,7 +3669,7 @@ REAL(dbl), INTENT(IN) :: theta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_legmn			! Vettore di output valori funzioni leg_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo), PARAMETER :: prec=7						! Precisione su theta per 0 o pigreco
 INTEGER(lo) :: mm,m,n,beg,indx						! Indice per riordinare i miei calcoli e non
 REAL(dbl) :: fact,mr,nr,sig								! Semifattoriale e m,n reali,variabile segno
@@ -3678,7 +3678,7 @@ REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_leg			! Vettore temporaneo legendre
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0.0D0) THEN
 			WRITE(*,*) "nstop<0, la procedura pi_mn si ferma"
             error=1
@@ -3716,16 +3716,16 @@ leg_mdo: DO m=-nstop,nstop
 	ELSE
 		beg=mm
 	END IF begin_if
-	
+
 	!Riempio il vettore finale
 	leg_ndo: DO n=beg,nstop
-	
-		nr=REAL(n,dbl)		
+
+		nr=REAL(n,dbl)
 		indx=n*(n+1)+m
 		v_legmn(indx)=v_leg(n)
-	
+
 	END DO leg_ndo
-		
+
 	DEALLOCATE(v_leg)
 
 END DO leg_mdo
@@ -3735,7 +3735,7 @@ END SUBROUTINE leg_mn
 
 !******************************************************************************
 !5) SUBROUTINE d_nmk: calcolo gli elementi ridotti di matrice secondo edmonds
-!						 d(beta)^{nstop}_{m,k}	
+!						 d(beta)^{nstop}_{m,k}
 !******************************************************************************
 SUBROUTINE d_nmk(nstop,m,k,beta,v_d,error)
 
@@ -3747,7 +3747,7 @@ REAL(dbl), INTENT(IN) :: beta							! Angolo Beta di Eulero
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(0:nstop), INTENT(OUT) :: v_d		! Vettore di output valori funzioni pi_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: ierr									! altra flag di errore
 INTEGER(lo) :: nmin,modm,modk,MpK,MmK,emk,n			! Indice per i miei calcoli
 REAL(dbl) :: logw,w,mr,kr,nr,x							! Fattoriale e indici reali, x=cos(beta)
@@ -3762,7 +3762,7 @@ modm=ABS(m)
 modk=ABS(k)
 nmin=MAX(modm,modk)
 
-!Controllo se nstop>nmin 
+!Controllo se nstop>nmin
 nm_check: IF (nstop<nmin) THEN
 			WRITE(*,*) "nstop<nmin, la procedura d_nmk si ferma!"
             error=1
@@ -3823,16 +3823,16 @@ ELSE
 
 	!Ciclo per il calcolo
 	nstop_do: DO n=nmin+1,nstop
-	
+
 				!Coefficienti della ricorrenza
 				nr=REAL(n,dbl)
 				c0=1.0D0/((nr-1.0D0)*SQRT(nr**2-mr**2)*SQRT(nr**2-kr**2))
 				c1=(2.0D0*nr-1.0D0)*(nr*(nr-1.0D0)*x-mr*kr)
 				c2=nr*SQRT((nr-1.0D0)**2-mr**2)*SQRT((nr-1.0D0)**2-kr**2)
-				
+
 				!Calcolo
 				v_d(n)=(c1*v_d(n-1)-c2*v_d(n-2))*c0
-				
+
 	END DO nstop_do
 
 END IF nmin_zero_if
@@ -3843,7 +3843,7 @@ END SUBROUTINE d_nmk
 
 !******************************************************************************
 !5) SUBROUTINE d_n_km: calcolo gli elementi ridotti di matrice secondo edmonds
-!                        d(beta)^{nstop}_{k,m}  
+!                        d(beta)^{nstop}_{k,m}
 !******************************************************************************
 SUBROUTINE d_n_km(nstop,k,m,beta,v_d,error)
 
@@ -3855,7 +3855,7 @@ REAL(dbl), INTENT(IN) :: beta                           ! Angolo Beta di Eulero
 INTEGER(lo), INTENT(OUT) :: error                     ! Flag di errore
 REAL(dbl), DIMENSION(0:nstop), INTENT(OUT) :: v_d       ! Vettore di output valori funzioni pi_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: ierr,flag                              ! altra flag di errore
 INTEGER(lo) :: nmin,modm,modk,n,mi,ki     ! Indice per i miei calcoli
 REAL(dbl) :: logw,w,mr,kr,nr,x                          ! Fattoriale e indici reali, x=cos(beta)
@@ -3870,7 +3870,7 @@ modm=ABS(m)
 modk=ABS(k)
 nmin=MAX(modm,modk)
 
-!Controllo se nstop>nmin 
+!Controllo se nstop>nmin
 nm_check: IF (nstop<nmin) THEN
             WRITE(*,*) "nstop<nmin, la procedura d_n_km si ferma!"
             error=1
@@ -3900,13 +3900,13 @@ nmin_zero_if: IF (nmin==0) THEN
 
         !Primo valore
         v_d(nmin)=1.0D0
-        
+
         !Se nstop>0 assegno altri valori
         nstop_zero_if: IF (nstop>0) THEN
-            
+
             !Secondo valore
             v_d(nmin+1)=x
-            
+
             !Ciclo su n
             nstop_zero_do: DO n=2,nstop
                 nr=REAL(n,dbl)
@@ -3963,16 +3963,16 @@ v_d(nmin)=((-1.0D0)**(mi-ki))*SQRT(w)*(eps**(mi+ki))*(eta**(mi-ki))
 
 !Ciclo per il calcolo
 nstop_do: DO n=nmin+1,nstop
-    
+
             !Coefficienti della ricorrenza
             nr=REAL(n,dbl)
             c0=1.0D0/((nr-1.0D0)*SQRT(nr**2-kr**2)*SQRT(nr**2-mr**2))
             c1=(2.0D0*nr-1.0D0)*(nr*(nr-1.0D0)*x-kr*mr)
             c2=nr*SQRT((nr-1.0D0)**2-kr**2)*SQRT((nr-1.0D0)**2-mr**2)
-            
+
             !Calcolo
             v_d(n)=(c1*v_d(n-1)-c2*v_d(n-2))*c0
-                
+
 END DO nstop_do
 
 !Moltiplico per il segno
@@ -4000,7 +4000,7 @@ REAL(dbl), INTENT(IN) :: beta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_dnm1,v_dnm2	! Vettore di output valori funzioni d_mn1
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: mm,m,n,beg,indx						! Indice per riordinare i miei calcoli e non
 REAL(dbl) :: mr,nr										! Semifattoriale e m,n reali,variabile segno
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_d1,v_d2		! Vettore temporaneo red rot mat el
@@ -4008,7 +4008,7 @@ REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_d1,v_d2		! Vettore temporaneo red rot 
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
 			WRITE(*,*) "nstop<0, la procedura d_nm2 si ferma"
             error=1
@@ -4048,17 +4048,17 @@ d_mdo: DO m=-nstop,nstop
 	ELSE
 		beg=mm
 	END IF begin_if
-	
+
 	!Riempio il vettore finale
 	d_ndo: DO n=beg,nstop
-	
-		nr=REAL(n,dbl)		
+
+		nr=REAL(n,dbl)
 		indx=n*(n+1)+m
 		v_dnm1(indx)=v_d1(n)
 		v_dnm2(indx)=v_d2(n)
-	
+
 	END DO d_ndo
-		
+
 	DEALLOCATE(v_d1,v_d2)
 
 END DO d_mdo
@@ -4083,15 +4083,15 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,betap							!Vettore d'onda e polarizzazione
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz				!Matrice coordinate
-REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error						!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens								!Indici e dimensioni
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi							!Indici reali e coordinate
-REAL(dbl) :: kd													!Phase 
-COMPLEX(dbl) :: pshift,expg1,expg2								!Phase shift				
+REAL(dbl) :: kd													!Phase
+COMPLEX(dbl) :: pshift,expg1,expg2								!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2			!Elementi ridotti di matrice di rotazione
 
 
@@ -4104,9 +4104,9 @@ ALLOCATE(v_dnm1(1:dimens),v_dnm2(1:dimens))
 !Funzione angolare Pi_mn
 CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-dnm_if: IF (error/=0) THEN																	
-    			WRITE(*,10) 
-    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...") 
+dnm_if: IF (error/=0) THEN
+    			WRITE(*,10)
+    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...")
        			STOP
 END IF dnm_if
 
@@ -4127,30 +4127,30 @@ i_do: DO i=1,ns
 	x=m_xyz(i,1)
 	y=m_xyz(i,2)
 	z=m_xyz(i,3)
-	
+
 	!Calcolo phase e phase shift
 	kd=k*(SIN(beta)*(x*COS(alpha)+y*SIN(alpha)) + z*COS(beta))
 	pshift=EXP(CMPLX(0.0D0,kd))
 
 	n_do: DO n=1,nstop
-	
+
 		!n reale
 		nr=REAL(n,dbl)
-	
+
 		m_do: DO m=-n,n
-		
+
 			!m reale
-			mr=REAL(m,dbl)	
-		
+			mr=REAL(m,dbl)
+
 			!Incremento j
 			j=j+1
 			jj=jj+1
-		
+
 			v_p(2*j-1)=0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2-v_dnm2(jj)*expg1 )
 			v_p(2*j)=  0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2+v_dnm2(jj)*expg1 )
-				
+
 		END DO m_do
 	END DO n_do
 END DO i_do
@@ -4175,15 +4175,15 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN):: nstop,ns					!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,betap						!Vettore d'onda e polarizzazione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_xyz				!Matrice coordinate
-REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error					!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens						!Indici e dimensioni
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi					!Indici reali e coordinate
-REAL(dbl) :: kd									!Phase 
-COMPLEX(dbl) :: pshift,expg1,expg2						!Phase shift				
+REAL(dbl) :: kd									!Phase
+COMPLEX(dbl) :: pshift,expg1,expg2						!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2			!Elementi ridotti di matrice di rotazione
 
 
@@ -4196,9 +4196,9 @@ ALLOCATE(v_dnm1(1:dimens),v_dnm2(1:dimens))
 !Funzione angolare Pi_mn
 CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-dnm_if: IF (error/=0) THEN																	
-    			WRITE(*,10) 
-    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...") 
+dnm_if: IF (error/=0) THEN
+    			WRITE(*,10)
+    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...")
        			STOP
 END IF dnm_if
 
@@ -4232,22 +4232,22 @@ n_do: DO n=1,nstop
 	nr=REAL(n,dbl)
 
 	m_do: DO m=-n,n
-	
+
 		!m reale
 		mr=REAL(m,dbl)
-	
+
 		!Incremento j
 		j=j+1
 		jj=jj+1
-	
+
 		v_p(2*j-1)=0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 				& ( v_dnm1(jj)*expg2-v_dnm2(jj)*expg1 )
 		v_p(2*j)=  0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 				& ( v_dnm1(jj)*expg2+v_dnm2(jj)*expg1 )
-				
+
 !		WRITE(*,*) "v_p_int",v_p(2*j-1)
 !		WRITE(*,*) "v_q_int",v_p(2*j)
-			
+
 	END DO m_do
 END DO n_do
 
@@ -4259,7 +4259,7 @@ END SUBROUTINE field_expRandom_shell_sub
 
 
 !******************************************************************************
-!5tris-bis) SUBROUTINE field_expRandom_dip_sub: calcolo i coefficienti del campo incidente,ma li randomizzo per la 
+!5tris-bis) SUBROUTINE field_expRandom_dip_sub: calcolo i coefficienti del campo incidente,ma li randomizzo per la
 ! fase e per l'orientamento,e questo mi serve per un tipo di calcoli.
 !******************************************************************************
 SUBROUTINE field_expRandom_dip_sub(nstop,ns,v_p,error)
@@ -4268,14 +4268,14 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns				!N espansioni multipolari e N sfere
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error				!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens					!Indici e dimensioni
-REAL(dbl) :: alpha,beta,gamma						!Angoli di eulero 
+REAL(dbl) :: alpha,beta,gamma						!Angoli di eulero
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi				!Indici reali e coordinate
-REAL(dbl) :: kd								!Phase 
+REAL(dbl) :: kd								!Phase
 COMPLEX(dbl) :: pshift,expg1,expg2					!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2		!Elementi ridotti di matrice di rotazione
 
@@ -4307,9 +4307,9 @@ i_do: DO i=1,ns
 	!Funzione angolare Pi_mn
 	CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-	dnm_if: IF (error/=0) THEN																	
-	    			WRITE(*,10) 
-	    			10 FORMAT ("Errore in d_nm12 chiamata da field_expRandom_dip_sub: il programma termina ora...") 
+	dnm_if: IF (error/=0) THEN
+	    			WRITE(*,10)
+	    			10 FORMAT ("Errore in d_nm12 chiamata da field_expRandom_dip_sub: il programma termina ora...")
 	       			STOP
 	END IF dnm_if
 
@@ -4318,31 +4318,31 @@ i_do: DO i=1,ns
 	expg2=EXP(-gamma*(0.0D0,1.0D0))
 
 	jj=0
-	
+
 	!Calcolo phase e phase shift
 	CALL RANDOM_NUMBER(kd)
 	kd=kd*2*Pi_D
 	pshift=EXP(CMPLX(0.0D0,kd))
 
 	n_do: DO n=1,nstop
-	
+
 		!n reale
 		nr=REAL(n,dbl)
-	
+
 		m_do: DO m=-n,n
-		
+
 			!m reale
-			mr=REAL(m,dbl)	
-		
+			mr=REAL(m,dbl)
+
 			!Incremento j
 			j=j+1
 			jj=jj+1
-		
+
 			v_p(2*j-1)=0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2-v_dnm2(jj)*expg1 )
 			v_p(2*j)=  0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2+v_dnm2(jj)*expg1 )
-				
+
 		END DO m_do
 	END DO n_do
 END DO i_do
@@ -4357,7 +4357,7 @@ END SUBROUTINE field_expRandom_dip_sub
 !******************************************************************************
 !5tris-tris) SUBROUTINE field_expPhased_dip_sub: calcolo i coefficienti del campo incidente
 ! per una direzione arbitraria rispetto al sistema di riferimento del cluster che e'
-! ruotato degli angoli alpha bete gamma, qui però suppongo che tutti i dipoli siano in fase,
+! ruotato degli angoli alpha bete gamma, qui pero suppongo che tutti i dipoli siano in fase,
 ! quindi metto a zero fittiziamente tutte le coordinate.
 !******************************************************************************
 SUBROUTINE field_expPhased_dip_sub(nstop,ns,k,betap,alpha,beta,gamma,v_p,error)
@@ -4367,15 +4367,15 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns				!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,betap					!Vettore d'onda e polarizzazione
-REAL(dbl), INTENT(IN) :: alpha,beta,gamma				!Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta,gamma				!Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error				!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens					!Indici e dimensioni
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi				!Indici reali e coordinate
-REAL(dbl) :: kd								!Phase 
-COMPLEX(dbl) :: pshift,expg1,expg2					!Phase shift				
+REAL(dbl) :: kd								!Phase
+COMPLEX(dbl) :: pshift,expg1,expg2					!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2		!Elementi ridotti di matrice di rotazione
 
 
@@ -4388,9 +4388,9 @@ ALLOCATE(v_dnm1(1:dimens),v_dnm2(1:dimens))
 !Funzione angolare Pi_mn
 CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-dnm_if: IF (error/=0) THEN																	
-    			WRITE(*,10) 
-    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...") 
+dnm_if: IF (error/=0) THEN
+    			WRITE(*,10)
+    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...")
        			STOP
 END IF dnm_if
 
@@ -4411,30 +4411,30 @@ i_do: DO i=1,ns
 	x=0.0D0
 	y=0.0D0
 	z=0.0D0
-	
+
 	!Calcolo phase e phase shift
 	kd=k*(SIN(beta)*(x*COS(alpha)+y*SIN(alpha)) + z*COS(beta))
 	pshift=EXP(CMPLX(0.0D0,kd))
 
 	n_do: DO n=1,nstop
-	
+
 		!n reale
 		nr=REAL(n,dbl)
-	
+
 		m_do: DO m=-n,n
-		
+
 			!m reale
-			mr=REAL(m,dbl)	
-		
+			mr=REAL(m,dbl)
+
 			!Incremento j
 			j=j+1
 			jj=jj+1
-		
+
 			v_p(2*j-1)=0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2-v_dnm2(jj)*expg1 )
 			v_p(2*j)=  0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2+v_dnm2(jj)*expg1 )
-				
+
 		END DO m_do
 	END DO n_do
 END DO i_do
@@ -4458,8 +4458,8 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop                           !N espansioni multipolari
-REAL(dbl), INTENT(IN) :: alpha,beta                         !Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_fnmp1,v_fnmp2  !Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta                         !Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_fnmp1,v_fnmp2  !Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error                        !Flag di errore
 
 ! Dichiarazione variabili interne
@@ -4477,9 +4477,9 @@ ALLOCATE(v_dnm1(1:dimens),v_dnm2(1:dimens))
 !Funzione angolare Pi_mn
 CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-dnm_if: IF (error/=0) THEN                                                                  
-                WRITE(*,10) 
-                10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...") 
+dnm_if: IF (error/=0) THEN
+                WRITE(*,10)
+                10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...")
                 STOP
 END IF dnm_if
 
@@ -4489,21 +4489,21 @@ v_fnmp1=(0.0D0,0.0D0)
 v_fnmp2=(0.0D0,0.0D0)
 
     n_do: DO n=1,nstop
-    
+
         !n reale
         nr=REAL(n,dbl)
-    
+
         m_do: DO m=-n,n
-        
+
             !m reale
-            mr=REAL(m,dbl)  
-        
+            mr=REAL(m,dbl)
+
             !Incremento j
             j=j+1
-        
+
             v_fnmp1(2*j-1)=-0.5D0*SQRT(2.0D0*nr+1.0D0)*EXP(-(0.0D0,1.0D0)*mr*alpha)*v_dnm2(j)
             v_fnmp1(2*j)=  -v_fnmp1(2*j-1)
-                
+
             v_fnmp2(2*j-1)=0.5D0*SQRT(2.0D0*nr+1.0D0)*EXP(-(0.0D0,1.0D0)*mr*alpha)*v_dnm1(j)
             v_fnmp2(2*j)=  v_fnmp2(2*j-1)
 
@@ -4530,15 +4530,15 @@ INTEGER(lo), INTENT(IN):: nstop,ns                        !N espansioni multipol
 REAL(dbl), INTENT(IN) :: k                                  !Vettore d'onda e polarizzazione
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz              !Matrice coordinate
 COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_fnmp            !Vettore espansione campo parziale
-REAL(dbl), INTENT(IN) :: alpha,beta                         !Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p              !Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta                         !Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p              !Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error                        !Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,low_b,up_b,dimens2               !Indici, dimensioni e bounds
 REAL(dbl) :: x,y,z                                  !Indici reali e coordinate
-REAL(dbl) :: kd                                     !Phase 
-COMPLEX(dbl) :: pshift                              !Phase shift                
+REAL(dbl) :: kd                                     !Phase
+COMPLEX(dbl) :: pshift                              !Phase shift
 
 
 !Inizio subroutine vera e propria
@@ -4554,7 +4554,7 @@ i_do: DO i=1,ns
     x=m_xyz(i,1)
     y=m_xyz(i,2)
     z=m_xyz(i,3)
-    
+
     !Calcolo phase e phase shift
     kd=k*(SIN(beta)*(x*COS(alpha)+y*SIN(alpha)) + z*COS(beta))
     pshift=EXP(CMPLX(0.0D0,kd))
@@ -4564,7 +4564,7 @@ i_do: DO i=1,ns
     up_b=i*dimens2
 
     !Riempio v_p
-    v_p(low_b:up_b)=pshift*v_fnmp    
+    v_p(low_b:up_b)=pshift*v_fnmp
 
 END DO i_do
 
@@ -4583,7 +4583,7 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_z					!Vettore coordinata z
 REAL(dbl), INTENT(IN) :: k,beta								!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab				!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab				!Vettori coefficienti espansioni campo, non corretti e corretti
 CHARACTER(len=3), INTENT(IN) :: norm						!Flag normalizzazione
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cext				!Vettore sezioni di estinzione
@@ -4599,65 +4599,65 @@ elem=2*nstop*(nstop+2)
 norm_if: IF (norm=='old') THEN
 
 		i_old_do: DO i=1,ns
-		
+
 			!Inizializzo la variabile somma
 			somma=(0.0D0,0.0D0)
-			
+
 			!Mi porto sulla giusta posizione nel vettore v_ab, per la giusta sfera
 			prec=(i-1)*elem
-			
+
 			n_old_do: DO n=1,nstop
-			
+
 				!Indice reale n
 				nr=REAL(n,dbl)
-				
+
 				!Costruisco gli indici per recuperare i coefficienti
 				l_ib=prec+2*(n*(n+1)-1)
 				up_ib=prec+2*(n*(n+1)+1)
 				l_ia=l_ib-1
 				up_ia=up_ib-1
-			
+
 				!Costruisco la somma
 				somma=somma+(2.0D0*nr+1.0D0)*((v_ab(up_ia)+v_ab(up_ib))*EXP((0.0D0,1.0D0)*beta) - &
 											& nr*(nr+1.0D0)*(v_ab(l_ia)-v_ab(l_ib))*EXP(-(0.0D0,1.0D0)*beta))
-			
+
 			END DO n_old_do
-			
+
 			!Calcolo la funzione
 			v_cext(i)=(2*Pi_d/(k**2))*REAL(EXP(-(0.0D0,1.0D0)*k*v_z(i))*somma,dbl)
-			
+
 		END DO i_old_do
-		
+
 ELSE
-		
+
 		i_new_do: DO i=1,ns
-		
+
 			!Inizializzo la variabile somma
 			somma=(0.0D0,0.0D0)
-			
+
 			!Mi porto sulla giusta posizione nel vettore v_ab, per la giusta sfera
 			prec=(i-1)*elem
-			
+
 			n_new_do: DO n=1,nstop
-			
+
 				!Indice reale n
 				nr=REAL(n,dbl)
-				
+
 				!Costruisco gli indici per recuperare i coefficienti
 				l_ib=prec+2*(n*(n+1)-1)
 				up_ib=prec+2*(n*(n+1)+1)
 				l_ia=l_ib-1
 				up_ia=up_ib-1
-			
+
 				!Costruisco la somma
 				somma=somma+SQRT(2.0D0*nr+1.0D0)*( (v_ab(up_ia)+v_ab(up_ib))*EXP((0.0D0,1.0D0)*beta) - &
 												&  (v_ab(l_ia)-v_ab(l_ib))*EXP(-(0.0D0,1.0D0)*beta))
-			
+
 			END DO n_new_do
-			
+
 			!Calcolo la funzione
 			v_cext(i)=(2*Pi_d/(k**2))*REAL(EXP(-(0.0D0,1.0D0)*k*v_z(i))*somma,dbl)
-			
+
 		END DO i_new_do
 
 END IF norm_if
@@ -4676,7 +4676,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k									!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p,v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p,v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cext				!Vettore sezioni di estinzione
@@ -4687,29 +4687,29 @@ COMPLEX(dbl) :: somma
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma+CONJG(v_p(2*j-1))*v_ab(2*j-1)+CONJG(v_p(2*j))*v_ab(2*j)
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cext(i)=(4*Pi_d/(k**2))*REAL(somma,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cext_random_sub
@@ -4726,7 +4726,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k									!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_sca,v_ab		!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_sca,v_ab		!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_csca				!Vettore sezioni di estinzione
@@ -4737,29 +4737,29 @@ COMPLEX(dbl) :: somma
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma+CONJG(v_ab(2*j-1))*v_ab_sca(2*j-1)+CONJG(v_ab(2*j))*v_ab_sca(2*j)
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_csca(i)=(4*Pi_d/(k**2))*REAL(somma,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE csca_random_sub
@@ -4767,7 +4767,7 @@ END SUBROUTINE csca_random_sub
 
 
 !******************************************************************************
-!6quinties) SUBROUTINE cabs_random_sub: calcolo la sezione di 
+!6quinties) SUBROUTINE cabs_random_sub: calcolo la sezione di
 !assorbimento per ciascuna sfera.
 !******************************************************************************
 SUBROUTINE cabs_random_sub(ref_index,nstop,ns,k,v_dc,v_req,m_epseq,v_cabs)
@@ -4777,7 +4777,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns				!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,ref_index				!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_dc 			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_dc 			!Vettori coefficienti espansioni campo, non corretti e corretti
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_epseq		!Funzioni dielettriche corrette
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_req			!Raggi equivalenti
 
@@ -4793,7 +4793,7 @@ COMPLEX(dbl), DIMENSION(1:nstop) :: v_psi1
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Calcolo gli argomenti per le funzioni di riccati bessel
@@ -4815,30 +4815,30 @@ sphere_do: DO i=1,ns
     CALL psi_z_sub(nstop,z,v_psi,error)
 
 	!Calcolo la derivata della funzione di riccati bessel
-	der_do: DO n=1,nstop 
+	der_do: DO n=1,nstop
 		v_psi1(n)=v_psi(n-1)-REAL(n,dbl)*v_psi(n)/z
 	END DO der_do
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma + v_psi(n)*CONJG(v_psi1(n))*( ( ABS(v_dc(2*j) ) )**2 ) - &
             &             v_psi1(n)*CONJG(v_psi(n))*( ( ABS(v_dc(2*j-1) ) )**2 )
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cabs(i)=-(4*Pi_d/(k**2))*REAL((0.0D0,1.0D0)*somma/mc,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cabs_random_sub
@@ -4847,7 +4847,7 @@ END SUBROUTINE cabs_random_sub
 
 
 !******************************************************************************
-!6bis-bis-bis) SUBROUTINE cabs_random_sub: calcolo la sezione di 
+!6bis-bis-bis) SUBROUTINE cabs_random_sub: calcolo la sezione di
 !assorbimento per ciascuna sfera.
 !******************************************************************************
 SUBROUTINE cabs_random_sub_dip(ref_index,nstop,ns_ant,k,v_dc,v_req,m_epseq,v_cabs)
@@ -4857,7 +4857,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns_ant					!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,ref_index					!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_dc 	!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_dc 	!Vettori coefficienti espansioni campo, non corretti e corretti
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_epseq		!Funzioni dielettriche corrette
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_req			!Raggi equivalenti
 
@@ -4873,7 +4873,7 @@ COMPLEX(dbl), DIMENSION(1:nstop) :: v_psi1
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=2,ns_ant+1
 
 	!Calcolo gli argomenti per le funzioni di riccati bessel
@@ -4887,31 +4887,31 @@ sphere_do: DO i=2,ns_ant+1
 	CALL psi_z_sub(nstop,z,v_psi,error)
 
 	!Calcolo la derivata della funzione di riccati bessel
-	der_do: DO n=1,nstop 
+	der_do: DO n=1,nstop
 		v_psi1(n)=v_psi(n-1)-REAL(n,dbl)*v_psi(n)/z
 	END DO der_do
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma + v_psi(n)*CONJG(v_psi1(n))*( ( ABS(v_dc(2*j) ) )**2 ) - &
             &             v_psi1(n)*CONJG(v_psi(n))*( ( ABS(v_dc(2*j-1) ) )**2 )
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cabs(i-1)=-(4*Pi_d/(k**2))*REAL((0.0D0,1.0D0)*somma/mc,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cabs_random_sub_dip
@@ -4921,7 +4921,7 @@ END SUBROUTINE cabs_random_sub_dip
 
 
 !******************************************************************************
-!6bis-bis-bis) SUBROUTINE cabs_random_sub: calcolo la sezione di 
+!6bis-bis-bis) SUBROUTINE cabs_random_sub: calcolo la sezione di
 !assorbimento per ciascuna sfera.
 !******************************************************************************
 SUBROUTINE cabs_random_sub1(ref_index,nstop,ns,k,v_ab,v_req,m_epseq,v_cabs)
@@ -4931,7 +4931,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns					!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,ref_index					!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab 			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab 			!Vettori coefficienti espansioni campo, non corretti e corretti
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_epseq		!Funzioni dielettriche corrette
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_req			!Raggi equivalenti
 
@@ -4949,7 +4949,7 @@ COMPLEX(dbl), DIMENSION(1:nstop) :: v_cpsi1,denD,denC
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Calcolo gli argomenti per le funzioni di riccati bessel
@@ -4958,27 +4958,27 @@ sphere_do: DO i=1,ns
     mc=mc/ref_index
     xpar=k*radius
     z=mc*CMPLX(xpar,0.0D0)
-    
+
 	!Calcolo la funzione di Riccati Bessel complessa
     CALL psi_z_sub(nstop,z,v_cpsi,error)
 
 	!Calcolo la derivata della funzione di riccati bessel complessa
-    cder_do: DO n=1,nstop 
+    cder_do: DO n=1,nstop
 		v_cpsi1(n)=v_cpsi(n-1)-REAL(n,dbl)*v_cpsi(n)/z
 	END DO cder_do
-    
+
 	!Calcolo la funzione di Riccati Bessel reale
     CALL psi_d_sub(nstop,xpar,v_psi,error)
 
 	!Calcolo la derivata della funzione di riccati bessel reale
-    der_do: DO n=1,nstop 
+    der_do: DO n=1,nstop
 		v_psi1(n)=v_psi(n-1)-REAL(n,dbl)*v_psi(n)/xpar
 	END DO der_do
-    
-	
-	!Calcolo i numeratori	
+
+
+	!Calcolo i numeratori
 	nomden_DO: DO n=1,nstop
-    
+
 		nomD(n)=REAL( (0.0D0,1.0D0)*mc*v_cpsi(n)*CONJG(v_cpsi1(n)) ,dbl)
         nomC(n)=REAL( (0.0D0,1.0D0)*CONJG(mc)*v_cpsi(n)*CONJG(v_cpsi1(n)) ,dbl)
         denD(n)=ABS( mc*v_cpsi(n)*v_psi1(n) - v_psi(n)*v_cpsi1(n) )*ABS( mc*v_cpsi(n)*v_psi1(n) - v_psi(n)*v_cpsi1(n) )
@@ -4988,28 +4988,28 @@ sphere_do: DO i=1,ns
 
 	v_D=nomD/denD
     v_C=nomC/denC
-	
+
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma + v_D(n)*(ABS(v_ab(2*j-1))**2) + v_C(n)*(ABS(v_ab(2*j))**2)
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cabs(i)=(4*Pi_d/(k**2))*REAL(somma,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cabs_random_sub1
@@ -5028,7 +5028,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns,dimvp                  !N espansioni multipolari,N sfere e N termini noti
 REAL(dbl), INTENT(IN) :: k                                  !Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_p,m_ab          !Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_p,m_ab          !Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cext              !Vettore sezioni di estinzione
@@ -5045,32 +5045,32 @@ direction_do: DO j=1,dimvp1
     !Inizializzo la variabile somma
     somma=(0.0D0,0.0D0)
     jj=0
-    
+
     !Ciclo per il calcolo della sezione di estinzione per una direzione fissa.
     sphere_do: DO i=1,ns
-    
+
             n_do: DO n=1,nstop
-    
+
             m_do: DO m=-n,n
-        
+
                 !Aggiorno l'indice
                 jj=jj+1
-                
+
                 !Costruisco la somma
                 somma=somma+CONJG(m_p(2*jj-1,2*j))*m_ab(2*jj-1,2*j)+CONJG(m_p(2*jj,2*j))*m_ab(2*jj,2*j) &
-                     &     +CONJG(m_p(2*jj-1,2*j-1))*m_ab(2*jj-1,2*j-1)+CONJG(m_p(2*jj,2*j-1))*m_ab(2*jj,2*j-1) 
-        
+                     &     +CONJG(m_p(2*jj-1,2*j-1))*m_ab(2*jj-1,2*j-1)+CONJG(m_p(2*jj,2*j-1))*m_ab(2*jj,2*j-1)
+
             END DO m_do
-    
+
         END DO n_do
-    
+
     END DO sphere_do
 
 
 
     !Calcolo la sezione d'estinzione cumulativa, una direzione, luce non polarizzata
     v_cext(j)=(4*Pi_d/(k**2))*REAL(somma,dbl)
-    
+
 END DO direction_do
 
 END SUBROUTINE cext_rm_sub
@@ -5123,7 +5123,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns                                !N espansioni multipolari,N sfere e N termini noti
 REAL(dbl), INTENT(IN) :: k                                          !Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p1,v_p2,v_ab1,v_ab2     !Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p1,v_p2,v_ab1,v_ab2     !Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cext              !Vettore sezioni di estinzione
@@ -5144,20 +5144,20 @@ sphere_do: DO i=1,ns
         somma=(0.0D0,0.0D0)
 
         n_do: DO n=1,nstop
-    
+
         m_do: DO m=-n,n
-      
+
             !Aggiorno l'indice
             j=j+1
-                
+
             !Costruisco la somma
             somma=somma+CONJG(v_p1(2*j-1))*v_ab1(2*j-1)+CONJG(v_p1(2*j))*v_ab1(2*j) &
-                 &     +CONJG(v_p2(2*j-1))*v_ab2(2*j-1)+CONJG(v_p2(2*j))*v_ab2(2*j) 
-        
+                 &     +CONJG(v_p2(2*j-1))*v_ab2(2*j-1)+CONJG(v_p2(2*j))*v_ab2(2*j)
+
         END DO m_do
-    
+
     END DO n_do
-    
+
     !Calcolo la sezione per una sfere, luce non polarizzata
      v_cext(i)=(4*Pi_d/(k**2))*REAL(somma,dbl)
 
@@ -5180,7 +5180,7 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_z					!Vettore coordinata z
 REAL(dbl), INTENT(IN) :: k,beta								!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab				!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab				!Vettori coefficienti espansioni campo, non corretti e corretti
 CHARACTER(len=3), INTENT(IN) :: norm						!Flag normalizzazione
 
 REAL(dbl), DIMENSION(:,:), INTENT(OUT) :: m_cext			!Vettore sezioni di estinzione
@@ -5196,61 +5196,61 @@ elem=2*nstop*(nstop+2)
 norm_if: IF (norm=='old') THEN
 
 		i_old_do: DO i=1,ns
-		
+
 			!Inizializzo la variabile somma
 			somma=(0.0D0,0.0D0)
-			
+
 			!Mi porto sulla giusta posizione nel vettore v_ab, per la giusta sfera
 			prec=(i-1)*elem
-			
+
 			n_old_do: DO n=1,nstop
-			
+
 				!Indice reale n
 				nr=REAL(n,dbl)
-				
+
 				!Costruisco gli indici per recuperare i coefficienti
 				l_ib=prec+2*(n*(n+1)-1)
 				up_ib=prec+2*(n*(n+1)+1)
 				l_ia=l_ib-1
 				up_ia=up_ib-1
-			
+
 				!Riempio la matrice delle sezioni di estinzione
 				somma=somma+(2.0D0*nr+1.0D0)*((v_ab(up_ia)+v_ab(up_ib))*EXP((0.0D0,1.0D0)*beta) - &
 											& nr*(nr+1.0D0)*(v_ab(l_ia)-v_ab(l_ib))*EXP(-(0.0D0,1.0D0)*beta))
 				m_cext(n,i)=(2*Pi_d/(k**2))*REAL(EXP(-(0.0D0,1.0D0)*k*v_z(i))*somma,dbl)
-			
+
 			END DO n_old_do
-			
+
 		END DO i_old_do
-		
+
 ELSE
-		
+
 		i_new_do: DO i=1,ns
-		
+
 			!Inizializzo la variabile somma
 			somma=(0.0D0,0.0D0)
-			
+
 			!Mi porto sulla giusta posizione nel vettore v_ab, per la giusta sfera
 			prec=(i-1)*elem
-			
+
 			n_new_do: DO n=1,nstop
-			
+
 				!Indice reale n
 				nr=REAL(n,dbl)
-				
+
 				!Costruisco gli indici per recuperare i coefficienti
 				l_ib=prec+2*(n*(n+1)-1)
 				up_ib=prec+2*(n*(n+1)+1)
 				l_ia=l_ib-1
 				up_ia=up_ib-1
-			
+
 				!Riempio la matrice delle sezioni di estinzione
 				somma=somma+SQRT(2.0D0*nr+1.0D0)*( (v_ab(up_ia)+v_ab(up_ib))*EXP((0.0D0,1.0D0)*beta) - &
 												&  (v_ab(l_ia)-v_ab(l_ib))*EXP(-(0.0D0,1.0D0)*beta))
 				m_cext(n,i)=(2*Pi_d/(k**2))*REAL(EXP(-(0.0D0,1.0D0)*k*v_z(i))*somma,dbl)
-			
+
 			END DO n_new_do
-			
+
 		END DO i_new_do
 
 END IF norm_if
@@ -5260,7 +5260,7 @@ END SUBROUTINE cext_sub_exp
 
 
 !******************************************************************************
-!5) SUBROUTINE dmncmn_sub: calcolo i coefficienti di espansione del campo 
+!5) SUBROUTINE dmncmn_sub: calcolo i coefficienti di espansione del campo
 !interno per ciascuna sfera
 !******************************************************************************
 SUBROUTINE dmncmn_sub(nstop,ns,v_patt,m_da,m_cb,v_amnbmn,v_dmncmn)
@@ -5287,14 +5287,14 @@ v_dmncmn=(0.0D0,0.0D0)
 i_do: DO i=1,ns
 	n_do: DO n=1,nstop
 		m_do: DO m=-n,n
-		
+
 			!Incremento j
-			j=j+1	
-		
+			j=j+1
+
 			!Calcolo dei coefficienti
 			v_dmncmn(2*j-1)=m_da(n,v_patt(i))*v_amnbmn(2*j-1)
 			v_dmncmn(2*j)=m_cb(n,v_patt(i))*v_amnbmn(2*j)
-					
+
 		END DO m_do
 	END DO n_do
 END DO i_do
@@ -5304,7 +5304,7 @@ END SUBROUTINE dmncmn_sub
 
 
 !******************************************************************************
-!5bis) SUBROUTINE dmncmn_sub_dip: calcolo i coefficienti di espansione del campo 
+!5bis) SUBROUTINE dmncmn_sub_dip: calcolo i coefficienti di espansione del campo
 !interno per ciascuna sfera
 !******************************************************************************
 SUBROUTINE dmncmn_sub_dip(nstop,ns,v_patt,m_da,m_cb,v_amnbmn,v_dmncmn)
@@ -5331,14 +5331,14 @@ v_dmncmn=(0.0D0,0.0D0)
 i_do: DO i=1,ns
 	n_do: DO n=1,nstop
 		m_do: DO m=-n,n
-		
+
 			!Incremento j
-			j=j+1	
-		
+			j=j+1
+
 			!Calcolo dei coefficienti
 			v_dmncmn(2*j-1)=m_da(n,v_patt(i)-1)*v_amnbmn(2*j-1)
 			v_dmncmn(2*j)=m_cb(n,v_patt(i)-1)*v_amnbmn(2*j)
-					
+
 		END DO m_do
 	END DO n_do
 END DO i_do
@@ -5385,11 +5385,11 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-   
-            sumq=sumq+MIN(n,nu) + 1                         
-            sumqq=sumqq+MIN(n,nu)                         
 
-        END DO nu_do        
+            sumq=sumq+MIN(n,nu) + 1
+            sumqq=sumqq+MIN(n,nu)
+
+        END DO nu_do
     END DO m_do
 END DO n_do
 
@@ -5398,7 +5398,7 @@ END SUBROUTINE qsum_sparse
 
 
 !******************************************************************************
-!1bis) SUBROUTINE cgsum_sparse: calcolo la lunghezza del vettore che contiene in 
+!1bis) SUBROUTINE cgsum_sparse: calcolo la lunghezza del vettore che contiene in
 !fila tutti i coefficienti di clebsch-gordan
 !******************************************************************************
 SUBROUTINE cgsum_sparse(nstop,sumcg)
@@ -5429,7 +5429,7 @@ n_do: DO n=1,nstop
 
             sumcg=sumcg+n+nu-ABS(n-nu)+1
 
-        END DO nu_do        
+        END DO nu_do
     END DO m_do
 END DO n_do
 
@@ -5476,7 +5476,7 @@ up_bq=1
 
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-        
+
         !Calcolo il lower bounds per il ciclo successivo
         IF (m==0) THEN
             low_nu=1
@@ -5485,7 +5485,7 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-            
+
                 !Rendo reali gli indici
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
@@ -5498,95 +5498,95 @@ n_do: DO n=1,nstop
                 !---------------------------------
                 !Parte di storage per aq
                 !---------------------------------
-                
+
                 !Aggiorno i
                 i=i+1
-                
+
                 !Aggiorno i bounds
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
-                
+
                 up_aq=low_aq+qmax
 
 !                WRITE(*,*) "Bounds aq",low_aq,up_aq
 
                 !Alloco la memoria per il mio v_aq
-                ALLOCATE(v_aq(0:qmax)) 
+                ALLOCATE(v_aq(0:qmax))
 
                 !Archivio i dati nel vettore lungo
                 CALL gaunt_xu(-mr,nr,mur,nur,qmax,v_aq,error)
                 v_aq_long(low_aq:up_aq)=v_aq
-                
-                
+
+
                 !--------------------------------------------
                 !Parte di storage per bq: se sono qui Qmax/=0
                 !--------------------------------------------
-                                
+
                 !Aggiorno i bounds
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
-                
+
                 up_bq=low_bq+qmax-1
 
 !                WRITE(*,*) "Bounds bq",low_bq,up_bq
-                          
+
                 !Alloco la memoria per il mio v_aq
                 ALLOCATE(v_bq(1:qmax))
-                
-                
+
+
                 !***************************************************************************
                 !Calcolo bq che mi serve
                 !***************************************************************************
                 mmu_if: IF (m==0) THEN
-                
+
                     !----------------
                     !Cosi' avro' B==0
                     !----------------
                     v_bq=0.0D0
-                    
-                ELSE    
-                
+
+                ELSE
+
                     !----------------
                     !Caso generale
                     !----------------
                     bq_case: SELECT CASE (qmax)
-                
+
                     CASE(1) bq_case
-                                        
+
                         !Calcolo coefficienti parziali
                         p=nr+nur-2.0D0
                         p1=p+mr-mur
                         Ap3=f_Ap(-mr,nr,mur,nur,p+3.0D0)
-                        
+
                         !Calcolo Bq
-                        v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))  
-                        
+                        v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))
+
                     CASE DEFAULT bq_case
-                    
+
                         !Calcolo il primo valore di bq
                         p=nr+nur-2.0D0
                         p1=p+mr-mur
                         Ap3=f_Ap(-mr,nr,mur,nur,p+3.0D0)
                         v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))
-                    
+
                         !Comincio il ciclo do per il calcolo di tutti i bq
                         bq_do: DO q=2,qmax
-                        
+
                             !Calcolo preliminarmente p ed Ap2
                             p=nr+nur-2.0D0*REAL(q,dbl)
                             Ap2=f_Ap(-mr,nr,mur,nur,p+2.0D0)
                             Ap2i=INT(Ap2,lo)
-                        
+
                             ap_case: SELECT CASE (Ap2i)
-                            
+
                             CASE(0) ap_case
-                            
+
                                 !Calcolo coefficienti parziali
                                 p1=p+mr-mur
                                 p2=p-mr+mur
@@ -5594,59 +5594,59 @@ n_do: DO n=1,nstop
                                 Ap4=f_Ap(-mr,nr,mur,nur,p+4.0D0)
                                 alphap3=f_alpha(nr,nur,p+3.0D0)
                                 alphap4=f_alpha(nr,nur,p+4.0D0)
-                                
+
                                 !Calcolo coefficienti ricorsione
                                 c0=(2.0D0*p+3.0D0)/((p+3.0D0)*(p1+2.0D0)*Ap4)
                                 c1=Ap3*Ap4+(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*alphap3
                                 c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*alphap4
-                                
+
                                 !Calcolo bq
                                 v_bq(q)=c0*(c1*v_aq(q-1)+c2*v_aq(q-2))
-                    
+
                                 IF (v_bq(1)==0.0D0) THEN
                                     WRITE(*,*) m,n,mu,nu,c0,c1,c2
                                     WRITE(*,*) Ap3,Ap4,f_Ap(-mr,nr,mur,nur,p+5.0D0)
                                     WRITE(*,*)
                                 END IF
-                                                
+
                             CASE DEFAULT ap_case
-                            
+
                                 !Calcolo coefficienti parziali
                                 p1=p+mr-mur
                                 p2=p-mr+mur
                                 alphap1=f_alpha(nr,nur,p+1.0D0)
                                 alphap2=f_alpha(nr,nur,p+2.0D0)
-                                
+
                                 !Calcolo coefficienti ricorsione
                                 c0=(2.0D0*p+3.0D0)/Ap2
                                 c1=(p+2.0D0)*(p1+1.0D0)*alphap1
                                 c2=-(p+1.0D0)*(p2+2.0D0)*alphap2
-                                
-                                
+
+
                                 v_bq(q)=c0*(c1*v_aq(q)+c2*v_aq(q-1))
-                               
-                            
+
+
                             END SELECT ap_case
-                            
+
                         END DO bq_do
-                    
+
                     END SELECT bq_case
-            
+
                 END IF mmu_if
 
                 v_bq_long(low_bq:up_bq)=v_bq
-            
+
                 !***************************************************************************
                 !Fine calcolo bq
                 !***************************************************************************
-                
+
                 !Disalloco v_aq e v_bq
                 DEALLOCATE(v_aq,v_bq)
-                                    
+
                 !Esco ad un certo punto
 !                IF ( i==( nstop*(1+2*nstop*(3+nstop)) )/3 ) EXIT n_do
 
-        END DO nu_do        
+        END DO nu_do
     END DO m_do
 END DO n_do
 
@@ -5724,13 +5724,13 @@ n_do: DO n=1,nstop
 			ia_if: IF (i==1) THEN
 				low_aq=1
 			ELSE
-				low_aq=up_aq+1  
+				low_aq=up_aq+1
 			END IF ia_if
 
 			ib_if: IF (i==1) THEN
 				low_bq=1
 			ELSE
-				low_bq=up_bq+1  
+				low_bq=up_bq+1
 			END IF ib_if
 
 			up_aq=low_aq+qmax
@@ -5810,7 +5810,7 @@ INTEGER(lo), INTENT(OUT) :: error							! Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,m1,n,nu,i,i1,i2,q,p,low_nu,qmax				!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr						!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr						!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq				!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes						!Estremi per i vett e n bes
 
@@ -5864,13 +5864,13 @@ AB_n_do: DO n=1,nstop
 			ia_if: IF (i==1) THEN
 				low_aq=1
 			ELSE
-				low_aq=up_aq+1  
+				low_aq=up_aq+1
 			END IF ia_if
 
 			ib_if: IF (i==1) THEN
 				low_bq=1
 			ELSE
-				low_bq=up_bq+1  
+				low_bq=up_bq+1
 			END IF ib_if
 
 			up_aq=low_aq+qmax
@@ -6048,21 +6048,21 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-                
+
                 i=i+1
 
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
                 mur=REAL(m,dbl)
                 nur=REAL(nu,dbl)
-                                
+
                 logw =lnf(nr+mr,r)+lnf(nur-mur,r)-lnf(nr-mr,r)-lnf(nur+mur,r)
-                
+
                 sqrtw=EXP(logw)*((2*nr+1.0D0)*(2*nur+1.0D0))/(nr*(nr+1.0D0)*nur*(nur+1.0D0))
-            
+
                 v_c0_sparse(i)=0.5D0*((-1.0D0)**m)*SQRT(sqrtw)
-            
-        END DO nu_do        
+
+        END DO nu_do
     END DO m_do
 END DO n_do
 
@@ -6087,7 +6087,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij          ! Vettori spa
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax                   !Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq                  !Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes                             !Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB                               !Somme parziali per vec trans
@@ -6128,9 +6128,9 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-            
 
-                
+
+
                 !Rendo reali gli indici
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
@@ -6139,48 +6139,48 @@ n_do: DO n=1,nstop
 
                 !Calcolo qmax
                 qmax=MIN(n,nu)
-                
+
 
                 !Aggiorno i
                 i=i+1
 
-                
+
                 !Aggiorno i bounds
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
 
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
-                
+
                 up_aq=low_aq+qmax
 
                 up_bq=low_bq+qmax-1
-                    
+
                 !Calcolo Pmin e Pmax
                 pmin=n+nu -2*qmax
                 pmax=n+nu
                 nbes=pmax-pmin+2
-                
-                     
+
+
                 !Adesso posso allocare tutti ma proprio tutti i miei vettori
 !                ALLOCATE(v_h(0:pmax+1),v_Apmn(pmin:pmax+1))
                 ALLOCATE(v_Apmn(pmin:pmax+1))
-                    
+
                 !Inizializzo v_Apmn
                 v_Apmn=0.0D0
-                    
-                    
+
+
                 !-------
 !                !Calcolo infine la mia funzione di Hankel
 !                CALL hankel1_d_sub(pmax+1,kr,v_h,error)
-                    
-                    
+
+
                 !-----------
                 !Calcolo Avt
                 !-----------
@@ -6190,8 +6190,8 @@ n_do: DO n=1,nstop
                     p=INT(pr,lo)
                     v_Apmn(p)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-pr*(pr+1.0D0)
                 END DO
-                    
-              
+
+
                 !Calcolo della sommatoria e di Avt
                 sommaA=(0.0D0,0.0D0)
                 sommaA_do:DO q=0,qmax
@@ -6199,12 +6199,12 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaA=sommaA+((0.0D0,1.0D0)**p)*v_Apmn(p)*v_aq(low_aq+q)*v_h(p)
                 END DO sommaA_do
-                    
+
                 v_Aij(i)=v_c0(i)*sommaA
-                    
+
                 !-----------
                 !Calcolo Bvt
-                !-----------    
+                !-----------
                 !Calcolo della sommatoria e di Bvt
                 sommaB=(0.0D0,0.0D0)
                 sommaB_do:DO q=1,qmax
@@ -6212,23 +6212,23 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaB=sommaB+((0.0D0,1.0D0)**(p+1))*v_bq(low_bq+(q-1))*v_h(p+1)
                 END DO sommaB_do
-                    
+
                 v_Bij(i)=v_c0(i)*sommaB
-                    
-                DEALLOCATE(v_Apmn)    
-                
+
+                DEALLOCATE(v_Apmn)
+
                 !-----------
                 !Aggiorno gli indici per lo storage sparse
-                !-----------   
+                !-----------
                 v_jABij(i)=nu*(nu+1)+m
-      
+
         END DO nu_do
 
        !-----------
        !Dove comincia la prossima riga?Qui!
-       !-----------   
-       v_iABij(n*(n+1)+m+1)=i+1 
-        
+       !-----------
+       v_iABij(n*(n+1)+m+1)=i+1
+
     END DO m_do
 END DO n_do
 
@@ -6254,7 +6254,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij         			! Vettori s
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax                   !Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq                  !Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes                             !Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca           !Somme parziali per vec trans
@@ -6290,9 +6290,9 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-            
 
-                
+
+
                 !Rendo reali gli indici
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
@@ -6301,47 +6301,47 @@ n_do: DO n=1,nstop
 
                 !Calcolo qmax
                 qmax=MIN(n,nu)
-                
+
 
                 !Aggiorno i
                 i=i+1
 
-                
+
                 !Aggiorno i bounds
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
 
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
-                
+
                 up_aq=low_aq+qmax
 
                 up_bq=low_bq+qmax-1
-                    
+
                 !Calcolo Pmin e Pmax
                 pmin=n+nu -2*qmax
                 pmax=n+nu
                 nbes=pmax-pmin+2
-                
-                     
+
+
                 !Adesso posso allocare tutti ma proprio tutti i miei vettori
                 ALLOCATE(v_h(0:pmax+1),v_Apmn(pmin:pmax+1))
-                    
+
                 !Inizializzo v_Apmn
                 v_Apmn=0.0D0
-                    
-                    
+
+
                 !-------
                 !Calcolo infine la mia funzione di Hankel
                 CALL hankel1_d_sub(pmax+1,kr,v_h,error)
-                    
-                    
+
+
                 !-----------
                 !Calcolo Avt
                 !-----------
@@ -6351,8 +6351,8 @@ n_do: DO n=1,nstop
                     p=INT(pr,lo)
                     v_Apmn(p)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-pr*(pr+1.0D0)
                 END DO
-                    
-              
+
+
                 !Calcolo della sommatoria e di Avt
                 sommaA=(0.0D0,0.0D0)
                 sommaAsca=(0.0D0,0.0D0)
@@ -6362,13 +6362,13 @@ n_do: DO n=1,nstop
                             sommaA=sommaA+((0.0D0,1.0D0)**p)*v_Apmn(p)*v_aq(low_aq+q)*v_h(p)
                             sommaAsca=sommaAsca+((0.0D0,1.0D0)**p)*v_Apmn(p)*v_aq(low_aq+q)*REAL(v_h(p),dbl)
                 END DO sommaA_do
-                    
+
                 v_Aij(i)=v_c0(i)*sommaA
                 v_Aij_sca(i)=v_c0(i)*sommaAsca
-                    
+
                 !-----------
                 !Calcolo Bvt
-                !-----------    
+                !-----------
                 !Calcolo della sommatoria e di Bvt
                 sommaB=(0.0D0,0.0D0)
                 sommaBsca=(0.0D0,0.0D0)
@@ -6378,24 +6378,24 @@ n_do: DO n=1,nstop
                             sommaB=sommaB+((0.0D0,1.0D0)**(p+1))*v_bq(low_bq+(q-1))*v_h(p+1)
                             sommaBsca=sommaBsca+((0.0D0,1.0D0)**(p+1))*v_bq(low_bq+(q-1))*REAL(v_h(p+1),dbl)
                 END DO sommaB_do
-                    
+
                 v_Bij(i)=v_c0(i)*sommaB
                 v_Bij_sca(i)=v_c0(i)*sommaBsca
-                    
-                DEALLOCATE(v_h,v_Apmn)    
-                
+
+                DEALLOCATE(v_h,v_Apmn)
+
                 !-----------
                 !Aggiorno gli indici per lo storage sparse
-                !-----------   
+                !-----------
                 v_jABij(i)=nu*(nu+1)+m
-      
+
         END DO nu_do
 
        !-----------
        !Dove comincia la prossima riga?Qui!
-       !-----------   
-       v_iABij(n*(n+1)+m+1)=i+1 
-        
+       !-----------
+       v_iABij(n*(n+1)+m+1)=i+1
+
     END DO m_do
 END DO n_do
 
@@ -6424,7 +6424,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij         			! Vettori s
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax                   !Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq                  !Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes                             !Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB					            !Somme parziali per vec trans
@@ -6460,9 +6460,9 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-            
 
-                
+
+
                 !Rendo reali gli indici
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
@@ -6471,47 +6471,47 @@ n_do: DO n=1,nstop
 
                 !Calcolo qmax
                 qmax=MIN(n,nu)
-                
+
 
                 !Aggiorno i
                 i=i+1
 
-                
+
                 !Aggiorno i bounds
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
 
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
-                
+
                 up_aq=low_aq+qmax
 
                 up_bq=low_bq+qmax-1
-                    
+
                 !Calcolo Pmin e Pmax
                 pmin=n+nu -2*qmax
                 pmax=n+nu
                 nbes=pmax-pmin+2
-                
-                     
+
+
                 !Adesso posso allocare tutti ma proprio tutti i miei vettori
                 ALLOCATE(v_h(0:pmax+1),v_Apmn(pmin:pmax+1))
-                    
+
                 !Inizializzo v_Apmn
                 v_Apmn=0.0D0
-                    
-                    
+
+
                 !-------
                 !Calcolo infine la mia funzione di Hankel
                 CALL hankel1_d_sub(pmax+1,kr,v_h,error)
-                    
-                    
+
+
                 !-----------
                 !Calcolo Avt
                 !-----------
@@ -6521,8 +6521,8 @@ n_do: DO n=1,nstop
                     p=INT(pr,lo)
                     v_Apmn(p)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-pr*(pr+1.0D0)
                 END DO
-                    
-              
+
+
                 !Calcolo della sommatoria e di Avt
                 sommaA=(0.0D0,0.0D0)
                 sommaA_do:DO q=0,qmax
@@ -6530,12 +6530,12 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaA=sommaA+((0.0D0,1.0D0)**p)*v_Apmn(p)*v_aq(low_aq+q)*v_h(p)
                 END DO sommaA_do
-                    
+
                 v_Aij(i)=v_c0(i)*sommaA
-                    
+
                 !-----------
                 !Calcolo Bvt
-                !-----------    
+                !-----------
                 !Calcolo della sommatoria e di Bvt
                 sommaB=(0.0D0,0.0D0)
                 sommaB_do:DO q=1,qmax
@@ -6543,23 +6543,23 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaB=sommaB+((0.0D0,1.0D0)**(p+1))*v_bq(low_bq+(q-1))*v_h(p+1)
                 END DO sommaB_do
-                    
+
                 v_Bij(i)=v_c0(i)*sommaB
-                    
-                DEALLOCATE(v_h,v_Apmn)    
-                
+
+                DEALLOCATE(v_h,v_Apmn)
+
                 !-----------
                 !Aggiorno gli indici per lo storage sparse
-                !-----------   
+                !-----------
                 v_jABij(i)=nu*(nu+1)+m
-      
+
         END DO nu_do
 
        !-----------
        !Dove comincia la prossima riga?Qui!
-       !-----------   
-       v_iABij(n*(n+1)+m+1)=i+1 
-        
+       !-----------
+       v_iABij(n*(n+1)+m+1)=i+1
+
     END DO m_do
 END DO n_do
 
@@ -6587,7 +6587,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij         			! Vettori s
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax                   !Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq                  !Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes                             !Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca           !Somme parziali per vec trans
@@ -6647,13 +6647,13 @@ n_do: DO n=1,nstop
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
 
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
 
                 up_aq=low_aq+qmax
@@ -6705,7 +6705,7 @@ n_do: DO n=1,nstop
 
                 !-----------
                 !Calcolo Bvt
-                !-----------    
+                !-----------
                 !Calcolo della sommatoria e di Bvt
                 sommaB=(0.0D0,0.0D0)
                 sommaBsca=(0.0D0,0.0D0)
@@ -6724,14 +6724,14 @@ n_do: DO n=1,nstop
 
                 !-----------
                 !Aggiorno gli indici per lo storage sparse
-                !-----------   
+                !-----------
                 v_jABij(i)=nu*(nu+1)+m
 
         END DO nu_do
 
        !-----------
        !Dove comincia la prossima riga?Qui!
-       !-----------   
+       !-----------
        v_iABij(n*(n+1)+m+1)=i+1
 
     END DO m_do
@@ -6764,7 +6764,7 @@ INTEGER(lo), INTENT(OUT) :: error							! Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax			!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq			!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes,NNZab				!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca		!Somme parziali per vec trans
@@ -6792,9 +6792,9 @@ up_bq=1
 ALLOCATE(v_h(0:(2*nstop+1)))
 CALL hankel1_d_sub((2*nstop+1),kr,v_h,error)
 
-h_if: IF (error/=0) THEN                                                                  
+h_if: IF (error/=0) THEN
 	WRITE (*,50) error
-	50 FORMAT ("Si e' verificato un errore in fillblock_sparse_sca_fast, error= ",I5 //,"Il programma termina ora...") 
+	50 FORMAT ("Si e' verificato un errore in fillblock_sparse_sca_fast, error= ",I5 //,"Il programma termina ora...")
 	STOP
 END IF h_if
 
@@ -6849,7 +6849,7 @@ flat_do: DO i=1,NNZab
 
 	!-----------
 	!Calcolo Bvt
-	!----------- 
+	!-----------
 	!Calcolo della sommatoria e di Bvt
 	sommaB=(0.0D0,0.0D0)
 	sommaBsca=(0.0D0,0.0D0)
@@ -6900,7 +6900,7 @@ INTEGER(lo), INTENT(OUT) :: error							! Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax			!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq			!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes,NNZab				!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB					!Somme parziali per vec trans
@@ -6977,7 +6977,7 @@ flat_do: DO i=1,NNZab
 
 	!-----------
 	!Calcolo Bvt
-	!----------- 
+	!-----------
 	!Calcolo della sommatoria e di Bvt
 	sommaB=(0.0D0,0.0D0)
 	sommaB_do:DO q=1,qmax
@@ -7015,7 +7015,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij         			! Vettori s
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax                   !Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr                               !Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq                  !Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes                             !Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaAsca,sommaBsca           !Somme parziali per vec trans
@@ -7055,9 +7055,9 @@ n_do: DO n=1,nstop
         END IF
 
         nu_do: DO nu=low_nu,nstop
-            
 
-                
+
+
                 !Rendo reali gli indici
                 mr=REAL(m,dbl)
                 nr=REAL(n,dbl)
@@ -7066,47 +7066,47 @@ n_do: DO n=1,nstop
 
                 !Calcolo qmax
                 qmax=MIN(n,nu)
-                
+
 
                 !Aggiorno i
                 i=i+1
 
-                
+
                 !Aggiorno i bounds
                 ia_if: IF (i==1) THEN
                     low_aq=1
                 ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                 END IF ia_if
 
                 ib_if: IF (i==1) THEN
                     low_bq=1
                 ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                 END IF ib_if
-                
+
                 up_aq=low_aq+qmax
 
                 up_bq=low_bq+qmax-1
-                    
+
                 !Calcolo Pmin e Pmax
                 pmin=n+nu -2*qmax
                 pmax=n+nu
                 nbes=pmax-pmin+2
-                
-                     
+
+
                 !Adesso posso allocare tutti ma proprio tutti i miei vettori
                 ALLOCATE(v_Apmn(pmin:pmax+1))
-                    
+
                 !Inizializzo v_Apmn
                 v_Apmn=0.0D0
-                    
-                    
+
+
                 !-------
                 !Calcolo infine la mia funzione di Hankel
                 CALL besselj_d_sub(pmax+1,kr,v_j,error)
-                    
-                    
+
+
                 !-----------
                 !Calcolo Avt
                 !-----------
@@ -7116,8 +7116,8 @@ n_do: DO n=1,nstop
                     p=INT(pr,lo)
                     v_Apmn(p)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-pr*(pr+1.0D0)
                 END DO
-                    
-              
+
+
                 !Calcolo della sommatoria e di Avt
                 sommaAsca=(0.0D0,0.0D0)
                 sommaA_do:DO q=0,qmax
@@ -7125,12 +7125,12 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaAsca=sommaAsca+((0.0D0,1.0D0)**p)*v_Apmn(p)*v_aq(low_aq+q)*v_j(p)
                 END DO sommaA_do
-                    
+
                 v_Aij_sca(i)=v_c0(i)*sommaAsca
-                    
+
                 !-----------
                 !Calcolo Bvt
-                !-----------    
+                !-----------
                 !Calcolo della sommatoria e di Bvt
                 sommaBsca=(0.0D0,0.0D0)
                 sommaB_do:DO q=1,qmax
@@ -7138,23 +7138,23 @@ n_do: DO n=1,nstop
                             p=INT(pr,lo)
                             sommaBsca=sommaBsca+((0.0D0,1.0D0)**(p+1))*v_bq(low_bq+(q-1))*v_j(p+1)
                 END DO sommaB_do
-                    
+
                 v_Bij_sca(i)=v_c0(i)*sommaBsca
-                    
-                DEALLOCATE(v_Apmn)    
-                
+
+                DEALLOCATE(v_Apmn)
+
                 !-----------
                 !Aggiorno gli indici per lo storage sparse
-                !-----------   
+                !-----------
                 v_jABij(i)=nu*(nu+1)+m
-      
+
         END DO nu_do
 
        !-----------
        !Dove comincia la prossima riga?Qui!
-       !-----------   
-       v_iABij(n*(n+1)+m+1)=i+1 
-        
+       !-----------
+       v_iABij(n*(n+1)+m+1)=i+1
+
     END DO m_do
 END DO n_do
 
@@ -7183,7 +7183,7 @@ INTEGER(lo), INTENT(OUT) :: error							! Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax			!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq			!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes,NNZab				!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB					!Somme parziali per vec trans
@@ -7254,7 +7254,7 @@ flat_do: DO i=1,NNZab
 
 	!-----------
 	!Calcolo Bvt
-	!----------- 
+	!-----------
 	!Calcolo della sommatoria e di Bvt
 	sommaB=(0.0D0,0.0D0)
 	sommaB_do:DO q=1,qmax
@@ -7304,7 +7304,7 @@ END FUNCTION id
 
 
 !******************************************************************************
-!5) SUBROUTINE fillblock_Dkmn:riempio un blocco ij dei coefficienti Dkmn  
+!5) SUBROUTINE fillblock_Dkmn:riempio un blocco ij dei coefficienti Dkmn
 !******************************************************************************
 SUBROUTINE fillblock_Dkmn(nstop,theta,v_Dkmn,v_jDkmn,v_iDkmn,error)
 
@@ -7317,7 +7317,7 @@ INTEGER(lo), INTENT(OUT) :: error                              ! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_Dkmn                   ! Vettore sparse di output valori Dkmn
 INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jDkmn,v_iDkmn      ! Vettori indici colonne e righe
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: i,n,m,k,lowb,upb,nrow,ncol,modm,maxmk      !Indici
 INTEGER(lo) :: imk,ikm,i_k_m,i_m_k,imm,i_m_m,im_m,i_mm    !Indici blocco
 REAL(dbl), DIMENSION(0:nstop) :: v_d,v_d1                   ! Vettori fattori Dkmn
@@ -7430,7 +7430,7 @@ m_do: DO m=-(nstop-1),(nstop-1)
                 ikm=id(n,k,m)
                 i_k_m=id(n,-k,-m)
                 i_m_k=id(n,-m,-k)
-                
+
 !                WRITE(*,*) "Generale: ", imk,ikm,i_k_m,i_m_k
 
                 !Sempre valori
@@ -7503,7 +7503,7 @@ END SUBROUTINE nnb_sparse
 
 
 !***********************************************************************************************************************************
-!6bis) SUBROUTINE nnb_sparse_ant:calcolo il numero di blocchi diversi da zero. I blocchi diagonali non sono inclusi e scarto sempre 
+!6bis) SUBROUTINE nnb_sparse_ant:calcolo il numero di blocchi diversi da zero. I blocchi diagonali non sono inclusi e scarto sempre
 ! le ultime ndip righe.
 !***********************************************************************************************************************************
 SUBROUTINE nnb_sparse_ant(ns,ns_ant,m_xyz,v_r,fint,nnb_ant)
@@ -7589,7 +7589,7 @@ END SUBROUTINE nnb_sparse_ant
 
 
 !***********************************************************************************************************************************
-!6bis) SUBROUTINE nnb_sparse_dip_per:calcolo il numero di blocchi diversi da zero. I blocchi diagonali non sono inclusi e scarto sempre 
+!6bis) SUBROUTINE nnb_sparse_dip_per:calcolo il numero di blocchi diversi da zero. I blocchi diagonali non sono inclusi e scarto sempre
 ! le ultime ndip righe.
 !***********************************************************************************************************************************
 SUBROUTINE nnb_sparse_dip_per(ns,ndip,m_xyz,v_r,fint,nnb)
@@ -7624,9 +7624,9 @@ row_do: DO i=1,ns
         !Coordinate per la seconda sfere, comprese complicate traslazioni
         cell_row_do_nanb: DO icell=0,nacell,nacell
              cell_col_do_nanb: DO jcell=0,nbcell,nbcell
-             
+
                     sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))      
+                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
                     xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
                     yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -7862,9 +7862,9 @@ row_do: DO i=1,ns
         !Coordinate per la seconda sfere, comprese complicate traslazioni
         cell_row_do_nanb: DO icell=0,nacell,nacell
              cell_col_do_nanb: DO jcell=0,nbcell,nbcell
-             
+
                     sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))      
+                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
                     xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
                     yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -7951,7 +7951,7 @@ END SUBROUTINE fill_jBlock_iBlock_sparse_dip_real
 
 
 !******************************************************************************
-!8) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di 
+!8) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Dij e per Exp[phi_ij]
 !******************************************************************************
 SUBROUTINE fill_D_PHI_sparse(ns,nstop,nnb,m_xyz,v_jBlock,v_iBlock,m_Dnkm,m_jDnkm,m_iDnkm,m_exphi)
@@ -8077,7 +8077,7 @@ END SUBROUTINE update_D_PHI_sparse
 
 
 !******************************************************************************
-!8bis) SUBROUTINE fill_D_PHI_sparse_singleblock:riempio tutta la struttura per  
+!8bis) SUBROUTINE fill_D_PHI_sparse_singleblock:riempio tutta la struttura per
 ! un singolo blocco di rotazione Dij e per Exp[phi_ij]
 !******************************************************************************
 SUBROUTINE fill_D_PHI_sparse_singleblock(nstop,theta,phi,v_Dnkm,v_jDnkm,v_iDnkm,v_exphi,error)
@@ -8114,7 +8114,7 @@ phi_do: DO m=-nstop,nstop
 	v_exphi(m)=EXP( (0.0D0,1.0D0)*REAL(m,dbl)*phi)
 END DO phi_do
 	WRITE(*,*) "qui4a"
-	
+
 END SUBROUTINE fill_D_PHI_sparse_singleblock
 
 
@@ -8124,7 +8124,7 @@ END SUBROUTINE fill_D_PHI_sparse_singleblock
 
 
 !******************************************************************************
-!8tris) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di 
+!8tris) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Dij e per Exp[phi_ij]
 !******************************************************************************
 SUBROUTINE fill_D_PHI_sparse_rhs(ns,nstop,nnb,m_xyz,v_xyz_dip,v_jBlock,v_iBlock,m_Dnkm,m_jDnkm,m_iDnkm,m_exphi)
@@ -8160,7 +8160,7 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-v_xyz_dip(2)
         zij=m_xyz(i,3)-v_xyz_dip(3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
         CALL fillblock_Dkmn(nstop,thetaij,m_Dnkm(:,next),m_jDnkm(:,next),m_iDnkm(:,next),error)
 
@@ -8179,7 +8179,7 @@ END SUBROUTINE fill_D_PHI_sparse_rhs
 
 
 !******************************************************************************
-!9) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di 
+!9) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse(ns,nstop,k,m_xyz,v_c0,v_aq,v_bq,v_jBlock,v_iBlock,m_Aij,m_Bij,m_jABij,m_iABij)
@@ -8188,7 +8188,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop                               			! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               			! Vettore norm,gaunt e bq
@@ -8215,7 +8215,7 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-m_xyz(j,2)
         zij =m_xyz(i,3)-m_xyz(j,3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
         CALL fillblock_sparse(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
                             & m_jABij(:,next),m_iABij(:,next),error)
@@ -8229,7 +8229,7 @@ END SUBROUTINE fill_AB_sparse
 
 
 !******************************************************************************
-!9) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di 
+!9) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_rhs(ns,nstop,k,m_xyz,v_xyz_dip,v_c0,v_aq,v_bq,v_jBlock,v_iBlock,m_Aij,m_Bij,m_jABij,m_iABij)
@@ -8238,7 +8238,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop                               			! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_xyz_dip                    			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
@@ -8266,7 +8266,7 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-v_xyz_dip(2)
         zij=m_xyz(i,3)-v_xyz_dip(3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
         CALL fillblock_sparse(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
                             & m_jABij(:,next),m_iABij(:,next),error)
@@ -8280,7 +8280,7 @@ END SUBROUTINE fill_AB_sparse_rhs
 
 
 !******************************************************************************
-!9.3) SUBROUTINE fill_AB_sparse_dip:riempio tutta la struttura per i blocchi di 
+!9.3) SUBROUTINE fill_AB_sparse_dip:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_dip&
@@ -8289,8 +8289,8 @@ SUBROUTINE fill_AB_sparse_dip&
 IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
-INTEGER(lo), INTENT(IN) :: ns,ndip,nstop                             			! N sfere, N multipoli,N multipolar exp 
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+INTEGER(lo), INTENT(IN) :: ns,ndip,nstop                             			! N sfere, N multipoli,N multipolar exp
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               			! Vettore norm,gaunt e bq
@@ -8317,18 +8317,18 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-m_xyz(j,2)
         zij =m_xyz(i,3)-m_xyz(j,3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         dip_if: IF (i<=(ns-ndip)) THEN
-        
+
         	!Chiamo la subroutine per riempire Aij e Aijsca
-        	CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+        	CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
                             & m_Aij_sca(:,next),m_Bij_sca(:,next),m_jABij(:,next),m_iABij(:,next),error)
         ELSE
-        
+
         	!Chiamo la subroutine per riempire solamente Aijsca, dal momento che sono nella zona dipoli
-        	CALL fillblock_sparse_onlysca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij_sca(:,next),m_Bij_sca(:,next),&  
+        	CALL fillblock_sparse_onlysca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij_sca(:,next),m_Bij_sca(:,next),&
                             & m_jABij(:,next),m_iABij(:,next),error)
-                            
+
         END IF dip_if
 
     END DO col_do
@@ -8339,7 +8339,7 @@ END SUBROUTINE fill_AB_sparse_dip
 
 
 !******************************************************************************
-!9.3) SUBROUTINE fill_AB_sparse_dip_fast:riempio tutta la struttura per i blocchi di 
+!9.3) SUBROUTINE fill_AB_sparse_dip_fast:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_dip_fast(ns,ns_ant,nstop,k,m_xyz,v_c0,v_aq,v_bq,&
@@ -8349,8 +8349,8 @@ SUBROUTINE fill_AB_sparse_dip_fast(ns,ns_ant,nstop,k,m_xyz,v_c0,v_aq,v_bq,&
 IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
-INTEGER(lo), INTENT(IN) :: ns,ns_ant,nstop						! N sfere, N multipoli,N multipolar exp 
-REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda 
+INTEGER(lo), INTENT(IN) :: ns,ns_ant,nstop						! N sfere, N multipoli,N multipolar exp
+REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock				! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
@@ -8419,8 +8419,8 @@ SUBROUTINE update_AB_sparse_dip_fast(ns,ns_ant,nstop,k,m_xyz,v_c0,v_aq,v_bq,&
 IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
-INTEGER(lo), INTENT(IN) :: ns,ns_ant,nstop						! N sfere, N multipoli,N multipolar exp 
-REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda 
+INTEGER(lo), INTENT(IN) :: ns,ns_ant,nstop						! N sfere, N multipoli,N multipolar exp
+REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock				! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
@@ -8479,7 +8479,7 @@ END SUBROUTINE update_AB_sparse_dip_fast
 
 
 !******************************************************************************
-!8bis) SUBROUTINE fill_AB_sparse_dip_per:riempio tutta la struttura per i blocchi di 
+!8bis) SUBROUTINE fill_AB_sparse_dip_per:riempio tutta la struttura per i blocchi di
 ! traslazione Aij e per Bij in un contesto periodico
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_dip_per &
@@ -8488,10 +8488,10 @@ SUBROUTINE fill_AB_sparse_dip_per &
 IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
-INTEGER(lo), INTENT(IN) :: ns,ndip,nstop                             			! N sfere, N multipoli,N multipolar exp 
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+INTEGER(lo), INTENT(IN) :: ns,ndip,nstop                             			! N sfere, N multipoli,N multipolar exp
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint										! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r							! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r							! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               			! Vettore norm,gaunt e bq
@@ -8523,7 +8523,7 @@ row_do: DO i=1,ns
 			cell_col_do_nanb: DO jcell=0,nbcell,nbcell
 
 				sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-				sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2))) 
+				sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
 				xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
 				yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -8546,18 +8546,18 @@ row_do: DO i=1,ns
 		zij =zi-zj
 
 		CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         dip_if: IF (i<=(ns-ndip)) THEN
-        
+
         	!Chiamo la subroutine per riempire Aij e Aijsca
-        	CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+        	CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
                             & m_Aij_sca(:,next),m_Bij_sca(:,next),m_jABij(:,next),m_iABij(:,next),error)
         ELSE
-        
+
         	!Chiamo la subroutine per riempire solamente Aijsca, dal momento che sono nella zona dipoli
-        	CALL fillblock_sparse_onlysca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij_sca(:,next),m_Bij_sca(:,next),&  
+        	CALL fillblock_sparse_onlysca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij_sca(:,next),m_Bij_sca(:,next),&
                             & m_jABij(:,next),m_iABij(:,next),error)
-                            
+
         END IF dip_if
 
     END DO col_do
@@ -8571,7 +8571,7 @@ END SUBROUTINE fill_AB_sparse_dip_per
 
 
 !******************************************************************************
-!8bis) SUBROUTINE fill_AB_sparse_dip:riempio tutta la struttura per i blocchi di 
+!8bis) SUBROUTINE fill_AB_sparse_dip:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_dip_nosca(ns,nstop,k,m_xyz,v_c0,v_aq,v_bq,v_jBlock,v_iBlock,m_Aij,m_Bij,m_jABij,m_iABij)
@@ -8580,7 +8580,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop                               			! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               			! Vettore norm,gaunt e bq
@@ -8607,11 +8607,11 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-m_xyz(j,2)
         zij =m_xyz(i,3)-m_xyz(j,3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
-        CALL fillblock_sparse_dip_nosca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+        CALL fillblock_sparse_dip_nosca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
                             & m_jABij(:,next),m_iABij(:,next),error)
-                            
+
 
     END DO col_do
 
@@ -8622,7 +8622,7 @@ END SUBROUTINE fill_AB_sparse_dip_nosca
 
 
 !******************************************************************************
-!8tris) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di 
+!8tris) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_sca(ns,nstop,k,m_xyz,v_c0,v_aq,v_bq,v_jBlock,v_iBlock,m_Aij,m_Bij,m_Aij_sca,m_Bij_sca,m_jABij,m_iABij)
@@ -8631,7 +8631,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop                               			! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k                                          			! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      			! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock         			! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               			! Vettore norm,gaunt e bq
@@ -8660,7 +8660,7 @@ row_do: DO i=1,ns
 		CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
 
 		!Chiamo la subroutine per riempire Dij
-		CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+		CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
 				    & m_Aij_sca(:,next),m_Bij_sca(:,next),m_jABij(:,next),m_iABij(:,next),error)
 
 
@@ -8671,7 +8671,7 @@ END SUBROUTINE fill_AB_sparse_sca
 
 
 !******************************************************************************
-!8quater) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di 
+!8quater) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_sca_fast(ns,nstop,k,m_xyz,v_c0,v_aq,v_bq,m_index,m_Apmn,v_jABij_template,v_iABij_template,&
@@ -8681,7 +8681,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop							! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock				! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
@@ -8731,7 +8731,7 @@ END SUBROUTINE fill_AB_sparse_sca_fast
 
 
 !******************************************************************************
-!8quinties) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di 
+!8quinties) SUBROUTINE fill_AB_sparse_sca:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_fast(ns,nstop,k,m_xyz,v_c0,v_aq,v_bq,m_index,m_Apmn,v_jABij_template,v_iABij_template,&
@@ -8741,7 +8741,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop							! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock				! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
@@ -8825,9 +8825,9 @@ row_do: DO i=1,ns
         !Coordinate per la seconda sfere, comprese complicate traslazioni
         cell_row_do_nanb: DO icell=0,nacell,nacell
              cell_col_do_nanb: DO jcell=0,nbcell,nbcell
-             
+
                     sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))      
+                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
                     xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
                     yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -8894,9 +8894,9 @@ row_do: DO i=1,ns
         !Coordinate per la seconda sfere, comprese complicate traslazioni
         cell_row_do_nanb: DO icell=0,nacell,nacell
              cell_col_do_nanb: DO jcell=0,nbcell,nbcell
-             
+
                     sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))      
+                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
                     xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
                     yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -8933,7 +8933,7 @@ END SUBROUTINE fill_jBlock_iBlock_sparse_per
 
 
 !******************************************************************************
-!3) SUBROUTINE fill_D_PHI_sparse_per:riempio tutta la struttura per i blocchi di 
+!3) SUBROUTINE fill_D_PHI_sparse_per:riempio tutta la struttura per i blocchi di
 ! rotazione Dij e per Exp[phi_ij]
 !******************************************************************************
 SUBROUTINE fill_D_PHI_sparse_per(ns,nstop,nnb,m_xyz,fint,v_r,v_jBlock,v_iBlock,m_Dnkm,m_jDnkm,m_iDnkm,m_exphi)
@@ -8964,7 +8964,7 @@ row_do: DO i=1,ns
 
         !Adesso so sia riga che colonna
         j=v_jBlock(next)
-        
+
         !Coordinate e distanze
         xi=m_xyz(i,1)
         yi=m_xyz(i,2)
@@ -8973,10 +8973,10 @@ row_do: DO i=1,ns
         !Coordinate per la seconda sfere, comprese complicate traslazioni
         cell_row_do_nanb: DO icell=0,nacell,nacell
              cell_col_do_nanb: DO jcell=0,nbcell,nbcell
-             
+
                     sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2))) 
-                    
+                    sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
+
                     xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
                     yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
                     zj=m_xyz(j,3)
@@ -8997,7 +8997,7 @@ row_do: DO i=1,ns
         yij=yi-yj
         zij =zi-zj
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
         CALL fillblock_Dkmn(nstop,thetaij,m_Dnkm(:,next),m_jDnkm(:,next),m_iDnkm(:,next),error)
 
@@ -9017,7 +9017,7 @@ END SUBROUTINE fill_D_PHI_sparse_per
 
 
 !******************************************************************************
-!4) SUBROUTINE fill_AB_sparse_per_sca:riempio tutta la struttura per i blocchi di 
+!4) SUBROUTINE fill_AB_sparse_per_sca:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_per_sca(ns,nstop,k,fint,v_r,m_xyz,v_c0,v_aq,&
@@ -9029,7 +9029,7 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN) :: ns,nstop								! N sfere, N multipolar exp e N nnz blocks
 REAL(dbl) ,INTENT(IN) :: k										! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint										! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r							! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r							! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz							! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock					! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq						! Vettore norm,gaunt e bq
@@ -9061,7 +9061,7 @@ row_do: DO i=1,ns
 			cell_col_do_nanb: DO jcell=0,nbcell,nbcell
 
 				sigx=SIGN(1.0D0,(m_xyz(i,1)-m_xyz(j,1)))
-				sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2))) 
+				sigy=SIGN(1.0D0,(m_xyz(i,2)-m_xyz(j,2)))
 
 				xj=m_xyz(j,1)+sigx*REAL(icell,dbl)*ax+sigy*REAL(jcell,dbl)*bx
 				yj=m_xyz(j,2)+sigy*REAL(jcell,dbl)*by
@@ -9086,7 +9086,7 @@ row_do: DO i=1,ns
 		CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
 
 		!Chiamo la subroutine per riempire Dij
-		CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+		CALL fillblock_sparse_sca(nstop,v_c0,v_aq,v_bq,k*rij,m_Aij(:,next),m_Bij(:,next), &
 						& m_Aij_sca(:,next),m_Bij_sca(:,next),m_jABij(:,next),m_iABij(:,next),error)
 
 	END DO col_do
@@ -9111,7 +9111,7 @@ END SUBROUTINE fill_AB_sparse_per_sca
 
 
 !******************************************************************************
-!1) SUBROUTINE fillblock_expPhi:riempio un blocco ij dei coefficienti Dkmn  
+!1) SUBROUTINE fillblock_expPhi:riempio un blocco ij dei coefficienti Dkmn
 !******************************************************************************
 !SUBROUTINE fillblock_expPhi(nstop,phi,v_expPhi,v_expPhim,v_jexpPhi,v_iexpPhi,error)
 
@@ -9124,7 +9124,7 @@ END SUBROUTINE fill_AB_sparse_per_sca
 !REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_expPhi,v_expPhim       ! Vettore sparse di output valori Dkmn
 !INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jexpPhi,v_iexpPhi        ! Vettori indici colonne e righe
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 !INTEGER(lo) :: n,m      !Indici
 
 !Subroutine vera e propria
@@ -9148,7 +9148,7 @@ END SUBROUTINE fill_AB_sparse_per_sca
 !        v_jexpPhi(n*(n+1)+m) = n*(n+1)+m
 !       v_iexpPhi(n*(n+1)+m) = n*(n+1)+m
 
-        
+
 !    END DO m_do
 !END DO n_do
 
@@ -9170,7 +9170,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k                                          ! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint                                       ! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      ! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               ! Vettore norm,gaunt e bq
 COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_a,m_b                 ! Matrici contenenti i coeff di sfera singola
@@ -9195,7 +9195,7 @@ COMPLEX(dbl), DIMENSION(-nstop:nstop) :: v_exphi                     ! Matrice b
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:,:) :: m_rhs                  ! Matrice Right Hand Side
 
 ! Funzione vera e propria
-   
+
 !Non zero elements Aij Bij
 NNZab=nstop*(1+2*nstop*(3+nstop))
 NNZab=NNZab/3
@@ -9241,9 +9241,9 @@ fill_row_block_do: DO icell=1,ns
                 !Coordinate per la seconda sfere, comprese complicate traslazioni
                 cell_row_do_nanb: DO icell1=0,nacell,nacell
                     cell_col_do_nanb: DO jcell1=0,nbcell,nbcell
-             
+
                         sigx=SIGN(1.0D0,(xi-xj0))
-                        sigy=SIGN(1.0D0,(yi-yj0)) 
+                        sigy=SIGN(1.0D0,(yi-yj0))
 
                         xj=xj0 + sigx*REAL(icell1,dbl)*ax + sigy*REAL(jcell1,dbl)*bx
                         yj=yj0 + sigy*REAL(jcell1,dbl)*by
@@ -9265,14 +9265,14 @@ fill_row_block_do: DO icell=1,ns
                 xij=xi-xj
                 yij=yi-yj
                 zij=zi-zj
-        
+
                !Conversione coordinate da cartesiane a sferiche
                CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
                !Chiamo la subroutine per riempire Aij e Bij, Dij e PHIij
                CALL fillblock_sparse(nstop,v_c0,v_aq,v_bq,k*rij,v_Aij,v_Bij,v_jABij,v_iABij,error)
                CALL fillblock_Dkmn(nstop,thetaij,v_Dnkm,v_jDnkm,v_iDnkm,error)
-               
+
                !Riempio anche la colonna degli esponenziali
                 phi_do: DO m=-nstop,nstop
 
@@ -9294,7 +9294,7 @@ fill_row_block_do: DO icell=1,ns
 
                     !Faccio tutte le mie moltiplicazioni vettore matrice del caso, Qui rotazione
                     CALL amudz(blockside,m_rhs(:,1),m_rhs(:,2),v_Dnkm,v_jDnkm,v_iDnkm)  !Per Dnkm
-                    
+
                     !Due traslazioni
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,3),v_Aij,v_jABij,v_iABij)   !Per Aij
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,4),v_Bij,v_jABij,v_iABij)   !Per Bij
@@ -9306,7 +9306,7 @@ fill_row_block_do: DO icell=1,ns
                             m_rhs(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,3)
                             m_rhs(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,4)
 
-                        END DO par_mdo 
+                        END DO par_mdo
                     END DO par_ndo
 
 
@@ -9318,7 +9318,7 @@ fill_row_block_do: DO icell=1,ns
                     !Aggiustamento della parita'
                     i=0
                     phi_ndo: DO n=nu,nstop
-                        
+
                         diag_if: IF (n==nu) THEN
 
                             phi_mdo1: DO m=-n,-mu
@@ -9335,16 +9335,16 @@ fill_row_block_do: DO icell=1,ns
                                 m_rhs(i,8)=v_exphi(-m)*((-1.0D0)**m)*m_rhs(i,6)
                             END DO phi_mdo2
 
-                        END IF diag_if 
+                        END IF diag_if
 
                     END DO phi_ndo
 
                     !Adesso riempio dai due vettori i pezzi di matrice che mi servono!!!
                     fill_ndo: DO n=nu,nstop
-                        
+
                         fill_diag_if: IF (n==nu) THEN
 
-                            !Qui riempio il blocco diagonale    
+                            !Qui riempio il blocco diagonale
                             fill_mdo1: DO m=-n,-mu
 
                                 iab=2*( n*(n+1)+m )
@@ -9374,7 +9374,7 @@ fill_row_block_do: DO icell=1,ns
                                 jab=2*( nu*(nu+1)+mu )
                                 iab2=n*(n+1)+m
                                 jab2=nu*(nu+1)+mu
-                                
+
                                 !Indici per A e B
                                 ia1=low_row+iab-1
                                 ja1=low_col+jab-1
@@ -9410,10 +9410,10 @@ END DO fill_row_block_do
 
 sim_row_cell_do: DO icell=1,ns
     sim_col_cell_do: DO jcell=icell,ns
-    
+
 		!Offset indici per il riempimento della matrice
         low_row=2*blockside*(icell-1)
-        low_col=2*blockside*(jcell-1)	
+        low_col=2*blockside*(jcell-1)
 
         sim_nu_do: DO nu=1,nstop
             sim_mu_do: DO mu=-nu,nu
@@ -9422,7 +9422,7 @@ sim_row_cell_do: DO icell=1,ns
                     sim_if: IF (nu==n) THEN
 
                         sim_m_do1: DO m=-n,-mu
-                            
+
                             !Indici per A e B originali
                             ia1=low_row+2*( n*(n+1)+m )-1
                             ja1=low_col+2*( nu*(nu+1)+mu )-1
@@ -9469,7 +9469,7 @@ sim_row_cell_do: DO icell=1,ns
                                 jb6=jb2-low_col+low_row
                                 m_AB(ia6,ja6)=(-1.0D0**(n+nu))*m_AB(ia2,ja2)
                                 m_AB(ib6,jb6)=(-1.0D0**(n+nu+1))*m_AB(ib2,jb2)
-                                
+
                                 ia7=ia3-low_row+low_col
                                 ja7=ja3-low_col+low_row
                                 ib7=ib3-low_row+low_col
@@ -9505,7 +9505,7 @@ sim_row_cell_do: DO icell=1,ns
                             jb2=jb1+1
                             m_AB(ia2,ja2)=m_AB(ia1,ja1)
                             m_AB(ib2,jb2)=m_AB(ib1,jb1)
-                                
+
 !                                 WRITE(*,101) ia1,ja1,ib1,jb1,ia2,ja2,ib2,jb2
 ! 				101 FORMAT (8I4)
                             !Indici per prima simmetria da scambio di indici n=nu, m=-mu
@@ -9515,7 +9515,7 @@ sim_row_cell_do: DO icell=1,ns
                             jb3=ja3
                             m_AB(ia3,ja3)=((-1.0D0)**(m+mu))*m_AB(ia1,ja1)
                             m_AB(ib3,jb3)=((-1.0D0)**(m+mu+1))*m_AB(ib1,jb1)
-!                                 
+!
 !                                 WRITE(*,102) ia1,ja1,ib1,jb1,ia3,ja3,ib3,jb3
 ! 				102 FORMAT (8I4)
                             !Indici per i doppioni della simmetria di indici
@@ -9525,7 +9525,7 @@ sim_row_cell_do: DO icell=1,ns
                             jb4=jb3+1
                             m_AB(ia4,ja4)=m_AB(ia3,ja3)
                             m_AB(ib4,jb4)=m_AB(ib3,jb3)
-!                                 
+!
 !                                 WRITE(*,103) ia1,ja1,ib1,jb1,ia4,ja4,ib4,jb4
 ! 				103 FORMAT (8I4)
                             sim_diag_if2: IF (icell/=jcell) THEN
@@ -9544,7 +9544,7 @@ sim_row_cell_do: DO icell=1,ns
                                 jb6=jb2-low_col+low_row
                                 m_AB(ia6,ja6)=(-1.0D0**(n+nu))*m_AB(ia2,ja2)
                                 m_AB(ib6,jb6)=(-1.0D0**(n+nu+1))*m_AB(ib2,jb2)
-                                
+
                                 ia7=ia3-low_row+low_col
                                 ja7=ja3-low_col+low_row
                                 ib7=ib3-low_row+low_col
@@ -9578,7 +9578,7 @@ j=0
 diagi_do: DO i=1,ns
     diagn_do: DO n=1,nstop
         diagm_do: DO m=-n,n
-        
+
             j=j+1
             m_AB(2*j-1,2*j-1)=m_AB(2*j-1,2*j-1)+1.0D0/m_a(n,v_patt(i))
             m_AB(2*j,2*j)=m_AB(2*j,2*j)+1.0D0/m_b(n,v_patt(i))
@@ -9588,7 +9588,7 @@ diagi_do: DO i=1,ns
     END DO diagn_do
 END DO diagi_do
 
-                                
+
 !                                 WRITE(*,*) "QUId"
 
 
@@ -9608,7 +9608,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k                                          ! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint                                       ! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      ! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               ! Vettore norm,gaunt e bq
 COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_a,m_b                 ! Matrici contenenti i coeff di sfera singola
@@ -9633,7 +9633,7 @@ COMPLEX(dbl), DIMENSION(-nstop:nstop) :: v_exphi                     			! Matric
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:,:) :: m_rhs,m_rhs_sca           			! Matrice Right Hand Side
 
 ! Funzione vera e propria
-   
+
 !Non zero elements Aij Bij
 NNZab=nstop*(1+2*nstop*(3+nstop))
 NNZab=NNZab/3
@@ -9680,9 +9680,9 @@ fill_row_block_do: DO icell=1,ns
                 !Coordinate per la seconda sfere, comprese complicate traslazioni
                 cell_row_do_nanb: DO icell1=0,nacell,nacell
                     cell_col_do_nanb: DO jcell1=0,nbcell,nbcell
-             
+
                         sigx=SIGN(1.0D0,(xi-xj0))
-                        sigy=SIGN(1.0D0,(yi-yj0)) 
+                        sigy=SIGN(1.0D0,(yi-yj0))
 
                         xj=xj0 + sigx*REAL(icell1,dbl)*ax + sigy*REAL(jcell1,dbl)*bx
                         yj=yj0 + sigy*REAL(jcell1,dbl)*by
@@ -9704,14 +9704,14 @@ fill_row_block_do: DO icell=1,ns
                 xij=xi-xj
                 yij=yi-yj
                 zij=zi-zj
-        
+
                !Conversione coordinate da cartesiane a sferiche
                CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
                !Chiamo la subroutine per riempire Aij e Bij, Dij e PHIij
                CALL fillblock_sparse_dip(nstop,v_c0,v_aq,v_bq,k*rij,v_Aij,v_Bij,v_Aij_sca,v_Bij_sca,v_jABij,v_iABij,error)
                CALL fillblock_Dkmn(nstop,thetaij,v_Dnkm,v_jDnkm,v_iDnkm,error)
-               
+
                !Riempio anche la colonna degli esponenziali
                 phi_do: DO m=-nstop,nstop
 
@@ -9737,12 +9737,12 @@ fill_row_block_do: DO icell=1,ns
                     !Faccio tutte le mie moltiplicazioni vettore matrice del caso, Qui rotazione
                     CALL amudz(blockside,m_rhs(:,1),m_rhs(:,2),v_Dnkm,v_jDnkm,v_iDnkm)  !Per Dnkm
                     CALL amudz(blockside,m_rhs_sca(:,1),m_rhs_sca(:,2),v_Dnkm,v_jDnkm,v_iDnkm)  !Per Dnkm
-                    
+
                     !Due traslazioni
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,3),v_Aij,v_jABij,v_iABij)   !Per Aij
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,4),v_Bij,v_jABij,v_iABij)   !Per Bij
                     CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,3),v_Aij_sca,v_jABij,v_iABij)   !Per AJij
-                    CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,4),v_Bij_sca,v_jABij,v_iABij)   !Per BJij                    
+                    CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,4),v_Bij_sca,v_jABij,v_iABij)   !Per BJij
 
                     !Aggiustamento della parita'
                     par_ndo: DO n=1,nstop
@@ -9751,9 +9751,9 @@ fill_row_block_do: DO icell=1,ns
                             m_rhs(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,3)
                             m_rhs(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,4)
                             m_rhs_sca(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,3)
-                            m_rhs_sca(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,4)                            
+                            m_rhs_sca(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,4)
 
-                        END DO par_mdo 
+                        END DO par_mdo
                     END DO par_ndo
 
 
@@ -9767,7 +9767,7 @@ fill_row_block_do: DO icell=1,ns
                     !Aggiustamento della parita'
                     i=0
                     phi_ndo: DO n=nu,nstop
-                        
+
                         diag_if: IF (n==nu) THEN
 
                             phi_mdo1: DO m=-n,-mu
@@ -9788,16 +9788,16 @@ fill_row_block_do: DO icell=1,ns
                                 m_rhs_sca(i,8)=v_exphi(-m)*((-1.0D0)**m)*m_rhs_sca(i,6)
                             END DO phi_mdo2
 
-                        END IF diag_if 
+                        END IF diag_if
 
                     END DO phi_ndo
 
                     !Adesso riempio dai due vettori i pezzi di matrice che mi servono!!!
                     fill_ndo: DO n=nu,nstop
-                        
+
                         fill_diag_if: IF (n==nu) THEN
 
-                            !Qui riempio il blocco diagonale    
+                            !Qui riempio il blocco diagonale
                             fill_mdo1: DO m=-n,-mu
 
                                 iab=2*( n*(n+1)+m )
@@ -9817,7 +9817,7 @@ fill_row_block_do: DO icell=1,ns
                                 m_AB(ib1,jb1)=m_AB(ib1,jb1)+m_rhs(iab2,8)
                                 m_ABJ(ia1,ja1)=m_ABJ(ia1,ja1)+m_rhs_sca(iab2,7)
                                 m_ABJ(ib1,jb1)=m_ABJ(ib1,jb1)+m_rhs_sca(iab2,8)
-                                
+
                             END DO fill_mdo1
 
                         ELSE
@@ -9829,7 +9829,7 @@ fill_row_block_do: DO icell=1,ns
                                 jab=2*( nu*(nu+1)+mu )
                                 iab2=n*(n+1)+m
                                 jab2=nu*(nu+1)+mu
-                                
+
                                 !Indici per A e B
                                 ia1=low_row+iab-1
                                 ja1=low_col+jab-1
@@ -9867,7 +9867,7 @@ END DO fill_row_block_do
 
 sim_row_cell_do: DO icell=1,ns
     sim_col_cell_do: DO jcell=icell,ns
-    
+
 		!Offset indici per il riempimento della matrice
         low_row=2*blockside*(icell-1)
         low_col=2*blockside*(jcell-1)
@@ -9879,7 +9879,7 @@ sim_row_cell_do: DO icell=1,ns
                     sim_if: IF (nu==n) THEN
 
                         sim_m_do1: DO m=-n,-mu
-                            
+
                             !Indici per A e B originali
                             ia1=low_row+2*( n*(n+1)+m )-1
                             ja1=low_col+2*( nu*(nu+1)+mu )-1
@@ -9936,7 +9936,7 @@ sim_row_cell_do: DO icell=1,ns
                                 m_AB(ib6,jb6)=(-1.0D0**(n+nu+1))*m_AB(ib2,jb2)
                                 m_ABJ(ia6,ja6)=(-1.0D0**(n+nu))*m_ABJ(ia2,ja2)
                                 m_ABJ(ib6,jb6)=(-1.0D0**(n+nu+1))*m_ABJ(ib2,jb2)
-                                
+
                                 ia7=ia3-low_row+low_col
                                 ja7=ja3-low_col+low_row
                                 ib7=ib3-low_row+low_col
@@ -9978,7 +9978,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib2,jb2)=m_AB(ib1,jb1)
                             m_ABJ(ia2,ja2)=m_ABJ(ia1,ja1)
                             m_ABJ(ib2,jb2)=m_ABJ(ib1,jb1)
-                                
+
 !                                 WRITE(*,101) ia1,ja1,ib1,jb1,ia2,ja2,ib2,jb2
 ! 				101 FORMAT (8I4)
                             !Indici per prima simmetria da scambio di indici n=nu, m=-mu
@@ -9990,7 +9990,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib3,jb3)=((-1.0D0)**(m+mu+1))*m_AB(ib1,jb1)
                             m_ABJ(ia3,ja3)=((-1.0D0)**(m+mu))*m_ABJ(ia1,ja1)
                             m_ABJ(ib3,jb3)=((-1.0D0)**(m+mu+1))*m_ABJ(ib1,jb1)
-!                                 
+!
 !                                 WRITE(*,102) ia1,ja1,ib1,jb1,ia3,ja3,ib3,jb3
 ! 				102 FORMAT (8I4)
                             !Indici per i doppioni della simmetria di indici
@@ -10002,7 +10002,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib4,jb4)=m_AB(ib3,jb3)
                             m_ABJ(ia4,ja4)=m_ABJ(ia3,ja3)
                             m_ABJ(ib4,jb4)=m_ABJ(ib3,jb3)
-!                                 
+!
 !                                 WRITE(*,103) ia1,ja1,ib1,jb1,ia4,ja4,ib4,jb4
 ! 				103 FORMAT (8I4)
                             sim_diag_if2: IF (icell/=jcell) THEN
@@ -10025,7 +10025,7 @@ sim_row_cell_do: DO icell=1,ns
                                 m_AB(ib6,jb6)=(-1.0D0**(n+nu+1))*m_AB(ib2,jb2)
                                 m_ABJ(ia6,ja6)=(-1.0D0**(n+nu))*m_ABJ(ia2,ja2)
                                 m_ABJ(ib6,jb6)=(-1.0D0**(n+nu+1))*m_ABJ(ib2,jb2)
-                                
+
                                 ia7=ia3-low_row+low_col
                                 ja7=ja3-low_col+low_row
                                 ib7=ib3-low_row+low_col
@@ -10063,7 +10063,7 @@ j=0
 diagi_do: DO i=1,ns
     diagn_do: DO n=1,nstop
         diagm_do: DO m=-n,n
-        
+
             j=j+1
             m_AB(2*j-1,2*j-1)=m_AB(2*j-1,2*j-1)+1.0D0/m_a(n,v_patt(i))
             m_AB(2*j,2*j)=m_AB(2*j,2*j)+1.0D0/m_b(n,v_patt(i))
@@ -10075,7 +10075,7 @@ diagi_do: DO i=1,ns
     END DO diagn_do
 END DO diagi_do
 
-                                
+
 !                                 WRITE(*,*) "QUId"
 
 
@@ -10104,7 +10104,7 @@ INTEGER(lo), INTENT(OUT) :: error							! Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,q,p,low_nu,qmax			!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq			!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes,NNZab				!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca		!Somme parziali per vec trans
@@ -10134,8 +10134,8 @@ CALL hankel1_d_sub((2*nstop+1),kr,v_h,error)
 
 !Checking the call for hankel
 error_h_if: IF (error==1) THEN
-		WRITE(*,10) 
-		10 FORMAT ("Error in hankel1_d_sub called by fillblock_sparse_per_sc, STOPPING") 
+		WRITE(*,10)
+		10 FORMAT ("Error in hankel1_d_sub called by fillblock_sparse_per_sc, STOPPING")
 		STOP
 END IF error_h_if
 
@@ -10180,7 +10180,7 @@ flat_do: DO i=1,NNZab
 
 	!-----------
 	!Calcolo Bvt
-	!----------- 
+	!-----------
 	!Calcolo della sommatoria e di Bvt
 	sommaB=(0.0D0,0.0D0)
 	sommaBsca=(0.0D0,0.0D0)
@@ -10214,7 +10214,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint								! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -10242,7 +10242,7 @@ COMPLEX(dbl), DIMENSION(-nstop:nstop) :: v_exphi					! Matrice blocchi PHIij
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:,:) :: m_rhs,m_rhs_sca				! Matrice Right Hand Side
 
 ! Subroutine
-   
+
 !Non zero elements Aij Bij
 NNZab=nstop*(1+2*nstop*(3+nstop))
 NNZab=NNZab/3
@@ -10278,7 +10278,7 @@ cell_row_do_nanb: DO icell1=0,nacell,nacell
 	cell_col_do_nanb: DO jcell1=0,nbcell,nbcell
 
 		sigx=SIGN(1.0D0,(xi-xj0))
-		sigy=SIGN(1.0D0,(yi-yj0)) 
+		sigy=SIGN(1.0D0,(yi-yj0))
 
 		xj=xj0 + sigx*REAL(icell1,dbl)*ax + sigy*REAL(jcell1,dbl)*bx
 		yj=yj0 + sigy*REAL(jcell1,dbl)*by
@@ -10362,7 +10362,7 @@ m_rhs(1:blockside,1:8)=(0.0D0,0.0D0)
 m_rhs_sca(1:blockside,1:8)=(0.0D0,0.0D0)
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! Here we are going to build 
+! Here we are going to build
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !Beginning the loops over mu and mu
 fill_nu_do: DO nu=1,nstop
@@ -10418,7 +10418,7 @@ fill_nu_do: DO nu=1,nstop
 				m_rhs_sca(n*(n+1)+m,3)=v_oner(m)*m_rhs_sca(n*(n+1)+m,3)
 				m_rhs_sca(n*(n+1)+m,4)=v_oner(m)*m_rhs_sca(n*(n+1)+m,4)
 
-			END DO par_mdo 
+			END DO par_mdo
 		END DO par_ndo
 
 		!--------------------------------------
@@ -10481,7 +10481,7 @@ fill_nu_do: DO nu=1,nstop
 					m_rhs_sca(i,8)=v_exphi(-m)*v_oner(m)*m_rhs_sca(i,6)
 				END DO phi_mdo2
 
-			END IF diag_if 
+			END IF diag_if
 
 			!--------------------------------------
 			!Diagnostics
@@ -10601,7 +10601,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -10715,7 +10715,7 @@ m_rhs(1:blockside,1:8)=(0.0D0,0.0D0)
 m_rhs_sca(1:blockside,1:8)=(0.0D0,0.0D0)
 
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-! Here we are going to build 
+! Here we are going to build
 !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 !Beginning the loops over mu and mu
 fill_nu_do: DO nu=1,nstop
@@ -10777,7 +10777,7 @@ fill_nu_do: DO nu=1,nstop
 				m_rhs_sca(n*(n+1)+m,3)=v_oner(m)*m_rhs_sca(n*(n+1)+m,3)
 				m_rhs_sca(n*(n+1)+m,4)=v_oner(m)*m_rhs_sca(n*(n+1)+m,4)
 
-			END DO par_mdo 
+			END DO par_mdo
 		END DO par_ndo
 
 		!--------------------------------------
@@ -10846,7 +10846,7 @@ fill_nu_do: DO nu=1,nstop
 					m_rhs_sca(i,8)=v_exphi(-m)*v_oner(m)*m_rhs_sca(i,6)
 				END DO phi_mdo2
 
-			END IF diag_if 
+			END IF diag_if
 
 			!--------------------------------------
 			!Diagnostics
@@ -10965,7 +10965,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k                                          ! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint                                       ! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      ! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               ! Vettore norm,gaunt e bq
 COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_a,m_b                 ! Matrici contenenti i coeff di sfera singola
@@ -10990,7 +10990,7 @@ COMPLEX(dbl), DIMENSION(-nstop:nstop) :: v_exphi                     			! Matric
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:,:) :: m_rhs,m_rhs_sca           			! Matrice Right Hand Side
 
 ! Funzione vera e propria
-   
+
 !Non zero elements Aij Bij
 NNZab=nstop*(1+2*nstop*(3+nstop))
 NNZab=NNZab/3
@@ -11039,7 +11039,7 @@ fill_row_block_do: DO icell=1,ns
 					cell_col_do_nanb: DO jcell1=0,nbcell,nbcell
 
 						sigx=SIGN(1.0D0,(xi-xj0))
-						sigy=SIGN(1.0D0,(yi-yj0)) 
+						sigy=SIGN(1.0D0,(yi-yj0))
 
 						xj=xj0 + sigx*REAL(icell1,dbl)*ax + sigy*REAL(jcell1,dbl)*bx
 						yj=yj0 + sigy*REAL(jcell1,dbl)*by
@@ -11115,7 +11115,7 @@ fill_row_block_do: DO icell=1,ns
 								m_rhs_sca(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,3)
 								m_rhs_sca(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,4)
 
-							END DO par_mdo 
+							END DO par_mdo
 						END DO par_ndo
 
 
@@ -11150,7 +11150,7 @@ fill_row_block_do: DO icell=1,ns
 									m_rhs_sca(i,8)=v_exphi(-m)*((-1.0D0)**m)*m_rhs_sca(i,6)
 								END DO phi_mdo2
 
-							END IF diag_if 
+							END IF diag_if
 
 						END DO phi_ndo
 
@@ -11159,7 +11159,7 @@ fill_row_block_do: DO icell=1,ns
 
 							fill_diag_if: IF (n==nu) THEN
 
-								!Qui riempio il blocco diagonale    
+								!Qui riempio il blocco diagonale
 								fill_mdo1: DO m=-n,-mu
 
 									iab=2*( n*(n+1)+m )
@@ -11179,7 +11179,7 @@ fill_row_block_do: DO icell=1,ns
 									m_AB(ib1,jb1)=m_AB(ib1,jb1)+m_rhs(iab2,8)
 									m_ABJ(ia1,ja1)=m_ABJ(ia1,ja1)+m_rhs_sca(iab2,7)
 									m_ABJ(ib1,jb1)=m_ABJ(ib1,jb1)+m_rhs_sca(iab2,8)
-		
+
 								END DO fill_mdo1
 
 							ELSE
@@ -11191,7 +11191,7 @@ fill_row_block_do: DO icell=1,ns
 									jab=2*( nu*(nu+1)+mu )
 									iab2=n*(n+1)+m
 									jab2=nu*(nu+1)+mu
-		
+
 									!Indici per A e B
 									ia1=low_row+iab-1
 									ja1=low_col+jab-1
@@ -11226,7 +11226,7 @@ END DO fill_row_block_do
 
 sim_row_cell_do: DO icell=1,ns
 	sim_col_cell_do: DO jcell=1,ns
- 
+
 		!Offset indici per il riempimento della matrice
 		low_row=2*blockside*(icell-1)
 		low_col=2*blockside*(jcell-1)
@@ -11353,7 +11353,7 @@ diagi_do: DO i=1,ns
 	END DO diagn_do
 END DO diagi_do
 
-                                
+
 !                                 WRITE(*,*) "QUId"
 
 
@@ -11378,7 +11378,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_fint						! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -11523,7 +11523,7 @@ DEALLOCATE(m_block,m_block_sca)
 !-------------------------------------------------------------------------------------------------------------
 sim_row_cell_do: DO icell=1,ns
 	sim_col_cell_do: DO jcell=1,ns
- 
+
 		!Offset indici per il riempimento della matrice
 		low_row=2*blockside*(icell-1)
 		low_col=2*blockside*(jcell-1)
@@ -11725,7 +11725,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -11861,7 +11861,7 @@ DEALLOCATE(m_block,m_block_sca)
 !-------------------------------------------------------------------------------------------------------------
 sim_row_cell_do: DO icell=1,ns
 	sim_col_cell_do: DO jcell=icell,ns
- 
+
 		!Offset indici per il riempimento della matrice
 		low_row=2*blockside*(icell-1)
 		low_col=2*blockside*(jcell-1)
@@ -12063,7 +12063,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -12199,7 +12199,7 @@ DEALLOCATE(m_block,m_block_sca)
 !-------------------------------------------------------------------------------------------------------------
 sim_row_cell_do: DO icell=1,ns
 	sim_col_cell_do: DO jcell=icell,ns
- 
+
 		!Offset indici per il riempimento della matrice
 		low_row=2*blockside*(icell-1)
 		low_col=2*blockside*(jcell-1)
@@ -12405,7 +12405,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k								! vettore d'onda
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r						! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz						! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq					! Vettore norm,gaunt e bq
 INTEGER(lo), DIMENSION(:,:), INTENT(IN) :: m_index					! Index matrix
@@ -12541,7 +12541,7 @@ DEALLOCATE(m_block,m_block_sca)
 !-------------------------------------------------------------------------------------------------------------
 sim_row_cell_do: DO icell=1,ns_ant
 	sim_col_cell_do: DO jcell=ns,ns
- 
+
 		!Offset indici per il riempimento della matrice
 		low_row=2*blockside*(icell-1)
 		low_col=2*blockside*(jcell-1)
@@ -12743,7 +12743,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 REAL(dbl) ,INTENT(IN) :: k                                          ! vettore d'onda
 REAL(dbl), INTENT(IN) :: fint                                       ! Coefficiente di interazione
-REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi 
+REAL(dbl), DIMENSION(:), INTENT(IN) :: v_r                          ! Vettore raggi
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz                      ! Matrix posizione
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq               ! Vettore norm,gaunt e bq
 COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_a,m_b                 ! Matrici contenenti i coeff di sfera singola
@@ -12768,7 +12768,7 @@ COMPLEX(dbl), DIMENSION(-nstop:nstop) :: v_exphi                     			! Matric
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:,:) :: m_rhs,m_rhs_sca           			! Matrice Right Hand Side
 
 ! Funzione vera e propria
-   
+
 !Non zero elements Aij Bij
 NNZab=nstop*(1+2*nstop*(3+nstop))
 NNZab=NNZab/3
@@ -12817,9 +12817,9 @@ fill_row_block_do: DO icell=1,ns
                 !Coordinate per la seconda sfere, comprese complicate traslazioni
                 cell_row_do_nanb: DO icell1=0,nacell,nacell
                     cell_col_do_nanb: DO jcell1=0,nbcell,nbcell
-             
+
                         sigx=SIGN(1.0D0,(xi-xj0))
-                        sigy=SIGN(1.0D0,(yi-yj0)) 
+                        sigy=SIGN(1.0D0,(yi-yj0))
 
                         xj=xj0 + sigx*REAL(icell1,dbl)*ax + sigy*REAL(jcell1,dbl)*bx
                         yj=yj0 + sigy*REAL(jcell1,dbl)*by
@@ -12841,14 +12841,14 @@ fill_row_block_do: DO icell=1,ns
                 xij=xi-xj
                 yij=yi-yj
                 zij=zi-zj
-        
+
                !Conversione coordinate da cartesiane a sferiche
                CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
                !Chiamo la subroutine per riempire Aij e Bij, Dij e PHIij
                CALL fillblock_sparse_dip(nstop,v_c0,v_aq,v_bq,k*rij,v_Aij,v_Bij,v_Aij_sca,v_Bij_sca,v_jABij,v_iABij,error)
                CALL fillblock_Dkmn(nstop,thetaij,v_Dnkm,v_jDnkm,v_iDnkm,error)
-               
+
                !Riempio anche la colonna degli esponenziali
                 phi_do: DO m=-nstop,nstop
 
@@ -12874,12 +12874,12 @@ fill_row_block_do: DO icell=1,ns
                     !Faccio tutte le mie moltiplicazioni vettore matrice del caso, Qui rotazione
                     CALL amudz(blockside,m_rhs(:,1),m_rhs(:,2),v_Dnkm,v_jDnkm,v_iDnkm)  !Per Dnkm
                     CALL amudz(blockside,m_rhs_sca(:,1),m_rhs_sca(:,2),v_Dnkm,v_jDnkm,v_iDnkm)  !Per Dnkm
-                    
+
                     !Due traslazioni
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,3),v_Aij,v_jABij,v_iABij)   !Per Aij
                     CALL amuzz(blockside,m_rhs(:,2),m_rhs(:,4),v_Bij,v_jABij,v_iABij)   !Per Bij
                     CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,3),v_Aij_sca,v_jABij,v_iABij)   !Per AJij
-                    CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,4),v_Bij_sca,v_jABij,v_iABij)   !Per BJij                    
+                    CALL amuzz(blockside,m_rhs_sca(:,2),m_rhs_sca(:,4),v_Bij_sca,v_jABij,v_iABij)   !Per BJij
 
                     !Aggiustamento della parita'
                     par_ndo: DO n=1,nstop
@@ -12888,9 +12888,9 @@ fill_row_block_do: DO icell=1,ns
                             m_rhs(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,3)
                             m_rhs(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs(n*(n+1)+m,4)
                             m_rhs_sca(n*(n+1)+m,3)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,3)
-                            m_rhs_sca(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,4)                            
+                            m_rhs_sca(n*(n+1)+m,4)=((-1.0D0)**m)*m_rhs_sca(n*(n+1)+m,4)
 
-                        END DO par_mdo 
+                        END DO par_mdo
                     END DO par_ndo
 
 
@@ -12904,7 +12904,7 @@ fill_row_block_do: DO icell=1,ns
                     !Aggiustamento della parita'
                     i=0
                     phi_ndo: DO n=nu,nstop
-                        
+
                         diag_if: IF (n==nu) THEN
 
                             phi_mdo1: DO m=-n,-mu
@@ -12925,16 +12925,16 @@ fill_row_block_do: DO icell=1,ns
                                 m_rhs_sca(i,8)=v_exphi(-m)*((-1.0D0)**m)*m_rhs_sca(i,6)
                             END DO phi_mdo2
 
-                        END IF diag_if 
+                        END IF diag_if
 
                     END DO phi_ndo
 
                     !Adesso riempio dai due vettori i pezzi di matrice che mi servono!!!
                     fill_ndo: DO n=nu,nstop
-                        
+
                         fill_diag_if: IF (n==nu) THEN
 
-                            !Qui riempio il blocco diagonale    
+                            !Qui riempio il blocco diagonale
                             fill_mdo1: DO m=-n,-mu
 
                                 iab=2*( n*(n+1)+m )
@@ -12954,7 +12954,7 @@ fill_row_block_do: DO icell=1,ns
                                 m_AB(ib1,jb1)=m_AB(ib1,jb1)+m_rhs(iab2,8)
                                 m_ABJ(ia1,ja1)=m_ABJ(ia1,ja1)+m_rhs_sca(iab2,7)
                                 m_ABJ(ib1,jb1)=m_ABJ(ib1,jb1)+m_rhs_sca(iab2,8)
-                                
+
                             END DO fill_mdo1
 
                         ELSE
@@ -12966,7 +12966,7 @@ fill_row_block_do: DO icell=1,ns
                                 jab=2*( nu*(nu+1)+mu )
                                 iab2=n*(n+1)+m
                                 jab2=nu*(nu+1)+mu
-                                
+
                                 !Indici per A e B
                                 ia1=low_row+iab-1
                                 ja1=low_col+jab-1
@@ -13004,7 +13004,7 @@ END DO fill_row_block_do
 
 sim_row_cell_do: DO icell=1,ns
     sim_col_cell_do: DO jcell=1,ns
-    
+
 		IF (icell==1) CYCLE sim_col_cell_do
 
 		!Offset indici per il riempimento della matrice
@@ -13018,7 +13018,7 @@ sim_row_cell_do: DO icell=1,ns
                     sim_if: IF (nu==n) THEN
 
                         sim_m_do1: DO m=-n,-mu
-                            
+
                             !Indici per A e B originali
                             ia1=low_row+2*( n*(n+1)+m )-1
                             ja1=low_col+2*( nu*(nu+1)+mu )-1
@@ -13076,7 +13076,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib2,jb2)=m_AB(ib1,jb1)
                             m_ABJ(ia2,ja2)=m_ABJ(ia1,ja1)
                             m_ABJ(ib2,jb2)=m_ABJ(ib1,jb1)
-                                
+
 !                                 WRITE(*,101) ia1,ja1,ib1,jb1,ia2,ja2,ib2,jb2
 ! 				101 FORMAT (8I4)
                             !Indici per prima simmetria da scambio di indici n=nu, m=-mu
@@ -13088,7 +13088,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib3,jb3)=((-1.0D0)**(m+mu+1))*m_AB(ib1,jb1)
                             m_ABJ(ia3,ja3)=((-1.0D0)**(m+mu))*m_ABJ(ia1,ja1)
                             m_ABJ(ib3,jb3)=((-1.0D0)**(m+mu+1))*m_ABJ(ib1,jb1)
-!                                 
+!
 !                                 WRITE(*,102) ia1,ja1,ib1,jb1,ia3,ja3,ib3,jb3
 ! 				102 FORMAT (8I4)
                             !Indici per i doppioni della simmetria di indici
@@ -13100,7 +13100,7 @@ sim_row_cell_do: DO icell=1,ns
                             m_AB(ib4,jb4)=m_AB(ib3,jb3)
                             m_ABJ(ia4,ja4)=m_ABJ(ia3,ja3)
                             m_ABJ(ib4,jb4)=m_ABJ(ib3,jb3)
-!                                 
+!
 !                                 WRITE(*,103) ia1,ja1,ib1,jb1,ia4,ja4,ib4,jb4
 ! 				103 FORMAT (8I4)
 
@@ -13122,7 +13122,7 @@ j=0
 diagi_do: DO i=1,ns
     diagn_do: DO n=1,nstop
         diagm_do: DO m=-n,n
-        
+
             j=j+1
             m_AB(2*j-1,2*j-1)=m_AB(2*j-1,2*j-1)+1.0D0/m_a(n,v_patt(i))
             m_AB(2*j,2*j)=m_AB(2*j,2*j)+1.0D0/m_b(n,v_patt(i))
@@ -13134,7 +13134,7 @@ diagi_do: DO i=1,ns
     END DO diagn_do
 END DO diagi_do
 
-                                
+
 !                                 WRITE(*,*) "QUId"
 
 
@@ -13163,103 +13163,103 @@ END SUBROUTINE fill_AB_per_dip
 !******************************************************************************
 
 
-COMPLEX(dbl) function getelm (i,j,a,ja,ia,iadd,sorted) 
+COMPLEX(dbl) function getelm (i,j,a,ja,ia,iadd,sorted)
 !c-----------------------------------------------------------------------
 !c     purpose:
-!c     -------- 
-!c     this function returns the element a(i,j) of a matrix a, 
-!c     for any pair (i,j).  the matrix is assumed to be stored 
+!c     --------
+!c     this function returns the element a(i,j) of a matrix a,
+!c     for any pair (i,j).  the matrix is assumed to be stored
 !c     in compressed sparse row (csr) format. getelm performs a
-!c     binary search in the case where it is known that the elements 
-!c     are sorted so that the column indices are in increasing order. 
-!c     also returns (in iadd) the address of the element a(i,j) in 
+!c     binary search in the case where it is known that the elements
+!c     are sorted so that the column indices are in increasing order.
+!c     also returns (in iadd) the address of the element a(i,j) in
 !c     arrays a and ja when the search is successsful (zero if not).
-!c----- 
-!c     first contributed by noel nachtigal (mit). 
+!c-----
+!c     first contributed by noel nachtigal (mit).
 !c     recoded jan. 20, 1991, by y. saad [in particular
-!c     added handling of the non-sorted case + the iadd output] 
+!c     added handling of the non-sorted case + the iadd output]
 !c-----------------------------------------------------------------------
 !c     parameters:
-!c     ----------- 
-!c on entry: 
-!c---------- 
+!c     -----------
+!c on entry:
+!c----------
 !c     i      = the row index of the element sought (input).
 !c     j      = the column index of the element sought (input).
 !c     a      = the matrix a in compressed sparse row format (input).
 !c     ja     = the array of column indices (input).
 !c     ia     = the array of pointers to the rows' data (input).
-!c     sorted = logical indicating whether the matrix is knonw to 
-!c              have its column indices sorted in increasing order 
+!c     sorted = logical indicating whether the matrix is knonw to
+!c              have its column indices sorted in increasing order
 !c              (sorted=.true.) or not (sorted=.false.).
-!c              (input). 
+!c              (input).
 !c on return:
-!c----------- 
-!c     getelm = value of a(i,j). 
+!c-----------
+!c     getelm = value of a(i,j).
 !c     iadd   = address of element a(i,j) in arrays a, ja if found,
-!c              zero if not found. (output) 
+!c              zero if not found. (output)
 !c
-!c     note: the inputs i and j are not checked for validity. 
+!c     note: the inputs i and j are not checked for validity.
 !c-----------------------------------------------------------------------
 !c     noel m. nachtigal october 28, 1990 -- youcef saad jan 20, 1991.
-!c----------------------------------------------------------------------- 
+!c-----------------------------------------------------------------------
       integer(lo) i, ia(:), iadd, j, ja(:)
       COMPLEX(dbl) a(:)
-      logical sorted 
+      logical sorted
 !c
 !c     local variables.
 !c
       integer(lo) ibeg, iend, imid, k
 !c
-!c     initialization 
+!c     initialization
 !c
-      iadd = 0 
+      iadd = 0
       getelm = 0.0
       ibeg = ia(i)
       iend = ia(i+1)-1
 !c
 !c     case where matrix is not necessarily sorted
-!c     
-      if (.not. sorted) then 
+!c
+      if (.not. sorted) then
 !c
 !c scan the row - exit as soon as a(i,j) is found
 !c
          do 5  k=ibeg, iend
             if (ja(k) .eq.  j) then
-               iadd = k 
-               goto 20 
+               iadd = k
+               goto 20
             endif
  5       continue
-!c     
+!c
 !c     end unsorted case. begin sorted case
-!c     
+!c
       else
-!c     
+!c
 !c     begin binary search.   compute the middle index.
-!c     
+!c
  10      imid = ( ibeg + iend ) / 2
-!c     
+!c
 !c     test if  found
-!c     
+!c
          if (ja(imid).eq.j) then
-            iadd = imid 
+            iadd = imid
             goto 20
          endif
          if (ibeg .ge. iend) goto 20
-!c     
-!c     else     update the interval bounds. 
-!c     
+!c
+!c     else     update the interval bounds.
+!c
          if (ja(imid).gt.j) then
             iend = imid -1
-         else 
+         else
             ibeg = imid +1
          endif
-         goto 10  
-!c     
+         goto 10
+!c
 !c     end both cases
-!c     
+!c
       endif
-!c     
- 20   if (iadd .ne. 0) getelm = a(iadd) 
+!c
+ 20   if (iadd .ne. 0) getelm = a(iadd)
 !c
       return
 !c--------end-of-getelm--------------------------------------------------
@@ -13274,8 +13274,8 @@ end function getelm
 !			Choose one and comment out the other
 !******************************************************************************
 
-SUBROUTINE amudd (n, x, y, a,ja,ia) 
-REAL(dbl) :: x(:), y(:), a(:) 
+SUBROUTINE amudd (n, x, y, a,ja,ia)
+REAL(dbl) :: x(:), y(:), a(:)
 INTEGER(lo) :: n, ja(:), ia(:)
 
 
@@ -13286,7 +13286,7 @@ INTEGER(lo) :: n, ja(:), ia(:)
 !#######################################################################
 !-----------------------------------------------------------------------
 !         A times a vector
-!----------------------------------------------------------------------- 
+!-----------------------------------------------------------------------
 ! multiplies a matrix by a vector using the dot product form
 ! Matrix A is stored in compressed sparse row storage.
 !
@@ -13311,13 +13311,13 @@ INTEGER(lo) :: n, ja(:), ia(:)
       outer_do: do i = 1,n
 !
 !     compute the inner product of row i with vector x
-! 
+!
          t = 0.0d0
-         inner_do: do k=ia(i), ia(i+1)-1 
+         inner_do: do k=ia(i), ia(i+1)-1
             t = t + a(k)*x(ja(k))
          END DO inner_do
 !
-!     store result in y(i) 
+!     store result in y(i)
 !
          y(i) = t
       END DO outer_do
@@ -13344,8 +13344,8 @@ end SUBROUTINE amudd
 !			Choose one and comment out the other
 !******************************************************************************
 
-SUBROUTINE amuzz (n, x, y, a,ja,ia) 
-COMPLEX(dbl) :: x(:), y(:), a(:) 
+SUBROUTINE amuzz (n, x, y, a,ja,ia)
+COMPLEX(dbl) :: x(:), y(:), a(:)
 INTEGER(lo) :: n, ja(:), ia(:)
 
 
@@ -13358,7 +13358,7 @@ INTEGER(lo) :: n, ja(:), ia(:)
 !#######################################################################
 !-----------------------------------------------------------------------
 !         A times a vector
-!----------------------------------------------------------------------- 
+!-----------------------------------------------------------------------
 ! multiplies a matrix by a vector using the dot product form
 ! Matrix A is stored in compressed sparse row storage.
 !
@@ -13383,13 +13383,13 @@ INTEGER(lo) :: n, ja(:), ia(:)
       outer_do: do i = 1,n
 !
 !     compute the inner product of row i with vector x
-! 
+!
          t = 0.0d0
-         inner_do: do k=ia(i), ia(i+1)-1 
+         inner_do: do k=ia(i), ia(i+1)-1
             t = t + a(k)*x(ja(k))
          END DO inner_do
 !
-!     store result in y(i) 
+!     store result in y(i)
 !
          y(i) = t
       END DO outer_do
@@ -13417,7 +13417,7 @@ end SUBROUTINE amuzz
 !			Choose one and comment out the other
 !******************************************************************************
 
-SUBROUTINE amudz (n, x, y, a,ja,ia) 
+SUBROUTINE amudz (n, x, y, a,ja,ia)
 COMPLEX(dbl) :: x(:), y(:)
 REAL(dbl) :: a(:)
 INTEGER(lo) :: n, ja(:), ia(:)
@@ -13430,7 +13430,7 @@ INTEGER(lo) :: n, ja(:), ia(:)
 !!#######################################################################
 !-----------------------------------------------------------------------
 !         A times a vector
-!----------------------------------------------------------------------- 
+!-----------------------------------------------------------------------
 ! multiplies a matrix by a vector using the dot product form
 ! Matrix A is stored in compressed sparse row storage.
 !
@@ -13455,13 +13455,13 @@ INTEGER(lo) :: n, ja(:), ia(:)
       outer_do: do i = 1,n
 !
 !     compute the inner product of row i with vector x
-! 
+!
          t = 0.0d0
-         inner_do: do k=ia(i), ia(i+1)-1 
+         inner_do: do k=ia(i), ia(i+1)-1
             t = t + a(k)*x(ja(k))
          END DO inner_do
 !
-!     store result in y(i) 
+!     store result in y(i)
 !
          y(i) = t
       END DO outer_do
@@ -13536,53 +13536,53 @@ end function dnorm2_bcg
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
 !-----------------------------------------------------------------------
-! extracts the submatrix A(i1:i2,j1:j2) and puts the result in 
+! extracts the submatrix A(i1:i2,j1:j2) and puts the result in
 ! matrix ao,iao,jao
 !---- In place: ao,jao,iao may be the same as a,ja,ia.
-!-------------- 
+!--------------
 ! on input
 !---------
-! n = row dimension of the matrix 
+! n = row dimension of the matrix
 ! i1,i2 = two integers with i2 .ge. i1 indicating the range of rows to be
-!          extracted. 
-! j1,j2 = two integers with j2 .ge. j1 indicating the range of columns 
+!          extracted.
+! j1,j2 = two integers with j2 .ge. j1 indicating the range of columns
 !         to be extracted.
 !         * There is no checking whether the input values for i1, i2, j1,
-!           j2 are between 1 and n. 
+!           j2 are between 1 and n.
 ! a,
 ! ja,
-! ia    = matrix in compressed sparse row format. 
+! ia    = matrix in compressed sparse row format.
 !
 ! job   = job indicator: if job .ne. 1 then the real values in a are NOT
 !         extracted, only the column indices (i.e. data structure) are.
 !         otherwise values as well as column indices are extracted...
-!         
+!
 ! on output
-!-------------- 
-! nr    = number of rows of submatrix 
-! nc    = number of columns of submatrix 
+!--------------
+! nr    = number of rows of submatrix
+! nc    = number of columns of submatrix
 !     * if either of nr or nc is nonpositive the code will quit.
 !
 ! ao,
 ! jao,iao = extracted matrix in general sparse format with jao containing
-!   the column indices,and iao being the pointer to the beginning 
+!   the column indices,and iao being the pointer to the beginning
 !   of the row,in arrays a,ja.
 !----------------------------------------------------------------------c
 !           Y. Saad, Sep. 21 1989                                      c
 !----------------------------------------------------------------------c
       subroutine submatc (n,job,i1,i2,j1,j2,a,ja,ia,nr,nc,ao,jao,iao)
       integer(lo) n,job,i1,i2,j1,j2,nr,nc,ia(:),ja(:),jao(:),iao(:)
-      COMPLEX(dbl) a(:),ao(:) 
+      COMPLEX(dbl) a(:),ao(:)
 
       nr = i2-i1+1
       nc = j2-j1+1
-!     
+!
       if ( nr .le. 0 .or. nc .le. 0) return
-!     
+!
       klen = 0
-!     
+!
 !     simple procedure. proceeds row-wise...
-!     
+!
       do 100 i = 1,nr
          ii = i1+i-1
          k1 = ia(ii)
@@ -13601,8 +13601,8 @@ end function dnorm2_bcg
       iao(nr+1) = klen+1
       return
       end subroutine submatc
-!------------end-of submat---------------------------------------------- 
-!----------------------------------------------------------------------- 
+!------------end-of submat----------------------------------------------
+!-----------------------------------------------------------------------
 
 ! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 ! $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -13636,22 +13636,22 @@ n_do: DO n=1,nstop
 	m_do: DO m=-n,n
 		nu_do: DO nu=1,nstop
 			mu_do: DO mu=-nu,nu
-			
+
 				mr=REAL(m,dbl)
 				nr=REAL(n,dbl)
 				mur=REAL(mu,dbl)
 				nur=REAL(nu,dbl)
-								
+
 				logw =lnf(nr+mr,r)+lnf(nur-mur,r)-lnf(nr-mr,r)-lnf(nur+mur,r)
-				
+
 				sqrtw=EXP(logw)*((2*nr+1.0D0)*(2*nur+1.0D0))/(nr*(nr+1.0D0)*nur*(nur+1.0D0))
-			
+
 				i=i+1
-			
+
 				v_c0xu(i)=0.5D0*((-1.0D0)**m)*SQRT(sqrtw)
-			
+
 			END DO mu_do
-		END DO nu_do		
+		END DO nu_do
 	END DO m_do
 END DO n_do
 
@@ -13682,21 +13682,21 @@ n_do: DO n=1,nstop
 	m_do: DO m=-n,n
 		nu_do: DO nu=1,nstop
 			mu_do: DO mu=-nu,nu
-			
+
 				mr=REAL(m,dbl)
 				nr=REAL(n,dbl)
 				mur=REAL(mu,dbl)
 				nur=REAL(nu,dbl)
-				
+
 				thirdr=(nr+nur-ABS(mr-mur))/2.0D0
 				thirdi=INT(thirdr)
-				
+
 				i=i+1
-				
+
 				v_qmax(i)=MIN(n,nu,thirdi)
-								
+
 			END DO mu_do
-		END DO nu_do		
+		END DO nu_do
 	END DO m_do
 END DO n_do
 
@@ -13725,21 +13725,21 @@ n_do: DO n=1,nstop
 	m_do: DO m=-n,n
 		nu_do: DO nu=1,nstop
 			mu_do: DO mu=-nu,nu
-			
+
 				mr=REAL(m,dbl)
 				nr=REAL(n,dbl)
 				mur=REAL(mu,dbl)
 				nur=REAL(nu,dbl)
-				
+
 				thirdr=(1.0D0+nr+nur-ABS(mr-mur))/2.0D0
 				thirdi=INT(thirdr)
-				
+
 				i=i+1
-				
+
 				v_qqmax(i)=MIN(n,nu,thirdi)
-				
+
 			END DO mu_do
-		END DO nu_do		
+		END DO nu_do
 	END DO m_do
 END DO n_do
 
@@ -13787,7 +13787,7 @@ n_do: DO n=1,nstop
 	m_do: DO m=-n,n
 		nu_do: DO nu=1,nstop
 			mu_do: DO mu=-nu,nu
-			
+
 				mr=REAL(m,dbl)
 				nr=REAL(n,dbl)
 				mur=REAL(mu,dbl)
@@ -13796,104 +13796,104 @@ n_do: DO n=1,nstop
 				!---------------------------------
 				!Parte di storage per aq
 				!---------------------------------
-				
+
 				!Aggiorno i
 				i=i+1
-				
+
 				!Aggiorno i bounds
 				ia_if: IF (i==1) THEN
 					low_aq=1
 				ELSE
-					low_aq=up_aq+1	
+					low_aq=up_aq+1
 				END IF ia_if
-				
+
 				up_aq=low_aq+v_qmax(i)
 
 !				WRITE(*,*) "Bounds aq 1",low_aq,up_aq,v_qmax(i)
-						
+
 				!Alloco la memoria per il mio v_aq
-				ALLOCATE(v_aq(0:v_qmax(i)))	
+				ALLOCATE(v_aq(0:v_qmax(i)))
 
 				!Archivio i dati nel vettore lungo
 				CALL gaunt_xu(-mr,nr,mur,nur,v_qmax(i),v_aq,error)
 				v_aq_long(low_aq:up_aq)=v_aq
-				
+
 				!Se Qmax=0 allora salto l'assegnazione per bq e ricomincio
 				!il ciclo successivo
 				IF (v_qqmax(i)==0) THEN
-					DEALLOCATE(v_aq) 
+					DEALLOCATE(v_aq)
 					CYCLE mu_do
 				END IF
-				
+
 				!--------------------------------------------
 				!Parte di storage per bq: se sono qui Qmax/=0
 				!--------------------------------------------
-				
-				
+
+
 				!Aggiorno i bounds
 				ib_if: IF (i==1) THEN
 					low_bq=1
 				ELSE
-					low_bq=up_bq+1	
+					low_bq=up_bq+1
 				END IF ib_if
-				
+
 				up_bq=low_bq+v_qqmax(i)-1
-				
+
 ! 				WRITE(*,*) "Bounds bq 1",low_bq,up_bq,v_qqmax(i)
-						
+
 				!Alloco la memoria per il mio v_aq
 				ALLOCATE(v_bq(1:v_qqmax(i)))
-				
-				
+
+
 				!***************************************************************************
 				!Calcolo bq che mi serve
 				!***************************************************************************
 				mmu_if: IF (((m==0).AND.(mu==0)).OR.((mu==-m).AND.(n==nu))) THEN
-				
+
 					!----------------
 					!Cosi' avro' B==0
 					!----------------
 					v_bq=0.0D0
-					
-				ELSE	
-				
+
+				ELSE
+
 					!----------------
 					!Caso generale
 					!----------------
 					bq_case: SELECT CASE (v_qqmax(i))
-				
+
 					CASE(1) bq_case
-					
+
 ! 						WRITE(*,*) "qui"
-					
+
 						!Calcolo coefficienti parziali
 						p=nr+nur-2.0D0
 						p1=p+mr-mur
 						Ap3=f_Ap(-mr,nr,mur,nur,p+3.0D0)
-						
+
 						!Calcolo Bq
-						v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))	
-						
+						v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))
+
 					CASE DEFAULT bq_case
-					
+
 						!Calcolo il primo valore di bq
 						p=nr+nur-2.0D0
 						p1=p+mr-mur
 						Ap3=f_Ap(-mr,nr,mur,nur,p+3.0D0)
 						v_bq(1)=v_aq(0)*(2.0D0*p+3.0D0)*Ap3/((p+3.0D0)*(p1+2.0D0))
-					
+
 						!Comincio il ciclo do per il calcolo di tutti i bq
 						bq_do: DO q=2,v_qqmax(i)
-						
+
 							!Calcolo preliminarmente p ed Ap2
 							p=nr+nur-2.0D0*REAL(q,dbl)
 							Ap2=f_Ap(-mr,nr,mur,nur,p+2.0D0)
 							Ap2i=INT(Ap2,lo)
-						
+
 							ap_case: SELECT CASE (Ap2i)
-							
+
 							CASE(0) ap_case
-							
+
 								!Calcolo coefficienti parziali
 								p1=p+mr-mur
 								p2=p-mr+mur
@@ -13901,72 +13901,72 @@ n_do: DO n=1,nstop
 								Ap4=f_Ap(-mr,nr,mur,nur,p+4.0D0)
 								alphap3=f_alpha(nr,nur,p+3.0D0)
 								alphap4=f_alpha(nr,nur,p+4.0D0)
-								
+
 								!Calcolo coefficienti ricorsione
 								c0=(2.0D0*p+3.0D0)/((p+3.0D0)*(p1+2.0D0)*Ap4)
 								c1=Ap3*Ap4+(p+2.0D0)*(p+4.0D0)*(p1+3.0D0)*(p2+3.0D0)*alphap3
 								c2=-(p+2.0D0)*(p+3.0D0)*(p2+3.0D0)*(p2+4.0D0)*alphap4
-								
+
 								!Calcolo bq
 								v_bq(q)=c0*(c1*v_aq(q-1)+c2*v_aq(q-2))
-					
+
 								IF (v_bq(1)==0.0D0) THEN
 									WRITE(*,*) m,n,mu,nu,c0,c1,c2
 									WRITE(*,*) Ap3,Ap4,f_Ap(-mr,nr,mur,nur,p+5.0D0)
 									WRITE(*,*)
 								END IF
-												
+
 							CASE DEFAULT ap_case
-							
+
 								!Calcolo coefficienti parziali
 								p1=p+mr-mur
 								p2=p-mr+mur
 								alphap1=f_alpha(nr,nur,p+1.0D0)
 								alphap2=f_alpha(nr,nur,p+2.0D0)
-								
+
 								!Calcolo coefficienti ricorsione
 								c0=(2.0D0*p+3.0D0)/Ap2
 								c1=(p+2.0D0)*(p1+1.0D0)*alphap1
 								c2=-(p+1.0D0)*(p2+2.0D0)*alphap2
-								
+
 								!Calcolo bq
 								IF ((q==v_qqmax(i)) .AND. (v_qqmax(i)>v_qmax(i))) THEN
 									v_bq(q)=c0*c2*v_aq(q-1)
 								ELSE
 									v_bq(q)=c0*(c1*v_aq(q)+c2*v_aq(q-1))
 								END IF
-							
+
 							END SELECT ap_case
-							
+
 						END DO bq_do
-					
+
 					END SELECT bq_case
-			
+
 				END IF mmu_if
-			
+
 				!***************************************************************************
 				!Fine calcolo bq
 				!***************************************************************************
-								
-! 				WRITE(*,*)	"long,short:", SIZE(v_bq_long(low_bq:up_bq)),SIZE(v_bq)			
+
+! 				WRITE(*,*)	"long,short:", SIZE(v_bq_long(low_bq:up_bq)),SIZE(v_bq)
 ! 				WRITE(*,*)	"low,up:", low_bq,up_bq
 				!Salvo v_bq nel vettore
 				v_bq_long(low_bq:up_bq)=v_bq
-				
+
 ! 				WRITE(*,*)	v_bq
 ! 				WRITE(*,*)	v_bq_long(low_bq:up_bq)
 ! 				WRITE(*,*)
-				
+
 				!Disalloco v_aq e v_bq
 				DEALLOCATE(v_aq,v_bq)
-									
+
 				!Esco ad un certo punto
 				IF (i==(nstop*(nstop+2))**2) EXIT n_do
-					
-				
-				
+
+
+
 			END DO mu_do
-		END DO nu_do		
+		END DO nu_do
 	END DO m_do
 END DO n_do
 
@@ -13991,7 +13991,7 @@ COMPLEX(dbl), DIMENSION(:,:), INTENT(OUT) :: m_Aij,m_Bij			! Blocco ij delle mat
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,mu,nu,i,j,l,q,pi						!Indici per il ciclo, reali o immaginari
-REAL(dbl) :: mr,nr,mur,nur,p								
+REAL(dbl) :: mr,nr,mur,nur,p
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq					!Bounds per i vettori aq_long,bq_long
 INTEGER(lo):: elem,elem2									!Limiti di uscita per il ciclo
 INTEGER(lo) :: pmin,pmax,nbes								!Estremi per i vett e n bes
@@ -14023,7 +14023,7 @@ up_bq=1
 ! IF ((kr==1.0D0).AND.(theta==0.0D0).AND.(phi==0.0D0)) THEN
 ! WRITE(*,*) "vqq2" ,v_qqmax
 ! END IF
-! 
+!
 ! IF ((kr==1.0D0).AND.(theta==0.0D0).AND.(phi==0.0D0)) THEN
 ! WRITE(*,*) "Low_bq,Up_bq iniziali, 2", low_bq,up_bq
 ! END IF
@@ -14032,40 +14032,40 @@ n_do: DO n=1,nstop
 	m_do: DO m=-n,n
 		nu_do: DO nu=1,nstop
 			mu_do: DO mu=-nu,nu
-			
+
 				test=(m==0 .AND. mu==0) .OR. (mu==-m .AND. nu==n) .OR. &
 				&(m==n .AND. mu==-nu) .OR. (m==-n .AND. mu==nu)
-		
+
 
 				!Aggiorno i
 				l=l+1
 				j=j+1
-				
+
 				!Aggiorno i bounds
 				ia_if: IF (l==1) THEN
 					low_aq=1
 				ELSE
-					low_aq=up_aq+1	
+					low_aq=up_aq+1
 				END IF ia_if
-				
-				up_aq=low_aq+v_qmax(l)				
-		
+
+				up_aq=low_aq+v_qmax(l)
+
 ! 				WRITE(*,*) "Bounds aq 2",low_aq,up_aq,v_qmax(l)
-			
+
 				mr=REAL(m,dbl)
 				nr=REAL(n,dbl)
 				mur=REAL(mu,dbl)
 				nur=REAL(nu,dbl)
 
-				Bvt_if: IF ((v_qqmax(l)==0)) THEN 
-				
+				Bvt_if: IF ((v_qqmax(l)==0)) THEN
+
 					!-----------------------------------------------------------------------
 					!Calcolo Bvt
 					!-----------------------------------------------------------------------
 					!Bvt e' sempre zero in questi casi
 					m_Bij(i,j)=(0.0D0,0.0D0)
-				
-				
+
+
 					!-----------------------------------------------------------------------
 					!Calcolo Avt
 					!-----------------------------------------------------------------------
@@ -14073,23 +14073,23 @@ n_do: DO n=1,nstop
 					pmin=n+nu -2*v_qmax(l)
 					pmax=n+nu
 					nbes=pmax-pmin+1
-					
+
 					!-------
 					!Calcolo coeff1 e coeff2
 					coeff2=EXP(CMPLX(0.0D0,(mur-mr)*phi))
-					
+
 					!-------
 					!Adesso posso allocare tutti ma proprio tutti i miei vettori
 					ALLOCATE(v_h(0:pmax),v_leg(pmin:pmax),&
 							&v_Apmn(pmin:pmax))
-				
+
 					!Inizializzo v_Apmn
 					v_Apmn=0.0D0
-				
+
 					!-------
 					!Calcolo la mia funzione di legendre
 					CALL legendre(pmin,pmax,mu-m,ABS(mu-m),theta,v_leg,error)
-					
+
 					! Check sull'errore in legendre
 					error_leg_if: IF (error==1) THEN
 								WRITE(*,*)
@@ -14098,11 +14098,11 @@ n_do: DO n=1,nstop
 								WRITE(*,*)
 								RETURN
 					END IF error_leg_if
-									
+
 					!-------
 					!Calcolo infine la mia funzione di Hankel
 					CALL hankel1_d_sub(pmax,kr,v_h,error)
-										
+
 					!------
 					!Calcolo del fattore numerico sotto sommatoria per Avt
 					DO q=0,v_qmax(l)
@@ -14110,7 +14110,7 @@ n_do: DO n=1,nstop
 						pi=INT(p,lo)
 						v_Apmn(pi)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-p*(p+1.0D0)
 					END DO
-					
+
 					!------
 					!Calcolo della sommatoria e di Avt
 					sommaA=(0.0D0,0.0D0)
@@ -14121,71 +14121,71 @@ n_do: DO n=1,nstop
 				! 				WRITE(*,*) (0.0D0,1.0D0)**pi,v_leg(pi),v_h(pi),v_aq(q)
 					END DO sommaAB0_do
 				! 	WRITE(*,*)
-					
+
 					!Calcolo il mio coefficiente
 					m_Aij(i,j)=v_c0(l)*coeff2*sommaA
-					
+
 					!Disalloco i miei vettore
-					DEALLOCATE(v_h,v_leg,v_Apmn)					
-					
+					DEALLOCATE(v_h,v_leg,v_Apmn)
+
 					!Aggiorno l'indice e vedo eventualmente se uscire
 
 					IF (l==elem2) EXIT n_do
-					
-					
+
+
 ! 					IF ((kr==1.0D0).AND.(theta==0.0D0).AND.(phi==0.0D0)) THEN
 ! 					WRITE(*,*) low_bq,up_bq
 ! 					END IF
-					
-					
+
+
 					!Cambio della matrice se finisco quella precedente
 					!Rientro ad inizio riga
 					shift_if: IF (j==elem) THEN
 								i=i+1
 								j=0
 					END IF shift_if
-					
-					
-					
+
+
+
 						!######################################################
 				ELSE	!QUI COMINCIA IL CASO GENERALE Avt Bvt
 						!######################################################
-				
+
 					!-------------------------
 					!Calcolo componenti comuni
 					!-------------------------
 
-					
+
 					!Aggiorno i bounds
 					ib_if: IF (l==1) THEN
 						low_bq=1
 					ELSE
-						low_bq=up_bq+1	
+						low_bq=up_bq+1
 					END IF ib_if
-					
+
 					up_bq=low_bq+v_qqmax(l)-1
 
 ! 					WRITE(*,*) "Bounds bq 2",low_bq,up_bq,v_qqmax(l)
-					
+
 					! Calcolo Pmin e Pmax
 					pmin=n+nu -2*v_qqmax(l)
 					pmax=n+nu
 					nbes=pmax-pmin+2
-				
+
 					!Calcolo coeff2
 					coeff2=EXP(CMPLX(0.0D0,(mur-mr)*phi))
-					
+
 					!Adesso posso allocare tutti ma proprio tutti i miei vettori
 					ALLOCATE(v_h(0:pmax+1),v_leg(pmin:pmax+1),&
 						   & v_Apmn(pmin:pmax+1))
-					
+
 					!Inizializzo v_Apmn
 					v_Apmn=0.0D0
-					
+
 					!-------
 					!Calcolo la mia funzione di legendre
 					CALL legendre(pmin,pmax+1,mu-m,ABS(mu-m),theta,v_leg,error)
-					
+
 					! Check sull'errore in legendre
 					error_leg_if1: IF (error==1) THEN
 								WRITE(*,*)
@@ -14194,12 +14194,12 @@ n_do: DO n=1,nstop
 								WRITE(*,*)
 								RETURN
 					END IF error_leg_if1
-					
+
 					!-------
 					!Calcolo infine la mia funzione di Hankel
 					CALL hankel1_d_sub(pmax+1,kr,v_h,error)
-					
-					
+
+
 					!-----------
 					!Calcolo Avt
 					!-----------
@@ -14209,8 +14209,8 @@ n_do: DO n=1,nstop
 						pi=INT(p,lo)
 						v_Apmn(pi)=nr*(nr+1.0D0)+nur*(nur+1.0D0)-p*(p+1.0D0)
 					END DO
-					
-					
+
+
 					!Calcolo della sommatoria e di Avt
 					sommaA=0
 					sommaA_do:DO q=0,v_qmax(l)
@@ -14218,19 +14218,19 @@ n_do: DO n=1,nstop
 								pi=INT(p,lo)
 								sommaA=sommaA+((0.0D0,1.0D0)**pi)*v_Apmn(pi)*v_aq_long(low_aq+q)*v_h(pi)*v_leg(pi)
 					END DO sommaA_do
-					
+
 					m_Aij(i,j)=v_c0(l)*coeff2*sommaA
-					
-					
+
+
 					!-----------
 					!Calcolo Bvt
-					!-----------	
-					
+					!-----------
+
 ! 					IF ((kr==1.0D-2).AND.(theta==0.0D0).AND.(phi==0.0D0).AND.(m==3).AND.(n==4).AND.(mu==3).AND.(nu==3)) THEN
 ! 					 WRITE(*,*) v_h(pmin:pmax+1)
 ! 					 WRITE(*,*)
 ! 					END IF
-					
+
 					!Calcolo della sommatoria e di Bvt
 					sommaB=0
 					sommaB_do:DO q=1,v_qqmax(l)
@@ -14241,30 +14241,30 @@ n_do: DO n=1,nstop
 ! 						WRITE(*,*) "Somma B2",sommaB,low_bq+(q-1)
 ! 						END IF
 					END DO sommaB_do
-					
+
 					m_Bij(i,j)=v_c0(l)*coeff2*sommaB
-					
-					DEALLOCATE(v_h,v_leg,v_Apmn)	
-					
+
+					DEALLOCATE(v_h,v_leg,v_Apmn)
+
 					!Aggiorno l'indice e vedo eventualmente se uscire se ho finito il giro
 					IF (l==elem2) EXIT n_do
-					
+
 					!Aggiorno i bounds
-					
+
 ! 					IF ((kr==1.0D0).AND.(theta==0.0D0).AND.(phi==0.0D0)) THEN
 ! 					WRITE(*,*) "Bounds 2",low_bq,up_bq
 ! 					END IF
-					
+
 					!Shifto la colonna della matrice se finisco quella precedente
 					shift_if1: IF (j==elem) THEN
 								i=i+1
 								j=0
 					END IF shift_if1
-					
+
 				END IF Bvt_if
-				
+
 			END DO mu_do
-		END DO nu_do		
+		END DO nu_do
 	END DO m_do
 END DO n_do
 
@@ -14528,7 +14528,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jABij,v_iABij				! Vettori sparse co
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,m,n,nu,w,low_nu,nmin,nmax			!Indici per il ciclo
-REAL(dbl) :: nr,nur							!Indici reali 
+REAL(dbl) :: nr,nur							!Indici reali
 INTEGER(lo) :: low_cg,up_cg						!Bounds per i vettori aq,bq
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca,c0		!Somme parziali per vec trans
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:) :: v_h			!Vett comp fun hankel
@@ -14601,7 +14601,7 @@ n_do: DO n=1,nstop
 
 			!-----------
 			!Calcolo Bvt
-			!-----------    
+			!-----------
 			!Calcolo della sommatoria e di Bvt
 			sommaB=(0.0D0,0.0D0)
 			sommaBsca=(0.0D0,0.0D0)
@@ -14615,14 +14615,14 @@ n_do: DO n=1,nstop
 
 			!-----------
 			!Aggiorno gli indici per lo storage sparse
-			!-----------   
+			!-----------
 			v_jABij(i)=nu*(nu+1)+m
 
 		END DO nu_do
 
 		!-----------
 		!Dove comincia la prossima riga?Qui!
-		!-----------   
+		!-----------
 		v_iABij(n*(n+1)+m+1)=i+1
 
 	END DO m_do
@@ -14632,7 +14632,7 @@ END SUBROUTINE fillblock_sparse_mk
 
 
 !******************************************************************************
-!3) SUBROUTINE fill_AB_sparse_sca_mk:riempio tutta la struttura per i blocchi di 
+!3) SUBROUTINE fill_AB_sparse_sca_mk:riempio tutta la struttura per i blocchi di
 ! traslazione Aij e per Bij, formalismo di mackowski
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_sca_mk(ns,nstop,k,m_xyz,v_cg,v_jBlock,v_iBlock,m_Aij,m_Bij,m_Aij_sca,m_Bij_sca,m_jABij,m_iABij)
@@ -14641,7 +14641,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ns,nstop								! N sfere, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k										! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k										! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz							! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock,v_iBlock					! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_cg							! Vettore norm,gaunt e bq
@@ -14670,7 +14670,7 @@ row_do: DO i=1,ns
 		CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
 
 		!Chiamo la subroutine per riempire Dij
-		CALL fillblock_sparse_mk(nstop,v_cg,k*rij,m_Aij(:,next),m_Bij(:,next), &  
+		CALL fillblock_sparse_mk(nstop,v_cg,k*rij,m_Aij(:,next),m_Bij(:,next), &
 					& m_Aij_sca(:,next),m_Bij_sca(:,next),m_jABij(:,next),m_iABij(:,next),error)
 
 
@@ -14684,7 +14684,7 @@ END SUBROUTINE fill_AB_sparse_sca_mk
 !******************************************************************************
 !4) SUBROUTINE D_k_mn: calcolo gli elementi ridotti di matrice secondo mackowski
 !   D(beta)^{k}_{m,n}: la ricorrenza e' in n.In sostanza e' come per Edmonds,
-!   ma cambio il segno con (-1)^{m+k}  
+!   ma cambio il segno con (-1)^{m+k}
 !******************************************************************************
 SUBROUTINE D_k_mn(nstop,m,k,beta,v_d,error)
 
@@ -14696,7 +14696,7 @@ REAL(dbl), INTENT(IN) :: beta                           ! Angolo Beta di Eulero
 INTEGER(lo), INTENT(OUT) :: error                     ! Flag di errore
 REAL(dbl), DIMENSION(0:nstop), INTENT(OUT) :: v_d       ! Vettore di output valori funzioni pi_mn
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: ierr                                   ! altra flag di errore
 INTEGER(lo) :: nmin,modm,modk,MpK,MmK,emk,n           ! Indice per i miei calcoli
 REAL(dbl) :: logw,w,mr,kr,nr,x                          ! Fattoriale e indici reali, x=cos(beta)
@@ -14711,7 +14711,7 @@ modm=ABS(m)
 modk=ABS(k)
 nmin=MAX(modm,modk)
 
-!Controllo se nstop>nmin 
+!Controllo se nstop>nmin
 nm_check: IF (nstop<nmin) THEN
             WRITE(*,*) "nstop<nmin, la procedura d_nmk si ferma!"
             error=1
@@ -14747,13 +14747,13 @@ nmin_zero_if: IF (nmin==0) THEN
 
         !Primo valore
         v_d(nmin)=1
-        
+
         !Se nstop>0 assegno altri valori
         nstop_zero_if: IF (nstop>0) THEN
-            
+
             !Secondo valore
             v_d(nmin+1)=x
-            
+
             !Ciclo su n
             nstop_zero_do: DO n=2,nstop
                 nr=REAL(n,dbl)
@@ -14771,16 +14771,16 @@ ELSE
 
     !Ciclo per il calcolo
     nstop_do: DO n=nmin+1,nstop
-    
+
                 !Coefficienti della ricorrenza
                 nr=REAL(n,dbl)
                 c0=1.0D0/((nr-1.0D0)*SQRT(nr**2-mr**2)*SQRT(nr**2-kr**2))
                 c1=(2.0D0*nr-1.0D0)*(nr*(nr-1.0D0)*x-mr*kr)
                 c2=nr*SQRT((nr-1.0D0)**2-mr**2)*SQRT((nr-1.0D0)**2-kr**2)
-                
+
                 !Calcolo
                 v_d(n)=(c1*v_d(n-1)-c2*v_d(n-2))*c0
-                
+
     END DO nstop_do
 
 END IF nmin_zero_if
@@ -14805,7 +14805,7 @@ INTEGER(lo), INTENT(OUT) :: error                              ! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_Dkmn                   ! Vettore sparse di output valori Dkmn
 INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jDkmn,v_iDkmn      ! Vettori indici colonne e righe
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: i,n,m,k,lowb,upb,nrow,ncol,modm,maxmk      !Indici
 INTEGER(lo) :: imk,ikm,i_k_m,i_m_k,imm,i_m_m,im_m,i_mm    !Indici blocco
 REAL(dbl), DIMENSION(0:nstop) :: v_d,v_d1                   ! Vettori fattori Dkmn
@@ -14917,7 +14917,7 @@ END SUBROUTINE fillblock_Dkmn_mk
 
 
 !******************************************************************************
-!6) SUBROUTINE fill_D_PHI_sparse_mk:riempio tutta la struttura per i blocchi di 
+!6) SUBROUTINE fill_D_PHI_sparse_mk:riempio tutta la struttura per i blocchi di
 ! rotazione Dij e per Exp[phi_ij]
 !******************************************************************************
 SUBROUTINE fill_D_PHI_sparse_mk(ns,nstop,nnb,m_xyz,v_jBlock,v_iBlock,m_Dnkm,m_jDnkm,m_iDnkm,m_exphi)
@@ -14952,7 +14952,7 @@ row_do: DO i=1,ns
         yij=m_xyz(i,2)-m_xyz(j,2)
         zij =m_xyz(i,3)-m_xyz(j,3)
         CALL cart_spher_r_dbl1(xij,yij,zij,rij,thetaij,phiij,error)
-        
+
         !Chiamo la subroutine per riempire Dij
         CALL fillblock_Dkmn_mk(nstop,thetaij,m_Dnkm(:,next),m_jDnkm(:,next),m_iDnkm(:,next),error)
 
@@ -14987,7 +14987,7 @@ REAL(dbl), INTENT(IN) :: beta							! Theta di cos(theta)
 INTEGER(lo), INTENT(OUT) :: error						! Flag di errore
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_dnm1,v_dnm2	! Vettore di output valori funzioni d_mn1
 
-!Dichiarazione variabili interne 
+!Dichiarazione variabili interne
 INTEGER(lo) :: mm,m,n,beg,indx						! Indice per riordinare i miei calcoli e non
 REAL(dbl) :: mr,nr										! Semifattoriale e m,n reali,variabile segno
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_d1,v_d2		! Vettore temporaneo red rot mat el
@@ -14995,7 +14995,7 @@ REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_d1,v_d2		! Vettore temporaneo red rot 
 !Subroutine vera e propria
 error=0
 
-!Controllo se nstop>0 
+!Controllo se nstop>0
 nm_check: IF (nstop<0) THEN
 			WRITE(*,*) "nstop<0, la procedura d_nm2 si ferma"
             error=1
@@ -15035,17 +15035,17 @@ d_mdo: DO m=-nstop,nstop
 	ELSE
 		beg=mm
 	END IF begin_if
-	
+
 	!Riempio il vettore finale
 	d_ndo: DO n=beg,nstop
-	
-		nr=REAL(n,dbl)		
+
+		nr=REAL(n,dbl)
 		indx=n*(n+1)+m
 		v_dnm1(indx)=v_d1(n)
 		v_dnm2(indx)=v_d2(n)
-	
+
 	END DO d_ndo
-		
+
 	DEALLOCATE(v_d1,v_d2)
 
 END DO d_mdo
@@ -15070,15 +15070,15 @@ IMPLICIT NONE
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k,betap							!Vettore d'onda e polarizzazione
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz				!Matrice coordinate
-REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), INTENT(IN) :: alpha,beta,gamma					!Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p				!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error						!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens								!Indici e dimensioni
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi							!Indici reali e coordinate
-REAL(dbl) :: kd													!Phase 
-COMPLEX(dbl) :: pshift,expg1,expg2								!Phase shift				
+REAL(dbl) :: kd													!Phase
+COMPLEX(dbl) :: pshift,expg1,expg2								!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2			!Elementi ridotti di matrice di rotazione
 
 
@@ -15091,9 +15091,9 @@ ALLOCATE(v_dnm1(1:dimens),v_dnm2(1:dimens))
 !Funzione angolare Pi_mn
 CALL d_nm12_mk(nstop,beta,v_dnm1,v_dnm2,error)
 
-dnm_if: IF (error/=0) THEN																	
-    			WRITE(*,10) 
-    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...") 
+dnm_if: IF (error/=0) THEN
+    			WRITE(*,10)
+    			10 FORMAT ("Si e' verificato un errore in pi_mn chiamata da field_expRandom_sub: il programma termina ora...")
        			STOP
 END IF dnm_if
 
@@ -15114,25 +15114,25 @@ i_do: DO i=1,ns
 	x=m_xyz(i,1)
 	y=m_xyz(i,2)
 	z=m_xyz(i,3)
-	
+
 	!Calcolo phase e phase shift
 	kd=k*(SIN(beta)*(x*COS(alpha)+y*SIN(alpha)) + z*COS(beta))
 	pshift=EXP(CMPLX(0.0D0,kd))
 
 	n_do: DO n=1,nstop
-	
+
 		!n reale
 		nr=REAL(n,dbl)
-	
+
 		m_do: DO m=-n,n
-		
+
 			!m reale
-			mr=REAL(m,dbl)	
-		
+			mr=REAL(m,dbl)
+
 			!Incremento j
 			j=j+1
 			jj=jj+1
-		
+
 			v_p(2*j-1)=-((0.0D0,1.0D0)**(n+1))*((-1.0D0)**m)*0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
 					& ( v_dnm1(jj)*expg2-v_dnm2(jj)*expg1 )
 			v_p(2*j)=-((0.0D0,1.0D0)**(n+1))*((-1.0D0)**m)*0.5D0*SQRT(2.0D0*nr+1.0D0)*pshift*EXP(-(0.0D0,1.0D0)*mr*alpha) * &
@@ -15182,7 +15182,7 @@ up_cg=1
 
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-        
+
         !Calcolo il lower bounds per il ciclo successivo
         IF (m==0) THEN
             low_nu=1
@@ -15213,15 +15213,15 @@ n_do: DO n=1,nstop
                 ia_if: IF (i==1) THEN
                     low_cg=1
                 ELSE
-                    low_cg=up_cg+1  
+                    low_cg=up_cg+1
                 END IF ia_if
-                
+
                 up_cg=low_cg+nmax-nmin
 
 !                WRITE(*,*) "Bounds aq",low_aq,up_aq
 
                 !Alloco la memoria per il mio v_aq
-                ALLOCATE(v_cg(nmin:nmax)) 
+                ALLOCATE(v_cg(nmin:nmax))
 
                 !Archivio i dati nel vettore lungo
                 CALL clebsch_mk_sub(-m,n,m,nu,nmin,nmax,v_cg,error)
@@ -15279,7 +15279,7 @@ up_cg=1
 
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-        
+
         !Calcolo il lower bounds per il ciclo successivo
         IF (m==0) THEN
             low_nu=1
@@ -15304,15 +15304,15 @@ n_do: DO n=1,nstop
                 ia_if: IF (i==1) THEN
                     low_cg=1
                 ELSE
-                    low_cg=up_cg+1  
+                    low_cg=up_cg+1
                 END IF ia_if
-                
+
                 up_cg=low_cg+nmax-nmin
 
 !                WRITE(*,*) "Bounds aq",low_aq,up_aq
 
                 !Alloco la memoria per il mio v_aq
-                ALLOCATE(v_cg(nmin:nmax),v_cg_norm(nmin:nmax)) 
+                ALLOCATE(v_cg(nmin:nmax),v_cg_norm(nmin:nmax))
 
                 !Archivio i dati nel vettore lungo
                 CALL clebsch_mk_sub(-1,n,1,nu,nmin,nmax,v_cg_norm,error)
@@ -15346,7 +15346,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k									!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p,v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_p,v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cext				!Vettore sezioni di estinzione
@@ -15357,29 +15357,29 @@ COMPLEX(dbl) :: somma
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma+CONJG(v_p(2*j-1))*v_ab(2*j-1)+CONJG(v_p(2*j))*v_ab(2*j)
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cext(i)=-(4*Pi_d/(k**2))*REAL(somma,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cext_random_sub_mk
@@ -15395,7 +15395,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns				!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k						!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab			!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_cabs			!Vettore sezioni di estinzione
@@ -15406,30 +15406,30 @@ COMPLEX(dbl) :: somma
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Inizializzo la variabile somma
 	somma=(0.0D0,0.0D0)
-		
+
 	n_do: DO n=1,nstop
-	
+
 		m_do: DO m=-n,n
-		
+
 			!Aggiorno l'indice
 			j=j+1
-				
+
 			!Costruisco la somma
 			somma=somma+(1.0D0+1.0D0/(CONJG(m_a(n,v_patt(i)))))*CONJG(v_ab(2*j-1))*v_ab(2*j-1)+&
 				 &    (1.0D0+1.0D0/(CONJG(m_b(n,v_patt(i)))))*CONJG(v_ab(2*j))*v_ab(2*j)
-		
+
 		END DO m_do
-	
+
 	END DO n_do
-	
+
 	!Calcolo la funzione
 	v_cabs(i)=-(4*Pi_d/(k**2))*REAL(somma,dbl)
-	
+
 END DO sphere_do
 
 END SUBROUTINE cabs_random_sub_mk
@@ -15483,7 +15483,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jTUij,v_iTUij					! Vettori sparse c
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,j,q,p,low_nu,qmax							!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr										!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr										!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq							!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes									!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca						!Somme parziali per vec trans
@@ -15546,13 +15546,13 @@ n_do: DO n=1,nstop
 			ia_if: IF (i==1) THEN
 				low_aq=1
 			ELSE
-				low_aq=up_aq+1  
+				low_aq=up_aq+1
 			END IF ia_if
 
 			ib_if: IF (i==1) THEN
 				low_bq=1
 			ELSE
-				low_bq=up_bq+1  
+				low_bq=up_bq+1
 			END IF ib_if
 
 			up_aq=low_aq+qmax
@@ -15620,7 +15620,7 @@ n_do: DO n=1,nstop
 				v_precond_shell(2*j-1)=(1.0D0,0.0D0)/v_sU2ij(i)
 				v_precond_shell(2*j)=(1.0D0,0.0D0)/v_sT1ij(i)
 			END IF precond_if
-				
+
 
 			!-----------------------------------------
 			!Aggiorno gli indici per lo storage sparse
@@ -15667,7 +15667,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jTUij,v_iTUij					! Vettori sparse c
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,n,nu,i,i1,i2,j,q,p,low_nu,qmax,m1,m2					!Indici per il ciclo
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq							!Bounds per i vettori aq,bq
-REAL(dbl) :: mr,nr,mur,nur,pr										!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr										!Indici reali
 INTEGER(lo) :: pmin,pmax,nbes									!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAsca,sommaBsca						!Somme parziali per vec trans
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:) :: v_j							!Vett comp fun besselj per argomento complesso
@@ -15732,13 +15732,13 @@ AB_n_do: DO n=1,nstop
 			ia_if: IF (i==1) THEN
 				low_aq=1
 			ELSE
-				low_aq=up_aq+1  
+				low_aq=up_aq+1
 			END IF ia_if
 
 			ib_if: IF (i==1) THEN
 				low_bq=1
 			ELSE
-				low_bq=up_bq+1  
+				low_bq=up_bq+1
 			END IF ib_if
 
 			up_aq=low_aq+qmax
@@ -15901,7 +15901,7 @@ COMPLEX(dbl), DIMENSION(:,:), INTENT(IN) :: m_t1,m_u1,m_t2,m_u2				! Matrici aus
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: m,m1,n,nu,i,iab,q,p,low_nu,qmax			!Indici per il ciclo
-REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr					!Indici reali
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq			!Bounds per i vettori aq,bq
 INTEGER(lo) :: pmin,pmax,nbes,NNZab				!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB					!Somme parziali per vec trans
@@ -15974,7 +15974,7 @@ flat_do: DO i=1,NNZab
 
 	!-----------
 	!Calcolo Bvt
-	!----------- 
+	!-----------
 	!Calcolo della sommatoria e di Bvt
 	sommaB=(0.0D0,0.0D0)
 	sommaB_do:DO q=1,qmax
@@ -16075,7 +16075,7 @@ END SUBROUTINE fill_jBlock_iBlock_sparse_ss_dip_rhs
 
 
 !**********************************************************************************************************
-!4) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di 
+!4) SUBROUTINE fill_D_PHI_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Dij e per Exp[phi_ij]
 !**********************************************************************************************************
 SUBROUTINE fill_D_PHI_sparse_ss_dip_rhs(ndip,nstop,nnb_rhs,m_xyz,v_jBlock_rhs,v_iBlock_rhs,dip_flag,m_Dnkm,m_jDnkm,m_iDnkm,m_exphi)
@@ -16143,7 +16143,7 @@ END SUBROUTINE fill_D_PHI_sparse_ss_dip_rhs
 
 
 !******************************************************************************
-!5) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di 
+!5) SUBROUTINE fill_AB_sparse:riempio tutta la struttura per i blocchi di
 ! rotazione Aij e per Bij
 !******************************************************************************
 SUBROUTINE fill_AB_sparse_ss_dip_rhs(ndip,nstop,k,m_xyz,v_c0,v_aq,v_bq,v_jBlock_rhs,v_iBlock_rhs,dip_flag,&
@@ -16153,7 +16153,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN) :: ndip,nstop								! N dipoles, N multipolar exp e N nnz blocks
-REAL(dbl) ,INTENT(IN) :: k									! vettore d'onda 
+REAL(dbl) ,INTENT(IN) :: k									! vettore d'onda
 REAL(dbl), DIMENSION(:,:), INTENT(IN) :: m_xyz							! Matrix posizione
 INTEGER(lo), DIMENSION(:),INTENT(IN) :: v_jBlock_rhs,v_iBlock_rhs				! Numero di blocchi diversi da zero
 REAL(dbl), DIMENSION(:), INTENT(IN) :: v_c0,v_aq,v_bq						! Vettore norm,gaunt e bq
@@ -16240,7 +16240,7 @@ INTEGER(lo), DIMENSION(:), INTENT(OUT) :: v_jTUij,v_iTUij			! Vettori sparse col
 INTEGER(lo) :: m,n,nu,i,i1,i2,j,q,p,low_nu,qmax,m1,m2			!Indici per il ciclo
 INTEGER(lo) :: nnab									!Non zero elements ABij
 INTEGER(lo) :: low_aq,up_aq,low_bq,up_bq					!Bounds per i vettori aq,bq
-REAL(dbl) :: mr,nr,mur,nur,pr								!Indici reali 
+REAL(dbl) :: mr,nr,mur,nur,pr								!Indici reali
 INTEGER(lo) :: pmin,pmax,nbes							!Estremi per i vett e n bes
 COMPLEX(dbl) :: sommaA,sommaB,sommaAh,sommaBh					!Somme parziali per vec trans
 COMPLEX(dbl), ALLOCATABLE, DIMENSION(:) :: v_j,v_y,v_h			!Vett comp j_n,y_n,h_n per argomento complesso
@@ -16333,13 +16333,13 @@ AB_n_do: DO n=1,nstop
 			ia_if: IF (i==1) THEN
 				low_aq=1
 			ELSE
-				low_aq=up_aq+1  
+				low_aq=up_aq+1
 			END IF ia_if
 
 			ib_if: IF (i==1) THEN
 				low_bq=1
 			ELSE
-				low_bq=up_bq+1  
+				low_bq=up_bq+1
 			END IF ib_if
 
 			up_aq=low_aq+qmax
@@ -16460,7 +16460,7 @@ n_do: DO n=1,nstop
 						v_sTUij(i)=v_sAij(i2)*m_t1(n,nu)
 					END IF m1_if
 
-				ELSE 
+				ELSE
 
 					!Assegno i valori per la matrice TU, con un if su m1
 					m1_if1: IF (m1==1) THEN
@@ -16511,7 +16511,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k							!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_host				!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_host				!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_csca				!Vettore sezioni di estinzione
@@ -16522,7 +16522,7 @@ REAL(dbl) :: somma
 
 !Comincia la subroutine vera e propria
 j=0
-		
+
 sphere_do: DO i=1,ns
 
 	!Inizializzo la variabile somma
@@ -16553,7 +16553,7 @@ END SUBROUTINE csca_shell_sub
 !8) SUBROUTINE cabs_shell_sub: sezione assorbimento per sistema core shell
 !******************************************************************************
 SUBROUTINE cabs_shell_sub(lambda,k,ref_index,v_req,m_epseq,nstop,neq,blockside,matrixside,&
-     & v_ab_shell1,v_dc_shell1,v_dc_core,v_cabs,error,v_cabs_n) 
+     & v_ab_shell1,v_dc_shell1,v_dc_core,v_cabs,error,v_cabs_n)
 
 IMPLICIT NONE
 
@@ -16618,7 +16618,7 @@ mx_out_do: DO i=0,neq
      END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(1,1),v_psi_z11,error)
@@ -16755,7 +16755,7 @@ IMPLICIT NONE
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns						!N espansioni multipolari e N sfere
 REAL(dbl), INTENT(IN) :: k							!Vettore d'onda e polarizzazione
-COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_host				!Vettori coefficienti espansioni campo, non corretti e corretti  
+COMPLEX(dbl), DIMENSION(:), INTENT(IN) :: v_ab_host				!Vettori coefficienti espansioni campo, non corretti e corretti
 
 
 REAL(dbl), DIMENSION(:), INTENT(OUT) :: v_csca				!Vettore sezioni di estinzione
@@ -16800,7 +16800,7 @@ END SUBROUTINE rad_shell_sub_dip
 !9) SUBROUTINE cabs_shell_sub: sezione assorbimento per sistema core shell
 !******************************************************************************
 SUBROUTINE cabs_shell_sub_dip(lambda,k,ref_index,v_req,m_epseq,nstop,neq,blockside,matrixside,&
-     & v_ab_shell1,v_dc_shell1,v_ab_shell2,v_dc_shell2,v_cabs,error) 
+     & v_ab_shell1,v_dc_shell1,v_ab_shell2,v_dc_shell2,v_cabs,error)
 
 IMPLICIT NONE
 
@@ -16865,7 +16865,7 @@ mx_out_do: DO i=0,neq-1
      END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(1,1),v_psi_z11,error)
@@ -16977,7 +16977,7 @@ END SUBROUTINE cabs_shell_sub_dip
 !8) SUBROUTINE cabs_shell_sub: sezione assorbimento per sistema core shell
 !******************************************************************************
 SUBROUTINE cabs_shell_sub_coredip(lambda,k,ref_index,v_req,m_epseq,nstop,neq,blockside,matrixside,&
-     & v_p,v_dc_core,v_cabs,error) 
+     & v_p,v_dc_core,v_cabs,error)
 
 IMPLICIT NONE
 
@@ -17041,7 +17041,7 @@ mx_out_do: DO i=0,neq-1
      END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(2,2),v_psi_z22,error)
@@ -17147,7 +17147,7 @@ END SUBROUTINE cabs_shell_sub_coredip
 
 
 !******************************************************************************
-!5tris-bis) SUBROUTINE field_expRandom_dip_ss_sub: calcolo i coefficienti del campo incidente,ma li randomizzo per la 
+!5tris-bis) SUBROUTINE field_expRandom_dip_ss_sub: calcolo i coefficienti del campo incidente,ma li randomizzo per la
 ! fase e per l'orientamento,e questo mi serve per un tipo di calcoli. qui in piu' va bene per gli spettri, cosi' non mi
 ! dipende da lambda e lo uso per la single shell
 !******************************************************************************
@@ -17157,17 +17157,17 @@ IMPLICIT NONE
 
 ! Dichiarazione dummy arguments
 INTEGER(lo), INTENT(IN):: nstop,ns				!N espansioni multipolari e N sfere
-REAL(dbl), DIMENSION(:) :: v_alpha,v_beta,v_gamma,v_kd	!Angoli di eulero 
-COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti  
+REAL(dbl), DIMENSION(:) :: v_alpha,v_beta,v_gamma,v_kd	!Angoli di eulero
+COMPLEX(dbl), DIMENSION(:), INTENT(OUT) :: v_p			!Vettori coefficienti espansioni campo, non corretti e corretti
 INTEGER(lo) , INTENT(OUT) :: error				!Flag di errore
 
 ! Dichiarazione variabili interne
 INTEGER(lo) :: i,j,jj,n,m,dimens					!Indici e dimensioni
 REAL(dbl) :: nr,mr,x,y,z,d,theta,phi				!Indici reali e coordinate
-REAL(dbl) :: kd								!Phase 
+REAL(dbl) :: kd								!Phase
 COMPLEX(dbl) :: pshift,expg1,expg2					!Phase shift
 REAL(dbl), ALLOCATABLE, DIMENSION(:) :: v_dnm1,v_dnm2		!Elementi ridotti di matrice di rotazione
-REAL(dbl) :: alpha,beta,gamma		!Angoli di eulero 
+REAL(dbl) :: alpha,beta,gamma		!Angoli di eulero
 
 !Inizio subroutine vera e propria
 dimens=nstop*(nstop+2)
@@ -17193,9 +17193,9 @@ i_do: DO i=1,ns
      !Funzione angolare Pi_mn
      CALL d_nm12(nstop,beta,v_dnm1,v_dnm2,error)
 
-     dnm_if: IF (error/=0) THEN																	
-          WRITE(*,10) 
-10        FORMAT ("Errore in d_nm12 chiamata da field_expRandom_dip_ss_sub: il programma termina ora...") 
+     dnm_if: IF (error/=0) THEN
+          WRITE(*,10)
+10        FORMAT ("Errore in d_nm12 chiamata da field_expRandom_dip_ss_sub: il programma termina ora...")
           STOP
      END IF dnm_if
 
@@ -17217,7 +17217,7 @@ i_do: DO i=1,ns
           m_do: DO m=-n,n
 
                !m reale
-               mr=REAL(m,dbl)	
+               mr=REAL(m,dbl)
 
                !Incremento j
                j=j+1
@@ -17260,7 +17260,7 @@ END SUBROUTINE field_expRandom_dip_ss_sub
 
 
 !******************************************************************************************
-!1) SUBROUTINE fill_index_AB: filling al the relevant indexes for the sparse structure of 
+!1) SUBROUTINE fill_index_AB: filling al the relevant indexes for the sparse structure of
 !submatrixes composing the overall coefficient matrix. So matrix ad submatrix can be readily
 !filled even in the oponMP implementation
 !*****************************************************************************************
@@ -17333,13 +17333,13 @@ AB_n_do: DO n=1,nstop
                ia_if: IF (i==1) THEN
                     low_aq=1
                ELSE
-                    low_aq=up_aq+1  
+                    low_aq=up_aq+1
                END IF ia_if
 
                ib_if: IF (i==1) THEN
                     low_bq=1
                ELSE
-                    low_bq=up_bq+1  
+                    low_bq=up_bq+1
                END IF ib_if
 
                up_aq=low_aq+qmax
@@ -17486,7 +17486,7 @@ END SUBROUTINE fill_index_AB
 
 !******************************************************************************
 !2) SUBROUTINE fill_M: Filling the coefficient matrix for the linear system
-! to solve all the expansion coefficients 
+! to solve all the expansion coefficients
 !******************************************************************************
 SUBROUTINE fill_M(nstop,kr,m_xyz,v_c0,v_aq,v_bq,v_Rn,v_Vn,v_Zn,m_index,m_index_AABB,m_Apmn,v_iAB,v_jAB,v_iAABB,v_jAABB,&
      & v_sA,v_sB,v_sAABB,v_iM,v_jM,v_sM,error)
@@ -17603,7 +17603,7 @@ AB_do: DO i=1,nnzAB
 
      !-----------
      !Calcolo Bvt
-     !----------- 
+     !-----------
      !Calcolo della sommatoria e di Bvt
      sommaB=(0.0D0,0.0D0)
      sommaB_do:DO q=1,qmax
@@ -17870,7 +17870,7 @@ END SUBROUTINE fill_M
 
 !******************************************************************************
 !2.1) SUBROUTINE fill_M_dip: Filling the coefficient matrix for the linear system
-! to solve all the expansion coefficients 
+! to solve all the expansion coefficients
 !******************************************************************************
 SUBROUTINE fill_M_dip(nstop,kr,m_xyz,v_c0,v_aq,v_bq,v_Rn,v_Vn,v_Zn,m_index,m_index_AABB,m_Apmn,v_iAB,v_jAB,v_iAABB,v_jAABB,&
      & v_sA,v_sB,v_sAABB,v_iM,v_jM,v_sM,error)
@@ -17987,7 +17987,7 @@ AB_do: DO i=1,nnzAB
 
      !-----------
      !Calcolo Bvt
-     !----------- 
+     !-----------
      !Calcolo della sommatoria e di Bvt
      sommaB=(0.0D0,0.0D0)
      sommaB_do:DO q=1,qmax
@@ -18542,7 +18542,7 @@ mx_out_do: DO i=0,neq-1
      END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(1,1),v_psi_z11,error)
@@ -18654,7 +18654,7 @@ dmn_n_do: DO n=1,nstop
           j=j+1
           v_dc_core(2*j-1)=-( v_ab_shell2(2*j-1)*v_csi_z12(n) - v_dc_shell2(2*j-1)*v_psi_z12(n) - v_p(2*j-1)*v_csi_z22(n))&
                & / (v_psi_z22(n))
-          v_dc_core(2*j)=-( v_ab_shell2(2*j)*v_k(2)*v_csi_z12(n) - v_dc_shell2(2*j)*v_k(2)*v_psi_z12(n) -  & 
+          v_dc_core(2*j)=-( v_ab_shell2(2*j)*v_k(2)*v_csi_z12(n) - v_dc_shell2(2*j)*v_k(2)*v_psi_z12(n) -  &
                v_p(2*j)*v_k(1)*v_csi_z22(n)) / (v_k(1)*v_psi_z22(n))
 
      END DO dmn_m_do
@@ -18668,13 +18668,3 @@ END SUBROUTINE field_exp_shell_dip_borghese
 
 
 END MODULE vec_trans
-
-
-
-
-
-
-
-
-
-

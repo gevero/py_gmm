@@ -7,7 +7,7 @@ USE VEC_TRANS
 CONTAINS
 
 !******************************************************************************
-!1) SUBROUTINE rot1_sub: faccio la prima rotazione 
+!1) SUBROUTINE rot1_sub: faccio la prima rotazione
 !******************************************************************************
 SUBROUTINE rot1_sub(nstop,next,v_x,v_y)
 
@@ -30,15 +30,15 @@ ALLOCATE(v_x1(1:blockside))
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x1(i)=m_exPhi(m,next)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x1,v_y,m_Dij(:,next),m_jDij(:,next),m_iDij(:,next)) 
+CALL amudz(blockside,v_x1,v_y,m_Dij(:,next),m_jDij(:,next),m_iDij(:,next))
 
 DEALLOCATE(v_x1)
 
@@ -70,15 +70,15 @@ ALLOCATE(v_x1(1:blockside))
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x1(i)=m_exPhi_rhs(m,next)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x1,v_y,m_Dij_rhs(:,next),m_jDij_rhs(:,next),m_iDij_rhs(:,next)) 
+CALL amudz(blockside,v_x1,v_y,m_Dij_rhs(:,next),m_jDij_rhs(:,next),m_iDij_rhs(:,next))
 
 DEALLOCATE(v_x1)
 
@@ -88,7 +88,7 @@ END SUBROUTINE rot1_sub_rhs
 
 
 !******************************************************************************
-!2) SUBROUTINE rot2_sub: faccio la seconda rotazione 
+!2) SUBROUTINE rot2_sub: faccio la seconda rotazione
 !******************************************************************************
 SUBROUTINE rot2_sub(nstop,next,v_x,v_y)
 
@@ -109,24 +109,24 @@ blockside=nstop*(nstop+2)
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x(i)=v_oner(m)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x,v_y,m_Dij(:,next),m_jDij(:,next),m_iDij(:,next)) 
+CALL amudz(blockside,v_x,v_y,m_Dij(:,next),m_jDij(:,next),m_iDij(:,next))
 
 !Cambio di segno
 i=0
 n_do1: DO n=1,nstop
     m_do1: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_y(i)=m_exPhi(-m,next)*v_oner(m)*v_y(i)
-    
+
     END DO m_do1
 END DO n_do1
 
@@ -158,24 +158,24 @@ blockside=nstop*(nstop+2)
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x(i)=((-1.0D0)**m)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x,v_y,m_Dij_rhs(:,next),m_jDij_rhs(:,next),m_iDij_rhs(:,next)) 
+CALL amudz(blockside,v_x,v_y,m_Dij_rhs(:,next),m_jDij_rhs(:,next),m_iDij_rhs(:,next))
 
 !Cambio di segno
 i=0
 n_do1: DO n=1,nstop
     m_do1: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_y(i)=m_exPhi_rhs(-m,next)*((-1.0D0)**m)*v_y(i)
-    
+
     END DO m_do1
 END DO n_do1
 
@@ -207,7 +207,7 @@ ALLOCATE(v_y1(1:blockside),v_y2(1:blockside))
 
 !Routine di moltiplicazione
 CALL amuzz(blockside,v_a,v_y1,m_sAij(:,next),m_jABij(:,next),m_iABij(:,next))
-CALL amuzz(blockside,v_b,v_y2,m_sBij(:,next),m_jABij(:,next),m_iABij(:,next))  
+CALL amuzz(blockside,v_b,v_y2,m_sBij(:,next),m_jABij(:,next),m_iABij(:,next))
 
 !Calcolo il vettore
 v_y=v_y1+v_y2
@@ -240,7 +240,7 @@ ALLOCATE(v_y1(1:blockside),v_y2(1:blockside))
 
 !Routine di moltiplicazione
 CALL amuzz(blockside,v_a,v_y1,m_sAij_sca(:,next),m_jABij(:,next),m_iABij(:,next))
-CALL amuzz(blockside,v_b,v_y2,m_sBij_sca(:,next),m_jABij(:,next),m_iABij(:,next))  
+CALL amuzz(blockside,v_b,v_y2,m_sBij_sca(:,next),m_jABij(:,next),m_iABij(:,next))
 
 !Calcolo il vettore
 v_y=v_y1+v_y2
@@ -275,7 +275,7 @@ ALLOCATE(v_y1(1:blockside),v_y2(1:blockside))
 
 !Routine di moltiplicazione
 CALL amuzz(blockside,v_a,v_y1,m_sAij_rhs(:,next),m_jABij_rhs(:,next),m_iABij_rhs(:,next))
-CALL amuzz(blockside,v_b,v_y2,m_sBij_rhs(:,next),m_jABij_rhs(:,next),m_iABij_rhs(:,next))  
+CALL amuzz(blockside,v_b,v_y2,m_sBij_rhs(:,next),m_jABij_rhs(:,next),m_iABij_rhs(:,next))
 
 !Calcolo il vettore
 v_y=v_y1+v_y2
@@ -438,11 +438,11 @@ ns_do: DO i=1,ns
     !Upper e lover bounds
     lowbi=1+blockside*(i-1)
     upbi=blockside*i
-        
+
     !Tratto unicamente la porzione j-esima del vettore incognita
     v_a1=v_ain(lowbi:upbi)
     v_b1=v_bin(lowbi:upbi)
-    
+
 !	WRITE(*,*)"Inp: ",dnorm2_bcg(upbi-lowbi,v_a1),dnorm2_bcg(upbi-lowbi,v_b1)
 
     !Qui sono sulla diagonale, quindi mi basta dividere
@@ -450,18 +450,18 @@ ns_do: DO i=1,ns
     cursor=0
     diag_ndo: DO n=1,nstop
         diag_mdo: DO m=-n,n
-        
+
             cursor=cursor+1
             v_a4(cursor)=v_a1(cursor)/m_a(n,v_patt(i))
             v_b4(cursor)=v_b1(cursor)/m_b(n,v_patt(i))
-            
+
         END DO diag_mdo
     END DO diag_ndo
-    
+
 !	WRITE(*,*)"Diag: ",dnorm2_bcg(upbi-lowbi,v_a4),dnorm2_bcg(upbi-lowbi,v_b4)
 
     !Faccio la somma per l'update dei vettori
-    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
     v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
 
 !	WRITE(*,*) "v_a4 diag", v_a4
@@ -469,32 +469,32 @@ ns_do: DO i=1,ns
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock(i),v_iBlock(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock(next)
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
-        
+        v_b1=v_bin(lowb:upb)
+
+
 !        WRITE(*,*) "v_a1", v_a1
 !	WRITE(*,*) "v_b1", v_b1
-        
+
         !Qui ho la moltiplicazione fattorizzata
 
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
 !        WRITE(*,*) "v_a2", v_a2
 !	WRITE(*,*) "v_b2", v_b2
 !		WRITE(*,*)"rot1: ",dnorm2_bcg(upb-lowb,v_a2),dnorm2_bcg(upbi-lowbi,v_b2)
-        
+
         !Traslazione
         CALL trasl_sub(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub(nstop,next,v_b2,v_a2,v_b3)
@@ -502,7 +502,7 @@ ns_do: DO i=1,ns
 !        WRITE(*,*) "v_a3", v_a3
 !	WRITE(*,*) "v_b3", v_b3
 !		WRITE(*,*)"trasl: ",dnorm2_bcg(upb-lowb,v_a3),dnorm2_bcg(upbi-lowbi,v_b3)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
@@ -510,11 +510,11 @@ ns_do: DO i=1,ns
 !        WRITE(*,*) "v_a4", v_a4
 !	WRITE(*,*) "v_b4", v_b4
 !		WRITE(*,*)"rot2: ",dnorm2_bcg(upb-lowb,v_a4),dnorm2_bcg(upbi-lowbi,v_b4)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -582,61 +582,61 @@ ns_do: DO i=1,ns
     !Upper e lover bounds
     lowbi=1+blockside*(i-1)
     upbi=blockside*i
-        
+
     !Tratto unicamente la porzione j-esima del vettore incognita
     v_a1=v_ain(lowbi:upbi)
     v_b1=v_bin(lowbi:upbi)
-    
+
 
     !Qui sono sulla diagonale, quindi mi basta dividere
     !per i coeff di particella singola
     cursor=0
     diag_ndo: DO n=1,nstop
         diag_mdo: DO m=-n,n
-        
+
             cursor=cursor+1
             v_a4(cursor)=v_a1(cursor)
             v_b4(cursor)=v_b1(cursor)
-            
+
         END DO diag_mdo
     END DO diag_ndo
-    
+
     !Faccio la somma per l'update dei vettori
-    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
     v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock(i),v_iBlock(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock(next)
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
 
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
         !Traslazione
         CALL trasl_sub_sca(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub_sca(nstop,next,v_b2,v_a2,v_b3)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -705,61 +705,61 @@ ns_do: DO i=1,ns
     !Upper e lover bounds
     lowbi=1+blockside*(i-1)
     upbi=blockside*i
-        
+
     !Tratto unicamente la porzione j-esima del vettore incognita
     v_a1=v_ain(lowbi:upbi)
     v_b1=v_bin(lowbi:upbi)
-    
+
 
     !Qui sono sulla diagonale, quindi mi basta dividere
     !per i coeff di particella singola
     cursor=0
     diag_ndo: DO n=1,nstop
         diag_mdo: DO m=-n,n
-        
+
             cursor=cursor+1
             v_a4(cursor)=v_a1(cursor)
             v_b4(cursor)=v_b1(cursor)
-            
+
         END DO diag_mdo
     END DO diag_ndo
-    
+
     !Faccio la somma per l'update dei vettori
-    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
     v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock_sca(i),v_iBlock_sca(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock_sca(next)
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
 
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
         !Traslazione
         CALL trasl_sub_sca(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub_sca(nstop,next,v_b2,v_a2,v_b3)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -834,20 +834,20 @@ ns_do: DO i=1,ns
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock_rhs(i),v_iBlock_rhs(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock_rhs(next)
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
-        
+
         WRITE(*,*) "v_a1"
         WRITE(*,*) (v_a1(n),n=lowb,upb)
         WRITE(*,*)
@@ -855,31 +855,31 @@ ns_do: DO i=1,ns
         !Prima rotazione
         CALL rot1_sub_rhs(nstop,next,v_a1,v_a2)
         CALL rot1_sub_rhs(nstop,next,v_b1,v_b2)
-        
+
         WRITE(*,*) "v_a2"
         WRITE(*,*) (v_a2(n),n=lowb,upb)
         WRITE(*,*)
-        
+
         !Traslazione
         CALL trasl_sub_rhs(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub_rhs(nstop,next,v_b2,v_a2,v_b3)
-        
+
         WRITE(*,*) "v_a3"
         WRITE(*,*) (v_a3(n),n=lowb,upb)
         WRITE(*,*)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub_rhs(nstop,next,v_a3,v_a4)
         CALL rot2_sub_rhs(nstop,next,v_b3,v_b4)
-        
+
         WRITE(*,*) "v_a4"
         WRITE(*,*) (v_a4(n),n=lowb,upb)
         WRITE(*,*)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -957,22 +957,22 @@ ns_do: DO i=1,(ns-ndip)
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock(i),v_iBlock(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock(next)
-        
+
         IF (j<=(ns-ndip)) CYCLE next_do
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
-        
+
 !        WRITE(*,*) "v_a1"
 !        WRITE(*,*) (v_a1(n),n=lowb,upb)
 !        WRITE(*,*)
@@ -980,31 +980,31 @@ ns_do: DO i=1,(ns-ndip)
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
 !        WRITE(*,*) "v_a2"
 !        WRITE(*,*) (v_a2(n),n=lowb,upb)
 !        WRITE(*,*)
-        
+
         !Traslazione
         CALL trasl_sub(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub(nstop,next,v_b2,v_a2,v_b3)
-        
+
 !        WRITE(*,*) "v_a3"
 !        WRITE(*,*) (v_a3(n),n=lowb,upb)
 !        WRITE(*,*)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
 !        WRITE(*,*) "v_a4"
 !        WRITE(*,*) (v_a4(n),n=lowb,upb)
 !        WRITE(*,*)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -1021,7 +1021,7 @@ END SUBROUTINE matvec_rhs_dip
 
 
 !******************************************************************************
-!4quinties) SUBROUTINE matvec_sca_dipant(matrixside,v_x,v_y), per sistemare 
+!4quinties) SUBROUTINE matvec_sca_dipant(matrixside,v_x,v_y), per sistemare
 !la sezione di scattering solo per l'antenna
 !******************************************************************************
 SUBROUTINE matvec_sca_dipant(matrixside,v_x,v_y)
@@ -1075,63 +1075,63 @@ ns_do: DO i=1,ns-ndip
     !Upper e lover bounds
     lowbi=1+blockside*(i-1)
     upbi=blockside*i
-        
+
     !Tratto unicamente la porzione j-esima del vettore incognita
     v_a1=v_ain(lowbi:upbi)
     v_b1=v_bin(lowbi:upbi)
-    
+
 
     !Qui sono sulla diagonale, quindi mi basta dividere
     !per i coeff di particella singola
     cursor=0
     diag_ndo: DO n=1,nstop
         diag_mdo: DO m=-n,n
-        
+
             cursor=cursor+1
             v_a4(cursor)=v_a1(cursor)
             v_b4(cursor)=v_b1(cursor)
-            
+
         END DO diag_mdo
     END DO diag_ndo
-    
+
     !Faccio la somma per l'update dei vettori
-    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
     v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock_sca(i),v_iBlock_sca(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock_sca(next)
-        
+
         IF (j>(ns-ndip)) CYCLE next_do
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
 
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
         !Traslazione
         CALL trasl_sub_sca(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub_sca(nstop,next,v_b2,v_a2,v_b3)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -1197,11 +1197,11 @@ ns_do: DO i=1,ns-ndip
     !Upper e lover bounds
     lowbi=1+blockside*(i-1)
     upbi=blockside*i
-        
+
     !Tratto unicamente la porzione j-esima del vettore incognita
     v_a1=v_ain(lowbi:upbi)
     v_b1=v_bin(lowbi:upbi)
-    
+
 !	WRITE(*,*)"Inp: ",dnorm2_bcg(upbi-lowbi,v_a1),dnorm2_bcg(upbi-lowbi,v_b1)
 
     !Qui sono sulla diagonale, quindi mi basta dividere
@@ -1209,61 +1209,61 @@ ns_do: DO i=1,ns-ndip
     cursor=0
     diag_ndo: DO n=1,nstop
         diag_mdo: DO m=-n,n
-        
+
             cursor=cursor+1
             v_a4(cursor)=v_a1(cursor)/m_a(n,v_patt(i))
             v_b4(cursor)=v_b1(cursor)/m_b(n,v_patt(i))
-            
+
         END DO diag_mdo
     END DO diag_ndo
-    
-    
+
+
 !	WRITE(*,*)"Diag: ",dnorm2_bcg(upbi-lowbi,v_a4),dnorm2_bcg(upbi-lowbi,v_b4)
 
     !Faccio la somma per l'update dei vettori
-    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+    v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
     v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock(i),v_iBlock(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock(next)
-        
+
         IF ((j>(ns-ndip)) .OR. ((ns-ndip)==1)) CYCLE next_do
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
 
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
 !		WRITE(*,*)"rot1: ",dnorm2_bcg(upb-lowb,v_a2),dnorm2_bcg(upbi-lowbi,v_b2)
-        
+
         !Traslazione
         CALL trasl_sub(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub(nstop,next,v_b2,v_a2,v_b3)
-        
+
 !		WRITE(*,*)"trasl: ",dnorm2_bcg(upb-lowb,v_a3),dnorm2_bcg(upbi-lowbi,v_b3)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
 !		WRITE(*,*)"rot2: ",dnorm2_bcg(upb-lowb,v_a4),dnorm2_bcg(upbi-lowbi,v_b4)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -1391,12 +1391,12 @@ j=0
 ns_do: DO i=1,ns
     n_do: DO n=1,nstop
         m_do: DO m=-n,n
-    
+
         j=j+1
-    
+
         v_x(2*j-1)=v_x(2*j-1)*m_a(n,v_patt(i))
         v_x(2*j)=v_x(2*j)*m_b(n,v_patt(i))
-    
+
         END DO m_do
     END DO n_do
 END DO ns_do
@@ -1425,12 +1425,12 @@ j=0
 ns_do: DO i=1,(ns-ndip)
     n_do: DO n=1,nstop
         m_do: DO m=-n,n
-    
+
         j=j+1
-    
+
         v_x(2*j-1)=v_x(2*j-1)*m_a(n,v_patt(i))
         v_x(2*j)=v_x(2*j)*m_b(n,v_patt(i))
-    
+
         END DO m_do
     END DO n_do
 END DO ns_do
@@ -1492,9 +1492,9 @@ subroutine zbcg2 (print_resid,l,n,x,nonzero_x,rhs,toler, &
 ! This is the "vanilla" version of BiCGstab(\ell) as described
 ! in PhD thesis of D.R.Fokkema, Chapter 3 (also available as
 ! Preprint 976, Dept. of Mathematics, Utrecht University, URL
-! http://www.math.uu.nl/publications/).  It includes two enhancements 
+! http://www.math.uu.nl/publications/).  It includes two enhancements
 ! to BiCGstab(\ell) proposed by G.Sleijpen and H.van der Vorst in
-! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence 
+! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence
 !    properties of BiCGstab methods in finite precision arithmetic",
 !    Numerical Algorithms, 10, 1995, pp.203-223
 ! 2) G.Sleijpen and H.van der Vorst "Reliable updated residuals in
@@ -1502,23 +1502,23 @@ subroutine zbcg2 (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !
 ! {{ This code based on original work of D.R.Fokkema:
 !
-! subroutine zbistbl v1.1 1998    
+! subroutine zbistbl v1.1 1998
 ! Copyright (c) 1995-1998 by D.R. Fokkema.
-! Permission to copy all or part of this work is granted, 
-! provided that the copies are not made or distributed 
-! for resale, and that the copyright notice and this 
+! Permission to copy all or part of this work is granted,
+! provided that the copies are not made or distributed
+! for resale, and that the copyright notice and this
 ! notice are retained.
 !
 ! }}
 !
-! Your bug reports, comments, etc. are welcome: 
+! Your bug reports, comments, etc. are welcome:
 ! m.a.botchev@math.utwente.nl
 !
 ! ------------------------------
 ! Description of the parameters:
 ! ------------------------------
 !
-! print_resid (input) LOGICAL. If print_resid=.true. the number of 
+! print_resid (input) LOGICAL. If print_resid=.true. the number of
 !            matrix-vector multiplications done so far and residual norm will
 !            be printed to the standard output each iteration
 !
@@ -1526,7 +1526,7 @@ subroutine zbcg2 (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            in this simple version it is required that l <= 2
 !            l=2 is often useful for systems with nonsymmetric matrices
 !
-! n          (input) INTEGER size of the linear system to solve 
+! n          (input) INTEGER size of the linear system to solve
 !
 ! x          (input/output) COMPLEX*16 array dimension n
 !            initial guess on input, solution on output
@@ -1538,24 +1538,24 @@ subroutine zbcg2 (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            to deliver y:=A*x by CALL matvec(n,x,y)
 !
 ! nonzero_x  (input) LOGICAL tells
-!            BiCGstab(\ell) if the initial guess x is zero or not. 
+!            BiCGstab(\ell) if the initial guess x is zero or not.
 !            If nonzero_x is .FALSE., initial residual equals r.h.s. vector
 !            and one MATVEC call is avoided
 !
-! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are 
+! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are
 !            stopped as soon as || residual ||/|| initial residual|| <= toler,
-!            the norm is Euclidean.  On output, if info>=0, the value of 
+!            the norm is Euclidean.  On output, if info>=0, the value of
 !            toler is set to the actually achieved residual reduction
 !
-! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix 
-!            vector multiplications allowed to be done.  On output: 
-!            if info>=0, mxmatvec is set to the actual number of matrix 
+! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix
+!            vector multiplications allowed to be done.  On output:
+!            if info>=0, mxmatvec is set to the actual number of matrix
 !            vector multiplications done
 !
 ! work       (workspace) COMPLEX*16 array of dimension (n,2*l+5)
 !
 ! info       (output) INTEGER.  info = 0 in case of succesful computations
-!            and 
+!            and
 !            info = -m (<0) - means paramater number m has an illegal value
 !            info = 1 - means no convergence achieved (stopping criterion
 !            is not fulfilled)
@@ -1563,7 +1563,7 @@ subroutine zbcg2 (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            value of parameter l usually helps)
 !
 ! WARNING: If the iterations are ended normally (info=0 or info=1),
-! the true residual norm is computed and returned as an output value 
+! the true residual norm is computed and returned as an output value
 ! of the parameter toler.  The true residual norm can be slightly larger
 ! than the projected residual norm used by the algorithm to stop the
 ! iterations.  It may thus happen that on output info=0 but the value
@@ -1598,12 +1598,12 @@ INTEGER(lo)          :: rr, r, u, xp, bp
 ! Constants:
 REAL(dbl),    parameter :: delta = 1d-2
 COMPLEX(dbl), parameter :: zzero = (0d0,0d0), zone = (1d0,0d0)
-    
+
     ! Functions:
     !REAL(sgl)     :: dnorm2_bcg
     !COMPLEX(dbl) :: zdot_bcg
-    
-    
+
+
 info = 0
 
 if (l<1 .or. l>2) info = -2
@@ -1617,7 +1617,7 @@ u = r+(l+1)
 xp = u+(l+1)
 bp = xp+1
 
-if (info/=0) return 
+if (info/=0) return
 
 !!~~~~~~~~~~~~~~~~~~~~
 !WRITE(*,*) 'work,n1'
@@ -1793,7 +1793,7 @@ kappal = sqrt( abs(zdot_bcg(l+1,yl,zyl)) )
 
 varrho = zdot_bcg(l+1,yl,zy0) / (kappa0*kappal)
 
-hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 ) 
+hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 )
 
 y0 = y0 - (hatgamma*kappa0/kappal)*yl
 
@@ -1857,7 +1857,7 @@ if (rnrm>toler*rnrm0) info = 1
 
 ! --------------------- One matvec can be saved by commenting out this:
 !$$$$$$ call matvec (n, x, work(1:n,r) )
-!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)   
+!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)
 !$$$$$$ call precond (n, work(1:n,r))
 !$$$$$$ rnrm = dnorm2_bcg(n,work(1:n,r))
 !$$$$$$ nmatvec = nmatvec+1
@@ -1895,9 +1895,9 @@ subroutine zbcg2_dip (print_resid,l,n,x,nonzero_x,rhs,toler, &
 ! This is the "vanilla" version of BiCGstab(\ell) as described
 ! in PhD thesis of D.R.Fokkema, Chapter 3 (also available as
 ! Preprint 976, Dept. of Mathematics, Utrecht University, URL
-! http://www.math.uu.nl/publications/).  It includes two enhancements 
+! http://www.math.uu.nl/publications/).  It includes two enhancements
 ! to BiCGstab(\ell) proposed by G.Sleijpen and H.van der Vorst in
-! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence 
+! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence
 !    properties of BiCGstab methods in finite precision arithmetic",
 !    Numerical Algorithms, 10, 1995, pp.203-223
 ! 2) G.Sleijpen and H.van der Vorst "Reliable updated residuals in
@@ -1905,23 +1905,23 @@ subroutine zbcg2_dip (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !
 ! {{ This code based on original work of D.R.Fokkema:
 !
-! subroutine zbistbl v1.1 1998    
+! subroutine zbistbl v1.1 1998
 ! Copyright (c) 1995-1998 by D.R. Fokkema.
-! Permission to copy all or part of this work is granted, 
-! provided that the copies are not made or distributed 
-! for resale, and that the copyright notice and this 
+! Permission to copy all or part of this work is granted,
+! provided that the copies are not made or distributed
+! for resale, and that the copyright notice and this
 ! notice are retained.
 !
 ! }}
 !
-! Your bug reports, comments, etc. are welcome: 
+! Your bug reports, comments, etc. are welcome:
 ! m.a.botchev@math.utwente.nl
 !
 ! ------------------------------
 ! Description of the parameters:
 ! ------------------------------
 !
-! print_resid (input) LOGICAL. If print_resid=.true. the number of 
+! print_resid (input) LOGICAL. If print_resid=.true. the number of
 !            matrix-vector multiplications done so far and residual norm will
 !            be printed to the standard output each iteration
 !
@@ -1929,7 +1929,7 @@ subroutine zbcg2_dip (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            in this simple version it is required that l <= 2
 !            l=2 is often useful for systems with nonsymmetric matrices
 !
-! n          (input) INTEGER size of the linear system to solve 
+! n          (input) INTEGER size of the linear system to solve
 !
 ! x          (input/output) COMPLEX*16 array dimension n
 !            initial guess on input, solution on output
@@ -1941,24 +1941,24 @@ subroutine zbcg2_dip (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            to deliver y:=A*x by CALL matvec(n,x,y)
 !
 ! nonzero_x  (input) LOGICAL tells
-!            BiCGstab(\ell) if the initial guess x is zero or not. 
+!            BiCGstab(\ell) if the initial guess x is zero or not.
 !            If nonzero_x is .FALSE., initial residual equals r.h.s. vector
 !            and one MATVEC call is avoided
 !
-! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are 
+! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are
 !            stopped as soon as || residual ||/|| initial residual|| <= toler,
-!            the norm is Euclidean.  On output, if info>=0, the value of 
+!            the norm is Euclidean.  On output, if info>=0, the value of
 !            toler is set to the actually achieved residual reduction
 !
-! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix 
-!            vector multiplications allowed to be done.  On output: 
-!            if info>=0, mxmatvec is set to the actual number of matrix 
+! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix
+!            vector multiplications allowed to be done.  On output:
+!            if info>=0, mxmatvec is set to the actual number of matrix
 !            vector multiplications done
 !
 ! work       (workspace) COMPLEX*16 array of dimension (n,2*l+5)
 !
 ! info       (output) INTEGER.  info = 0 in case of succesful computations
-!            and 
+!            and
 !            info = -m (<0) - means paramater number m has an illegal value
 !            info = 1 - means no convergence achieved (stopping criterion
 !            is not fulfilled)
@@ -1966,7 +1966,7 @@ subroutine zbcg2_dip (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            value of parameter l usually helps)
 !
 ! WARNING: If the iterations are ended normally (info=0 or info=1),
-! the true residual norm is computed and returned as an output value 
+! the true residual norm is computed and returned as an output value
 ! of the parameter toler.  The true residual norm can be slightly larger
 ! than the projected residual norm used by the algorithm to stop the
 ! iterations.  It may thus happen that on output info=0 but the value
@@ -2001,12 +2001,12 @@ INTEGER(lo)          :: rr, r, u, xp, bp
 ! Constants:
 REAL(dbl),    parameter :: delta = 1d-2
 COMPLEX(dbl), parameter :: zzero = (0d0,0d0), zone = (1d0,0d0)
-    
+
     ! Functions:
     !REAL(sgl)     :: dnorm2_bcg
     !COMPLEX(dbl) :: zdot_bcg
-    
-    
+
+
 info = 0
 
 if (l<1 .or. l>2) info = -2
@@ -2020,7 +2020,7 @@ u = r+(l+1)
 xp = u+(l+1)
 bp = xp+1
 
-if (info/=0) return 
+if (info/=0) return
 
 ! Initialize first residual
 nmatvec=0
@@ -2151,7 +2151,7 @@ kappal = sqrt( abs(zdot_bcg(l+1,yl,zyl)) )
 
 varrho = zdot_bcg(l+1,yl,zy0) / (kappa0*kappal)
 
-hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 ) 
+hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 )
 
 y0 = y0 - (hatgamma*kappa0/kappal)*yl
 
@@ -2215,7 +2215,7 @@ if (rnrm>toler*rnrm0) info = 1
 
 ! --------------------- One matvec can be saved by commenting out this:
 !$$$$$$ call matvec_dip (n, x, work(1:n,r) )
-!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)   
+!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)
 !$$$$$$ call precond (n, work(1:n,r))
 !$$$$$$ rnrm = dnorm2_bcg(n,work(1:n,r))
 !$$$$$$ nmatvec = nmatvec+1
@@ -2253,9 +2253,9 @@ subroutine zbcg2_shell (print_resid,l,n,x,nonzero_x,rhs,toler, &
 ! This is the "vanilla" version of BiCGstab(\ell) as described
 ! in PhD thesis of D.R.Fokkema, Chapter 3 (also available as
 ! Preprint 976, Dept. of Mathematics, Utrecht University, URL
-! http://www.math.uu.nl/publications/).  It includes two enhancements 
+! http://www.math.uu.nl/publications/).  It includes two enhancements
 ! to BiCGstab(\ell) proposed by G.Sleijpen and H.van der Vorst in
-! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence 
+! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence
 !    properties of BiCGstab methods in finite precision arithmetic",
 !    Numerical Algorithms, 10, 1995, pp.203-223
 ! 2) G.Sleijpen and H.van der Vorst "Reliable updated residuals in
@@ -2263,23 +2263,23 @@ subroutine zbcg2_shell (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !
 ! {{ This code based on original work of D.R.Fokkema:
 !
-! subroutine zbistbl v1.1 1998    
+! subroutine zbistbl v1.1 1998
 ! Copyright (c) 1995-1998 by D.R. Fokkema.
-! Permission to copy all or part of this work is granted, 
-! provided that the copies are not made or distributed 
-! for resale, and that the copyright notice and this 
+! Permission to copy all or part of this work is granted,
+! provided that the copies are not made or distributed
+! for resale, and that the copyright notice and this
 ! notice are retained.
 !
 ! }}
 !
-! Your bug reports, comments, etc. are welcome: 
+! Your bug reports, comments, etc. are welcome:
 ! m.a.botchev@math.utwente.nl
 !
 ! ------------------------------
 ! Description of the parameters:
 ! ------------------------------
 !
-! print_resid (input) LOGICAL. If print_resid=.true. the number of 
+! print_resid (input) LOGICAL. If print_resid=.true. the number of
 !            matrix-vector multiplications done so far and residual norm will
 !            be printed to the standard output each iteration
 !
@@ -2287,7 +2287,7 @@ subroutine zbcg2_shell (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            in this simple version it is required that l <= 2
 !            l=2 is often useful for systems with nonsymmetric matrices
 !
-! n          (input) INTEGER size of the linear system to solve 
+! n          (input) INTEGER size of the linear system to solve
 !
 ! x          (input/output) COMPLEX*16 array dimension n
 !            initial guess on input, solution on output
@@ -2299,24 +2299,24 @@ subroutine zbcg2_shell (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            to deliver y:=A*x by CALL matvec(n,x,y)
 !
 ! nonzero_x  (input) LOGICAL tells
-!            BiCGstab(\ell) if the initial guess x is zero or not. 
+!            BiCGstab(\ell) if the initial guess x is zero or not.
 !            If nonzero_x is .FALSE., initial residual equals r.h.s. vector
 !            and one MATVEC call is avoided
 !
-! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are 
+! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are
 !            stopped as soon as || residual ||/|| initial residual|| <= toler,
-!            the norm is Euclidean.  On output, if info>=0, the value of 
+!            the norm is Euclidean.  On output, if info>=0, the value of
 !            toler is set to the actually achieved residual reduction
 !
-! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix 
-!            vector multiplications allowed to be done.  On output: 
-!            if info>=0, mxmatvec is set to the actual number of matrix 
+! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix
+!            vector multiplications allowed to be done.  On output:
+!            if info>=0, mxmatvec is set to the actual number of matrix
 !            vector multiplications done
 !
 ! work       (workspace) COMPLEX*16 array of dimension (n,2*l+5)
 !
 ! info       (output) INTEGER.  info = 0 in case of succesful computations
-!            and 
+!            and
 !            info = -m (<0) - means paramater number m has an illegal value
 !            info = 1 - means no convergence achieved (stopping criterion
 !            is not fulfilled)
@@ -2324,7 +2324,7 @@ subroutine zbcg2_shell (print_resid,l,n,x,nonzero_x,rhs,toler, &
 !            value of parameter l usually helps)
 !
 ! WARNING: If the iterations are ended normally (info=0 or info=1),
-! the true residual norm is computed and returned as an output value 
+! the true residual norm is computed and returned as an output value
 ! of the parameter toler.  The true residual norm can be slightly larger
 ! than the projected residual norm used by the algorithm to stop the
 ! iterations.  It may thus happen that on output info=0 but the value
@@ -2359,12 +2359,12 @@ INTEGER(lo)          :: rr, r, u, xp, bp
 ! Constants:
 REAL(dbl),    parameter :: delta = 1d-2
 COMPLEX(dbl), parameter :: zzero = (0d0,0d0), zone = (1d0,0d0)
-    
+
     ! Functions:
     !REAL(sgl)     :: dnorm2_bcg
     !COMPLEX(dbl) :: zdot_bcg
-    
-    
+
+
 info = 0
 
 if (l<1 .or. l>2) info = -2
@@ -2378,7 +2378,7 @@ u = r+(l+1)
 xp = u+(l+1)
 bp = xp+1
 
-if (info/=0) return 
+if (info/=0) return
 
 ! Initialize first residual
 nmatvec=0
@@ -2509,7 +2509,7 @@ kappal = sqrt( abs(zdot_bcg(l+1,yl,zyl)) )
 
 varrho = zdot_bcg(l+1,yl,zy0) / (kappa0*kappal)
 
-hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 ) 
+hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 )
 
 y0 = y0 - (hatgamma*kappa0/kappal)*yl
 
@@ -2573,7 +2573,7 @@ if (rnrm>toler*rnrm0) info = 1
 
 ! --------------------- One matvec can be saved by commenting out this:
 !$$$$$$ call matvec_dip (n, x, work(1:n,r) )
-!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)   
+!$$$$$$ work(1:n,r) = rhs(1:n) - work(1:n,r)
 !$$$$$$ call precond (n, work(1:n,r))
 !$$$$$$ rnrm = dnorm2_bcg(n,work(1:n,r))
 !$$$$$$ nmatvec = nmatvec+1
@@ -2593,26 +2593,26 @@ end subroutine zbcg2_shell
 !$$$$$$ !SUBROUTINE zbistbl (l, n, x, b, mv, solve, tol, &
 !$$$$$$ !                 & mxmv, work, ldw, rwork, ldrw, iwork, info)
 !$$$$$$ !*************************************************************
-!$$$$$$ 
+!$$$$$$
 !$$$$$$ SUBROUTINE zbistbl (l,n,x,b,tol,mxmv,work,ldw,rwork,ldrw,iwork,info)
-!$$$$$$ 
-!$$$$$$ ! subroutine zbistbl v1.1 1998    
-!$$$$$$ ! 
+!$$$$$$
+!$$$$$$ ! subroutine zbistbl v1.1 1998
+!$$$$$$ !
 !$$$$$$ ! Copyright (c) 1995-1998 by D.R. Fokkema.
-!$$$$$$ ! Permission to copy all or part of this work is granted, 
-!$$$$$$ ! provided that the copies are not made or distributed 
-!$$$$$$ ! for resale, and that the copyright notice and this 
+!$$$$$$ ! Permission to copy all or part of this work is granted,
+!$$$$$$ ! provided that the copies are not made or distributed
+!$$$$$$ ! for resale, and that the copyright notice and this
 !$$$$$$ ! notice are retained.
 !$$$$$$ !
-!$$$$$$ ! THIS WORK IS PROVIDED ON AN "AS IS" BASIS.  THE AUTHOR 
-!$$$$$$ ! PROVIDES NO WARRANTY WHATSOEVER, EITHER EXPRESSED OR IMPLIED, 
-!$$$$$$ ! REGARDING THE WORK, INCLUDING WARRANTIES WITH RESPECT TO ITS 
+!$$$$$$ ! THIS WORK IS PROVIDED ON AN "AS IS" BASIS.  THE AUTHOR
+!$$$$$$ ! PROVIDES NO WARRANTY WHATSOEVER, EITHER EXPRESSED OR IMPLIED,
+!$$$$$$ ! REGARDING THE WORK, INCLUDING WARRANTIES WITH RESPECT TO ITS
 !$$$$$$ ! MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE.
 !$$$$$$ !
 !$$$$$$ ! Parameter list (by M.Botchev, October, 1997):
 !$$$$$$ !
 !$$$$$$ ! l      == (input) INTEGER BiCGstab's dimension
-!$$$$$$ ! n      == (input) INTEGER size of the system to solve 
+!$$$$$$ ! n      == (input) INTEGER size of the system to solve
 !$$$$$$ ! x      == (input/output) DOUBLE PRECISION array dimension n
 !$$$$$$ !           initial guess on input, solution on output
 !$$$$$$ ! b      == (input) DOUBLE PRECISION array dimension n
@@ -2620,13 +2620,13 @@ end subroutine zbcg2_shell
 !$$$$$$ ! mv     == (input) EXTERNAL name of matrix vector subroutine
 !$$$$$$ !           to deliver y:=A*x by CALL mv(n,x,y)
 !$$$$$$ ! solve  == (input) EXTERNAL name of subroutine to perform
-!$$$$$$ !           a preconditioner solve by CALL solve(n,x). This call 
-!$$$$$$ !           delivers solution to M*x=x, M is the left preconditioning 
+!$$$$$$ !           a preconditioner solve by CALL solve(n,x). This call
+!$$$$$$ !           delivers solution to M*x=x, M is the left preconditioning
 !$$$$$$ !           matrix, x is rhs on input and solution on output.
 !$$$$$$ ! tol    == (input) DOUBLE PRECISION tolerance for the relative
 !$$$$$$ !           residual norm stopping criterion: ||r_k|| <= tol*||r_0||
-!$$$$$$ ! mxmv   == (input/output) INTEGER.  On input: maximum number of matrix 
-!$$$$$$ !           vector multiplications allowed to be done.  On input: 
+!$$$$$$ ! mxmv   == (input/output) INTEGER.  On input: maximum number of matrix
+!$$$$$$ !           vector multiplications allowed to be done.  On input:
 !$$$$$$ !           actual number of matrix vector multiplications done
 !$$$$$$ ! work   == (workspace) DOUBLE PRECISION array dimension (n,3+2*(l+1))
 !$$$$$$ ! ldw    == (input) INTEGER leading dimension of work (??)
@@ -2634,13 +2634,13 @@ end subroutine zbcg2_shell
 !$$$$$$ ! ldrw   == (input) INTEGER leading dimension of rwork (??)
 !$$$$$$ ! iwork  == (workspace) INTEGER array dimension (l+1)
 !$$$$$$ ! info   == (output) INTEGER.  Info = 0 in case of normal computations
-!$$$$$$ !           and 
+!$$$$$$ !           and
 !$$$$$$ !           info = m < 0 - means paramater number m has an illegal value
 !$$$$$$ !           info = 1 - means no convergence achieved (stopping criterion
 !$$$$$$ !           is not fulfilled)
 !$$$$$$ !           info = 2 - means breakdown of the algorithm (try to enlarge
 !$$$$$$ !           parameter l to get rid of this)
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       implicit none
 !$$$$$$ !
 !$$$$$$ !     .. Parameters ..
@@ -2704,28 +2704,28 @@ end subroutine zbcg2_shell
 !$$$$$$ !     ===========================
 !$$$$$$ !
 !$$$$$$       info = 0
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       if (l.lt.1) info = -1
 !$$$$$$       if (n.lt.1) info = -2
 !$$$$$$       if (tol.le.0d0) info = -7
 !$$$$$$       if (mxmv.lt.0) info = -8
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       rr = 1
 !$$$$$$       r = rr+1
 !$$$$$$       u = r+(l+1)
 !$$$$$$       xp = u+(l+1)
 !$$$$$$       bp = xp+1
 !$$$$$$       if (bp*n.gt.ldw) info = -10
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       z = 1
 !$$$$$$       zz = z+(l+1)
 !$$$$$$       y0 = zz+(l+1)
 !$$$$$$       yl = y0+1
 !$$$$$$       y = yl+1
 !$$$$$$       if (y*(l+1).gt.ldrw) info = -12
-!$$$$$$ 
-!$$$$$$       if (info.ne.0) return 
-!$$$$$$ !      
+!$$$$$$
+!$$$$$$       if (info.ne.0) return
+!$$$$$$ !
 !$$$$$$ !     --- Initialize first residual
 !$$$$$$ !
 !$$$$$$       call matvec (n, x, work(1:n,r))
@@ -2737,19 +2737,19 @@ end subroutine zbcg2_shell
 !$$$$$$ !     --- Initialize iteration loop
 !$$$$$$ !
 !$$$$$$       nmv = 0
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       call zcopy (n, work(1:n,r), 1, work(1:n,rr), 1)
 !$$$$$$       call zcopy (n, work(1:n,r), 1, work(1:n,bp), 1)
 !$$$$$$       call zcopy (n, x, 1, work(1:n,xp), 1)
 !$$$$$$       call zlaset ('n', n, 1, zzero, zzero, x, 1)
 !$$$$$$       rnrm0 = dznrm2 (n, work(1:n,r), 1)
 !$$$$$$       rnrm = rnrm0
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       mxnrmx = rnrm0
 !$$$$$$       mxnrmr = rnrm0
 !$$$$$$       rcmp = .false.
 !$$$$$$       xpdt = .false.
-!$$$$$$ 
+!$$$$$$
 !$$$$$$       alpha = zzero
 !$$$$$$       omega = zone
 !$$$$$$       sigma = zone
@@ -2826,7 +2826,7 @@ end subroutine zbcg2_shell
 !$$$$$$          call zgetrs ('n', l-1, 1, rwork(2,zz+1), l+1, iwork,&
 !$$$$$$      &        rwork(2,y0), l+1, info)
 !$$$$$$          rwork(l+1,y0) = zzero
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          rwork(1,yl) = zzero
 !$$$$$$          call zcopy (l-1, rwork(2,z+l), 1, rwork(2,yl), 1)
 !$$$$$$          call zgetrs ('n', l-1, 1, rwork(2,zz+1), l+1, iwork,&
@@ -2839,34 +2839,34 @@ end subroutine zbcg2_shell
 !$$$$$$      &        rwork(1,y0), 1, zzero, rwork(1:n,y), 1)
 !$$$$$$          kappa0 = sqrt(zdotc (l+1, rwork(1:n,y0), 1,&
 !$$$$$$      &        rwork(1,y), 1))
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          call zhemv ('u', l+1, zone, rwork(1:n,z), l+1,&
 !$$$$$$      &        rwork(1,yl), 1, zzero, rwork(1:n,y), 1)
 !$$$$$$          kappal = sqrt(zdotc (l+1, rwork(1:n,yl), 1,&
 !$$$$$$      &        rwork(1,y), 1))
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          call zhemv ('u', l+1, zone, rwork(1:n,z), l+1,&
 !$$$$$$      &        rwork(1,y0), 1, zzero, rwork(1:n,y), 1)
 !$$$$$$          varrho =zdotc (l+1, rwork(1:n,yl), 1, rwork(1:n,y), 1)&
 !$$$$$$      &        / (kappa0*kappal)
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          hatgamma = varrho/abs(varrho)*max(abs(varrho),7d-1)&
 !$$$$$$      &        * (kappa0/kappal)
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          call zaxpy (l+1, (-hatgamma), rwork(1:n,yl), 1,&
 !$$$$$$      &        rwork(1:n,y0), 1)
 !$$$$$$ !
 !$$$$$$ !        --- Update
 !$$$$$$ !
 !$$$$$$          omega = rwork(l+1,y0)
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          call zgemv ('n', n, l, (-zone), work(1:n,u+1), n,&
 !$$$$$$      &        rwork(2,y0), 1, zone, work(1:n,u), 1)
 !$$$$$$          call zgemv ('n', n, l, zone, work(1:n,r), n,&
 !$$$$$$      &        rwork(2,y0), 1, zone, x, 1)
 !$$$$$$          call zgemv ('n', n, l, (-zone), work(1:n,r+1), n,&
 !$$$$$$      &        rwork(2,y0), 1, zone, work(1:n,r), 1)
-!$$$$$$ 
+!$$$$$$
 !$$$$$$          call zhemv ('u', l+1, zone, rwork(1:n,z), l+1,&
 !$$$$$$      &        rwork(1,y0), 1, zzero, rwork(1:n,y), 1)
 !$$$$$$          rnrm = sqrt (zdotc (l+1, rwork(1:n,y0), 1,&
@@ -2917,9 +2917,9 @@ end subroutine zbcg2_shell
 !$$$$$$ !
 !$$$$$$       tol = rnrm/rnrm0
 !$$$$$$       mxmv = nmv
-!$$$$$$ 
-!$$$$$$       return 
-!$$$$$$       
+!$$$$$$
+!$$$$$$       return
+!$$$$$$
 !$$$$$$       end SUBROUTINE zbistbl
 
 
@@ -2951,7 +2951,7 @@ end subroutine zbcg2_shell
 !******************************************************************************
 !******************************************************************************
 SUBROUTINE field_exp_shell(lambda,ref_index,v_req,m_epseq,v_p,v_dc_shell2,nstop,neq,matrixside,r_ih,v_qa,v_qb,&
-				 & v_ab_shell2,v_dc_shell1,v_ab_shell1,v_dc_core,v_ab_host,error) 
+				 & v_ab_shell2,v_dc_shell1,v_ab_shell1,v_dc_core,v_ab_host,error)
 
 IMPLICIT NONE
 
@@ -3019,7 +3019,7 @@ mx_out_do: DO i=0,neq
 	END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(0,1),v_psi_z01,error)
@@ -3032,7 +3032,7 @@ psi_z_if: IF (error/=0) THEN
 		WRITE(*,10)
 		10 FORMAT ("Errore: errore in psi_d_sub chiamata da coeff_shell")
 		RETURN
-END IF psi_z_if	
+END IF psi_z_if
 
 !Calcolo riccati bessel di terza specie complesso
 CALL csi_z_sub(nstop,m_mx(0,1),v_csi_z01,error)
@@ -3094,7 +3094,7 @@ END DO amn2_n_do
 
 !---------------------------------------------------
 !Calcolo i vettori a_mn1 e b_mn1,d_mn1 e c_mn1
-!ma uso l'if,perchè se non traslo, allora no problem
+!ma uso l'if,perche se non traslo, allora no problem
 !---------------------------------------------------
 !WRITE(*,*) "lower bounds dc2",LBOUND(v_dc_shell2, 1)
 !WRITE(*,*) "upper bounds dc2",UBOUND(v_dc_shell2, 1)
@@ -3152,7 +3152,7 @@ amn_n_do: DO n=1,nstop
 		j=j+1
 		v_ab_host(2*j-1)=( v_ab_shell1(2*j-1)*v_csi_z11(n) - v_dc_shell1(2*j-1)*v_psi_z11(n) + v_p(2*j-1)*v_psi_z01(n))&
 				 & / (v_csi_z01(n))
-		v_ab_host(2*j)=( v_ab_shell1(2*j)*v_k(0)*v_csi_z11(n) - v_dc_shell1(2*j)*v_k(0)*v_psi_z11(n) +  & 
+		v_ab_host(2*j)=( v_ab_shell1(2*j)*v_k(0)*v_csi_z11(n) - v_dc_shell1(2*j)*v_k(0)*v_psi_z11(n) +  &
 				     v_p(2*j)*v_k(1)*v_psi_z01(n)) / (v_k(1)*v_csi_z01(n))
 
 	END DO amn_m_do
@@ -3173,7 +3173,7 @@ END SUBROUTINE field_exp_shell
 !******************************************************************************
 !******************************************************************************
 SUBROUTINE field_exp_shell_dip(lambda,ref_index,v_req,m_epseq,v_p,v_dc_shell1,nstop,neq,matrixside,r_ih,v_qa,v_qb,tflag,&
-				 & v_ab_shell1,v_dc_shell2,v_ab_shell2,v_dc_core,v_ab_host,error) 
+				 & v_ab_shell1,v_dc_shell2,v_ab_shell2,v_dc_core,v_ab_host,error)
 
 IMPLICIT NONE
 
@@ -3242,7 +3242,7 @@ mx_out_do: DO i=0,neq-1
 	END DO mx_in_do
 END DO mx_out_do
 
-!Loop per calcolare le matrici coefficiente a e b 
+!Loop per calcolare le matrici coefficiente a e b
 
 !Calcolo riccati bessel di prima specie Complessa
 CALL psi_z_sub(nstop,m_mx(1,1),v_psi_z11,error)
@@ -3254,7 +3254,7 @@ psi_z_if: IF (error/=0) THEN
 		WRITE(*,10)
 		10 FORMAT ("Errore: errore in psi_d_sub chiamata da coeff_shell")
 		RETURN
-END IF psi_z_if	
+END IF psi_z_if
 
 !Calcolo riccati bessel di terza specie complesso
 CALL csi_z_sub(nstop,m_mx(0,1),v_csi_z01,error)
@@ -3368,7 +3368,7 @@ amn_n_do: DO n=1,nstop
 		j=j+1
 		v_dc_core(2*j-1)=-( v_ab_shell2(2*j-1)*v_csi_z12(n) - v_dc_shell2(2*j-1)*v_psi_z12(n) - v_p(2*j-1)*v_csi_z22(n))&
 				 & / (v_psi_z22(n))
-		v_dc_core(2*j)=-( v_ab_shell2(2*j)*v_k(2)*v_csi_z12(n) - v_dc_shell2(2*j)*v_k(2)*v_psi_z12(n) -  & 
+		v_dc_core(2*j)=-( v_ab_shell2(2*j)*v_k(2)*v_csi_z12(n) - v_dc_shell2(2*j)*v_k(2)*v_psi_z12(n) -  &
 				     v_p(2*j)*v_k(1)*v_csi_z22(n)) / (v_k(1)*v_psi_z22(n))
 
 	END DO amn_m_do
@@ -3439,22 +3439,22 @@ ns_do: DO i=1,ndip
 
     !Faccio i fuori diagonale
     next_do: DO next=v_iBlock_rhs(i),v_iBlock_rhs(i+1)-1
-    
+
         !Indice colonna
         j=v_jBlock_rhs(next)
-        
+
 !        IF (j<=(ns-ndip)) CYCLE next_do
-        
+
         !Upper e lover bounds
         lowb=1+blockside*(j-1)
         upb=blockside*j
-        
+
         !Tratto unicamente la porzione j-esima del vettore incognita
         v_a1=v_ain(lowb:upb)
-        v_b1=v_bin(lowb:upb)    
-        
+        v_b1=v_bin(lowb:upb)
+
         !Qui ho la moltiplicazione fattorizzata
-        
+
 !        WRITE(*,*) "v_a1"
 !        WRITE(*,*) (v_a1(n),n=lowb,upb)
 !        WRITE(*,*)
@@ -3462,31 +3462,31 @@ ns_do: DO i=1,ndip
         !Prima rotazione
         CALL rot1_sub(nstop,next,v_a1,v_a2)
         CALL rot1_sub(nstop,next,v_b1,v_b2)
-        
+
 !        WRITE(*,*) "v_a2"
 !        WRITE(*,*) (v_a2(n),n=lowb,upb)
 !        WRITE(*,*)
-        
+
         !Traslazione
         CALL trasl_sub(nstop,next,v_a2,v_b2,v_a3)
         CALL trasl_sub(nstop,next,v_b2,v_a2,v_b3)
-        
+
 !        WRITE(*,*) "v_a3"
 !        WRITE(*,*) (v_a3(n),n=lowb,upb)
 !        WRITE(*,*)
-            
+
         !Rotazione all'indietro
         CALL rot2_sub(nstop,next,v_a3,v_a4)
         CALL rot2_sub(nstop,next,v_b3,v_b4)
-        
+
 !        WRITE(*,*) "v_a4"
 !        WRITE(*,*) (v_a4(n),n=lowb,upb)
 !        WRITE(*,*)
-        
+
         !Faccio la somma per l'update dei vettori
-        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4     
+        v_aout(lowbi:upbi)=v_aout(lowbi:upbi)+v_a4
         v_bout(lowbi:upbi)=v_bout(lowbi:upbi)+v_b4
-        
+
     END DO next_do
 END DO ns_do
 
@@ -3527,7 +3527,7 @@ END SUBROUTINE matvec_rhs_ss_dip
 
 !******************************************************************************
 !1) SUBROUTINE matvec_singleblock_axial, per traslare i
-!coefficienti das un sistema di riferimento all'altro nel caso di una 
+!coefficienti das un sistema di riferimento all'altro nel caso di una
 !traslazione puramente assiale
 !******************************************************************************
 SUBROUTINE matvec_singleblock_axial(matrixside,v_sAij,v_sBij,v_iABij,v_jABij,v_x,v_y)
@@ -3656,17 +3656,17 @@ ALLOCATE(v_x1(1:blockside))
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x1(i)=v_exPhi(m)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !!$WRITE(*,*) "second time v_x1",v_x1
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x1,v_y,v_sDij,v_jDij,v_iDij) 
+CALL amudz(blockside,v_x1,v_y,v_sDij,v_jDij,v_iDij)
 
 !!$WRITE(*,*) "third time v_y",v_y
 
@@ -3703,24 +3703,24 @@ ALLOCATE(v_x1(1:blockside))
 i=0
 n_do: DO n=1,nstop
     m_do: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_x(i)=v_oner(m)*v_x(i)
-    
+
     END DO m_do
 END DO n_do
 
 !Routine di moltiplicazione
-CALL amudz(blockside,v_x,v_y,v_sDij,v_jDij,v_iDij) 
+CALL amudz(blockside,v_x,v_y,v_sDij,v_jDij,v_iDij)
 
 !Cambio di segno
 i=0
 n_do1: DO n=1,nstop
     m_do1: DO m=-n,n
-    
-        i=i+1     
+
+        i=i+1
         v_y(i)=v_exPhi(-m)*v_oner(m)*v_y(i)
-    
+
     END DO m_do1
 END DO n_do1
 
@@ -3863,7 +3863,7 @@ ns_do: DO i=imin,imax
           lowb=1+blockside*(j-jmin)
           upb=blockside*(j-jmin+1)
 
-          !getting the jth part of the 
+          !getting the jth part of the
           v_a1=v_ain(lowb:upb)
           v_b1=v_bin(lowb:upb)
 
@@ -3875,7 +3875,7 @@ ns_do: DO i=imin,imax
           CALL rot1_singleblock(nstop,m_Dij(:,next),m_iDij(:,next),m_jDij(:,next),m_exphi(:,next),v_b1,v_b2)
 
 !!$          WRITE(*,*) "first rotation done"
-!!$          
+!!$
 !!$          WRITE(*,*) 'inside matvec'
 !!$          WRITE(*,*) "nstop",nstop
 !!$          WRITE(*,*) "m_exphi",m_exphi
@@ -3922,7 +3922,7 @@ ns_do: DO i=imin,imax
           lowb=1+blockside*(i-jmin)
           upb=blockside*(i-jmin+1)
 
-          !getting the jth part of the 
+          !getting the jth part of the
           v_a1=v_ain(lowb:upb)
           v_b1=v_bin(lowb:upb)
 
@@ -3968,14 +3968,14 @@ SUBROUTINE zbistbl (l,n,blockside,imin,imax,jmin,jmax,&
 		    x,b,tol,mxmv,work,ldw,rwork,ldrw,iwork,info)
 
 ! Copyright (c) 1995-1998 by D.R. Fokkema.
-! Permission to copy all or part of this work is granted, 
-! provided that the copies are not made or distributed 
-! for resale, and that the copyright notice and this 
+! Permission to copy all or part of this work is granted,
+! provided that the copies are not made or distributed
+! for resale, and that the copyright notice and this
 ! notice are retained.
 
-! THIS WORK IS PROVIDED ON AN "AS IS" BASIS.  THE AUTHOR 
-! PROVIDES NO WARRANTY WHATSOEVER, EITHER EXPRESSED OR IMPLIED, 
-! REGARDING THE WORK, INCLUDING WARRANTIES WITH RESPECT TO ITS 
+! THIS WORK IS PROVIDED ON AN "AS IS" BASIS.  THE AUTHOR
+! PROVIDES NO WARRANTY WHATSOEVER, EITHER EXPRESSED OR IMPLIED,
+! REGARDING THE WORK, INCLUDING WARRANTIES WITH RESPECT TO ITS
 ! MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE.
 
 IMPLICIT NONE
@@ -4295,9 +4295,9 @@ subroutine zbcg2_gen(nstop,print_resid,nonzero_x,&
 ! This is the "vanilla" version of BiCGstab(\ell) as described
 ! in PhD thesis of D.R.Fokkema, Chapter 3 (also available as
 ! Preprint 976, Dept. of Mathematics, Utrecht University, URL
-! http://www.math.uu.nl/publications/).  It includes two enhancements 
+! http://www.math.uu.nl/publications/).  It includes two enhancements
 ! to BiCGstab(\ell) proposed by G.Sleijpen and H.van der Vorst in
-! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence 
+! 1) G.Sleijpen and H.van der Vorst "Maintaining convergence
 !    properties of BiCGstab methods in finite precision arithmetic",
 !    Numerical Algorithms, 10, 1995, pp.203-223
 ! 2) G.Sleijpen and H.van der Vorst "Reliable updated residuals in
@@ -4305,23 +4305,23 @@ subroutine zbcg2_gen(nstop,print_resid,nonzero_x,&
 !
 ! {{ This code based on original work of D.R.Fokkema:
 !
-! subroutine zbistbl v1.1 1998    
+! subroutine zbistbl v1.1 1998
 ! Copyright (c) 1995-1998 by D.R. Fokkema.
-! Permission to copy all or part of this work is granted, 
-! provided that the copies are not made or distributed 
-! for resale, and that the copyright notice and this 
+! Permission to copy all or part of this work is granted,
+! provided that the copies are not made or distributed
+! for resale, and that the copyright notice and this
 ! notice are retained.
 !
 ! }}
 !
-! Your bug reports, comments, etc. are welcome: 
+! Your bug reports, comments, etc. are welcome:
 ! m.a.botchev@math.utwente.nl
 !
 ! ------------------------------
 ! Description of the parameters:
 ! ------------------------------
 !
-! print_resid (input) LOGICAL. If print_resid=.true. the number of 
+! print_resid (input) LOGICAL. If print_resid=.true. the number of
 !            matrix-vector multiplications done so far and residual norm will
 !            be printed to the standard output each iteration
 !
@@ -4329,7 +4329,7 @@ subroutine zbcg2_gen(nstop,print_resid,nonzero_x,&
 !            in this simple version it is required that l <= 2
 !            l=2 is often useful for systems with nonsymmetric matrices
 !
-! n          (input) INTEGER size of the linear system to solve 
+! n          (input) INTEGER size of the linear system to solve
 !
 ! x          (input/output) COMPLEX*16 array dimension n
 !            initial guess on input, solution on output
@@ -4341,24 +4341,24 @@ subroutine zbcg2_gen(nstop,print_resid,nonzero_x,&
 !            to deliver y:=A*x by CALL matvec(n,x,y)
 !
 ! nonzero_x  (input) LOGICAL tells
-!            BiCGstab(\ell) if the initial guess x is zero or not. 
+!            BiCGstab(\ell) if the initial guess x is zero or not.
 !            If nonzero_x is .FALSE., initial residual equals r.h.s. vector
 !            and one MATVEC call is avoided
 !
-! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are 
+! toler      (input/output) DOUBLE PRECISION tolerance: the iterations are
 !            stopped as soon as || residual ||/|| initial residual|| <= toler,
-!            the norm is Euclidean.  On output, if info>=0, the value of 
+!            the norm is Euclidean.  On output, if info>=0, the value of
 !            toler is set to the actually achieved residual reduction
 !
-! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix 
-!            vector multiplications allowed to be done.  On output: 
-!            if info>=0, mxmatvec is set to the actual number of matrix 
+! mxmatvec   (input/output) INTEGER.  On input: maximum number of matrix
+!            vector multiplications allowed to be done.  On output:
+!            if info>=0, mxmatvec is set to the actual number of matrix
 !            vector multiplications done
 !
 ! work       (workspace) COMPLEX*16 array of dimension (n,2*l+5)
 !
 ! info       (output) INTEGER.  info = 0 in case of succesful computations
-!            and 
+!            and
 !            info = -m (<0) - means paramater number m has an illegal value
 !            info = 1 - means no convergence achieved (stopping criterion
 !            is not fulfilled)
@@ -4366,7 +4366,7 @@ subroutine zbcg2_gen(nstop,print_resid,nonzero_x,&
 !            value of parameter l usually helps)
 !
 ! WARNING: If the iterations are ended normally (info=0 or info=1),
-! the true residual norm is computed and returned as an output value 
+! the true residual norm is computed and returned as an output value
 ! of the parameter toler.  The true residual norm can be slightly larger
 ! than the projected residual norm used by the algorithm to stop the
 ! iterations.  It may thus happen that on output info=0 but the value
@@ -4410,13 +4410,13 @@ INTEGER(lo)          :: rr, r, u, xp, bp,error
 ! Constants:
 REAL(dbl),    parameter :: delta = 1d-2
 COMPLEX(dbl), parameter :: zzero = (0d0,0d0), zone = (1d0,0d0)
-    
+
 ! Functions:
 !REAL(dbl)     :: dnorm2_bcg
 !COMPLEX(dbl) :: zdot_bcg
 
-!!$WRITE(*,*) "nstop just inside solver",nstop    
-    
+!!$WRITE(*,*) "nstop just inside solver",nstop
+
 info = 0
 
 if (l<1 .or. l>2) info = -2
@@ -4430,7 +4430,7 @@ u = r+(l+1)
 xp = u+(l+1)
 bp = xp+1
 
-if (info/=0) return 
+if (info/=0) return
 
 !~~~~~~~~~~~~~~~~~~~~
 !!$WRITE(*,*) 'work,n1'
@@ -4611,7 +4611,7 @@ kappal = sqrt( abs(zdot_bcg(l+1,yl,zyl)) )
 
 varrho = zdot_bcg(l+1,yl,zy0) / (kappa0*kappal)
 
-hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 ) 
+hatgamma = varrho/abs(varrho) * max( abs(varrho),7d-1 )
 
 y0 = y0 - (hatgamma*kappa0/kappal)*yl
 

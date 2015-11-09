@@ -13,7 +13,7 @@ MODULE gmmsubs
 !		h_patt: linked list for the pattern out
 !		nspheres: total number of spheres out
 !		neps: total number of materials out
-!		neq: number identical spheres groups out 
+!		neq: number identical spheres groups out
 !
 !	ERROR: 0 ok and 1 error in one of the called subroutines
 !
@@ -47,7 +47,7 @@ MODULE gmmsubs
 !	VARS:
 !		v_unit_in: vector of input units in
 !		neps: total number of materials in
-!		
+!
 !	ERROR: 0 ok, 1 different number of points in tabulation, 2 different tabulations length
 !
 !5) correps(lambda,e1,e2,r,par)
@@ -57,20 +57,20 @@ MODULE gmmsubs
 !		e1,e2: real and imaginary part of the dielectric function
 !		r: cluster radius
 !		par: vector containinge the 3 parameters necessary to correct the dielectric function
-!		
+!
 !	ERROR: no error flag
 !
 !6) lambdaepsilon
 !	COMMENT: Gives an output matrix with corrected dielectric functions for the equivalent spheres
 !	VARS:
-!		neps,neq: number of materials and number of equal spheres in 
+!		neps,neq: number of materials and number of equal spheres in
 ! 		lambda: incident wavelength in
 ! 		v_eps,v_epseq:character arrays for materials and materials of equal spheres in
 ! 		v_req: array of radii for eqnals spheres in
 ! 		m_eps,m_par: matrices for dielectric functions ad correction parameters in
 ! 		m_epseq: matrix for corrected dielectric functions of equal spheres out
-! 
-!		
+!
+!
 !	ERROR: no error flag
 !
 !
@@ -117,17 +117,17 @@ TYPE (NODE_RDBL_CHAR), POINTER :: h_aus=>NULL()	! LL ausiliaria per costruire il
 ! Apertura del file
 OPEN(UNIT=unit_in,FILE=filename, ACCESS='SEQUENTIAL',STATUS='OLD',ACTION='READ',IOSTAT=status_in)
 
-! Controllo apertura file	
-openif: IF (status_in==0) THEN																
+! Controllo apertura file
+openif: IF (status_in==0) THEN
 			WRITE (*,*)
-			WRITE (*,10) filename 
+			WRITE (*,10) filename
 			10 FORMAT ("Il file e' stato aperto con successo, il suo nome e' ", A)
 			error=0
-		ELSE            
+		ELSE
 			WRITE (*,*)
             WRITE (*,20) status_in
 			20 FORMAT ("Si e' verificato un errore di apertura in inputinfo, IOSTAT= ",I5 //,"Il programma termina ora...")
-			error=1 
+			error=1
             RETURN
         END IF openif
 
@@ -135,63 +135,63 @@ openif: IF (status_in==0) THEN
 nspheres=0
 neps=0
 neq=0
-     
-! Ciclo per il reperimento delle informazioni        
+
+! Ciclo per il reperimento delle informazioni
 read_do: DO
 			READ(unit_in,*,IOSTAT=status_in) x,y,z,r,eps
 			IF (status_in<0) EXIT					! Esco a fine file
-			
+
 			nspheres=nspheres+1						! Aggiorno il numero delle sfere
-			
-			
-			
+
+
+
 			CALL c_addnode(h_eps,eps,error,neps)	! Costruisco la LL per le funzioni dielettriche
-			
+
 			! C_Addnode funziona?
-			eps_if: IF (error==1) THEN																
+			eps_if: IF (error==1) THEN
 						WRITE (*,*)
-						WRITE (*,30) 
+						WRITE (*,30)
 						30 FORMAT ("Si e' verificato un errore nella scansione delle funzioni dielettriche")
 						RETURN
-					ELSE            
+					ELSE
 						error=0
 			        END IF eps_if
-			
-			! Preparo l'input per la subroutine pattern        
+
+			! Preparo l'input per la subroutine pattern
 			input%value=r
 			input%text=eps
-	
-			! Costruisco il patter di uni e dui ecc.        
+
+			! Costruisco il patter di uni e dui ecc.
 			CALL pattern(h_aus,input,h_patt,neq,h_req,h_epseq,error)
-			
+
 			! pattern funziona?
-			patt_if: IF (error==1) THEN																
+			patt_if: IF (error==1) THEN
 						WRITE (*,*)
-						WRITE (*,40) 
+						WRITE (*,40)
 						40 FORMAT ("Si e' verificato un errore nella routine per la costruzione del pattern")
 						RETURN
-					ELSE            
+					ELSE
 						error=0
 			        END IF patt_if
-			        
+
 END DO read_do
-			
-! Disalloco la memoria della ll ausiliaria per la costruzione del pattern			
+
+! Disalloco la memoria della ll ausiliaria per la costruzione del pattern
 CALL lldestructor(h_aus,error)
 
 ! pattern funziona?
-dest_if: IF (error==1) THEN																
+dest_if: IF (error==1) THEN
 			WRITE (*,*)
-			WRITE (*,50) 
+			WRITE (*,50)
 			50 FORMAT ("Si e' verificato un errore nella routine lldesctructor")
 			RETURN
-		ELSE            
+		ELSE
 			error=0
         END IF dest_if
 
 ! Torno all'inizio del file
 REWIND(UNIT=unit_in)
-			        
+
 END SUBROUTINE openinfo
 
 
@@ -231,17 +231,17 @@ TYPE (NODE_RDBL_CHAR), POINTER :: h_aus, h_aus_shell=>NULL()		! LL ausiliaria pe
 ! Apertura del file
 OPEN(UNIT=unit_in,FILE=filename, ACCESS='SEQUENTIAL',STATUS='OLD',ACTION='READ',IOSTAT=status_in)
 
-! Controllo apertura file	
-openif: IF (status_in==0) THEN																
+! Controllo apertura file
+openif: IF (status_in==0) THEN
 			WRITE (*,*)
-			WRITE (*,10) filename 
+			WRITE (*,10) filename
 			10 FORMAT ("Il file e' stato aperto con successo, il suo nome e' ", A)
 			error=0
-		ELSE            
+		ELSE
 			WRITE (*,*)
             WRITE (*,20) status_in
 			20 FORMAT ("Si e' verificato un errore di apertura in inputinfo, IOSTAT= ",I5 //,"Il programma termina ora...")
-			error=1 
+			error=1
             RETURN
         END IF openif
 
@@ -249,8 +249,8 @@ openif: IF (status_in==0) THEN
 nspheres=0
 neps=0
 neq=0
-     
-! Ciclo per il reperimento delle informazioni        
+
+! Ciclo per il reperimento delle informazioni
 read_do: DO
 	READ(unit_in,*,IOSTAT=status_in) x,y,z,r,r_shell,eps,eps_shell
 	IF (status_in<0) EXIT					! Esco a fine file
@@ -265,29 +265,29 @@ read_do: DO
 	! C_Addnode funziona?
 	eps_if: IF (error==1) THEN
 		WRITE (*,*)
-		WRITE (*,30) 
+		WRITE (*,30)
 		30 FORMAT ("Si e' verificato un errore nella scansione delle funzioni dielettriche")
 		RETURN
-	ELSE            
+	ELSE
 		error=0
 	END IF eps_if
 
-	! Preparo l'input per la subroutine pattern        
+	! Preparo l'input per la subroutine pattern
 	input%value=r
 	input%text=eps
 	input_shell%value=r_shell
 	input_shell%text=eps_shell
 
-	! Costruisco il patter di uni e dui ecc.        
+	! Costruisco il patter di uni e dui ecc.
 	CALL pattern_shell(h_aus,h_aus_shell,input,input_shell,h_patt,neq,h_req,h_epseq,h_req_shell,h_epseq_shell,error)
 
 	! pattern funziona?
 	patt_if: IF (error==1) THEN
 		WRITE (*,*)
-		WRITE (*,40) 
+		WRITE (*,40)
 		40 FORMAT ("Si e' verificato un errore nella routine per la costruzione del pattern")
 		RETURN
-	ELSE            
+	ELSE
 		error=0
 	END IF patt_if
 
@@ -300,7 +300,7 @@ CALL lldestructor(h_aus_shell,error)
 ! pattern funziona?
 dest_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,50) 
+	WRITE (*,50)
 	50 FORMAT ("Si e' verificato un errore nella routine lldesctructor")
 	RETURN
 ELSE
@@ -344,13 +344,13 @@ a=0
 
 ! fill_do_out: DO i=1,ns
 ! 		fill_do_in: DO j=1,i
-! 			
+!
 ! 			IF (j==i) CYCLE
-! 			
+!
 ! 			IF (dist(xyz(i,:),xyz(j,:))<(r(i)+r(j))) THEN
 ! 				a(i,j)=1
 ! 			END IF
-! 			
+!
 ! 		END DO fill_do_in
 ! END DO fill_do_out
 
@@ -367,7 +367,7 @@ somma_if: IF (somma/=0) THEN
 
 	error=1
 	WRITE(*,10) somma
-	10 FORMAT ("Ci sono ",I5, " coppie di sfere che si intersecano.")	
+	10 FORMAT ("Ci sono ",I5, " coppie di sfere che si intersecano.")
 	WRITE(*,20)
 	20 FORMAT ("Se vuoi vedere le coppie (tanto tempo...) scrivi 1, se no 0: ", $)
 	READ (*,*) flag
@@ -394,7 +394,7 @@ ELSE
 	error=0
 
 END IF somma_if
-			        
+
 END SUBROUTINE intspheres
 
 
@@ -438,7 +438,7 @@ somma_if:	IF (somma/=0) THEN
 
 	error=1
 	WRITE(*,10) somma
-	10 FORMAT ("Ci sono ",I5, " layer non concentrici.")	
+	10 FORMAT ("Ci sono ",I5, " layer non concentrici.")
 	WRITE(*,20)
 	20 FORMAT ("Se vuoi vedere quali layer sono scrivi 1, se no 0: ", $)
 	READ (*,*) flag
@@ -499,7 +499,7 @@ TYPE (NODE_DBL_REAL), POINTER :: curs_req=>NULL()					! LL per raggi sfere ugual
 TYPE (NODE_CHAR), POINTER :: curs_epseq=>NULL()						! LL per funzioni dielettriche sfere uguali
 ! Inizio della procedura vera e propria
 
-! Riempio gli array        
+! Riempio gli array
 read_do: DO i=1,ns
 			READ(unit_in,*,IOSTAT=status_in) m_xyz(i,1),m_xyz(i,2),m_xyz(i,3),v_r(i),v_epsg(i)
 END DO read_do
@@ -508,7 +508,7 @@ END DO read_do
 unit_do: DO i=1,neps
 			v_unit_in(i)=unit_in+i
 END DO unit_do
-			
+
 
 ! Riavvolgo il file
 REWIND(UNIT=unit_in)
@@ -521,7 +521,7 @@ fill_do1: DO i=0,ns-1
 			v_patt(ns-i)=curs_patt%value
 			curs_patt=>curs_patt%next
 		  END DO fill_do1
-			        
+
 NULLIFY(curs_patt)				! Lo nullifichiamo per sicurezza
 
 CALL lldestructor(h_patt,error)
@@ -529,10 +529,10 @@ CALL lldestructor(h_patt,error)
 ! lldescructor funziona?
 patt_if: IF (error==1) THEN
 			WRITE (*,*)
-			WRITE (*,10) 
+			WRITE (*,10)
 			10 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 			RETURN
-		ELSE            
+		ELSE
 			error=0
         END IF patt_if
 
@@ -543,21 +543,21 @@ fill_do2: DO i=0,neps-1
 			v_eps(neps-i)=curs_eps%value
 			curs_eps=>curs_eps%next
 		  END DO fill_do2
-			        
-NULLIFY(curs_eps)					! Lo nullifichiamo per sicurezza	
+
+NULLIFY(curs_eps)					! Lo nullifichiamo per sicurezza
 
 CALL lldestructor(h_eps,error)
 
 ! lldescructor funziona?
-eps_if: IF (error==1) THEN																
+eps_if: IF (error==1) THEN
 			WRITE (*,*)
-			WRITE (*,20) 
+			WRITE (*,20)
 			20 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 			RETURN
-		ELSE            
+		ELSE
 			error=0
         END IF eps_if
-        
+
 ! Riempio l'array v_req da h_req e distruggo h_req
 curs_req=>h_req						! Vettore nomi funzioni dielettriche
 
@@ -565,18 +565,18 @@ fill_do3: DO i=0,neq-1
 			v_req(neq-i)=curs_req%value
 			curs_req=>curs_req%next
 		  END DO fill_do3
-			        
-NULLIFY(curs_req)					! Lo nullifichiamo per sicurezza	
+
+NULLIFY(curs_req)					! Lo nullifichiamo per sicurezza
 
 CALL lldestructor(h_req,error)
 
 ! lldescructor funziona?
-req_if: IF (error==1) THEN																
+req_if: IF (error==1) THEN
 			WRITE (*,*)
-			WRITE (*,30) 
+			WRITE (*,30)
 			30 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 			RETURN
-		ELSE            
+		ELSE
 			error=0
         END IF req_if
 
@@ -587,18 +587,18 @@ fill_do4: DO i=0,neq-1
 			v_epseq(neq-i)=curs_epseq%value
 			curs_epseq=>curs_epseq%next
 		  END DO fill_do4
-			        
-NULLIFY(curs_epseq)					! Lo nullifichiamo per sicurezza	
+
+NULLIFY(curs_epseq)					! Lo nullifichiamo per sicurezza
 
 CALL lldestructor(h_epseq,error)
 
 ! lldescructor funziona?
-reps_if: IF (error==1) THEN																
+reps_if: IF (error==1) THEN
 			WRITE (*,*)
-			WRITE (*,40) 
+			WRITE (*,40)
 			40 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 			RETURN
-		ELSE            
+		ELSE
 			error=0
         END IF reps_if
 
@@ -655,7 +655,7 @@ END DO read_do
 unit_do: DO i=1,neps
 			v_unit_in(i)=unit_in+i
 END DO unit_do
-			
+
 
 ! Riavvolgo il file
 REWIND(UNIT=unit_in)
@@ -678,10 +678,10 @@ CALL lldestructor(h_patt,error)
 ! lldescructor funziona?
 patt_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,10) 
+	WRITE (*,10)
 	10 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
-ELSE            
+ELSE
 	error=0
 END IF patt_if
 
@@ -704,10 +704,10 @@ CALL lldestructor(h_eps,error)
 ! lldescructor funziona?
 eps_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,20) 
+	WRITE (*,20)
 	20 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
-ELSE            
+ELSE
 	error=0
 END IF eps_if
 
@@ -729,7 +729,7 @@ CALL lldestructor(h_req,error)
 ! lldescructor funziona?
 req_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,30) 
+	WRITE (*,30)
 	30 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
 ELSE
@@ -754,7 +754,7 @@ CALL lldestructor(h_epseq,error)
 ! lldescructor funziona?
 reps_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,40) 
+	WRITE (*,40)
 	40 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
 ELSE
@@ -779,7 +779,7 @@ CALL lldestructor(h_req_shell,error)
 ! lldescructor funziona?
 req_shell_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,31) 
+	WRITE (*,31)
 	31 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
 ELSE
@@ -804,7 +804,7 @@ CALL lldestructor(h_epseq_shell,error)
 ! lldescructor funziona?
 reps_shell_if: IF (error==1) THEN
 	WRITE (*,*)
-	WRITE (*,41) 
+	WRITE (*,41)
 	41 FORMAT ("Si e' verificato un errore nella routine lldestructor")
 	RETURN
 ELSE
@@ -844,7 +844,7 @@ INTEGER(lo), INTENT(OUT) ::error								! Errore
 
 ! Dichiarazione variabili interne
 REAL(dbl) :: eps1,eps2								! Var spazzatura per epsilon
-REAL(dbl), DIMENSION(neps) :: v_lambda				! Vettore per tenere le lunghezze d'onda  
+REAL(dbl), DIMENSION(neps) :: v_lambda				! Vettore per tenere le lunghezze d'onda
 INTEGER(lo) :: status_in,i						! Variabile di status lettura, indice
 INTEGER(lo),DIMENSION(neps) :: ncount			! Array per vedere se la lunghezza dei file e' omogenea
 
@@ -855,14 +855,14 @@ ncount=0
 ! Ciclo per vedere le lunghezze delle tabulazioni delle funzioni dielettriche
 outer_do1: DO i=1,neps
 
-			inner_do1: DO 
-				
+			inner_do1: DO
+
  				READ (v_unit_in(i),*,IOSTAT=status_in) v_lambda(i),eps1,eps2
  				IF (status_in<0) CYCLE outer_do1
  				ncount(i)=ncount(i)+1
- 				
+
  			END DO inner_do1
- 			
+
 END DO outer_do1
 
 ncount=ncount-ncount(1)
@@ -891,18 +891,18 @@ outer_do2: DO
 				inner_do2: DO i=1,neps
 								READ (v_unit_in(i),*,IOSTAT=status_in) v_lambda(i),eps1,eps2
 				END DO inner_do2
-			
+
 				IF (status_in<0) EXIT
 				v_lambda=v_lambda-v_lambda(1)
-				
+
 				lambda_if: IF (DOT_PRODUCT(v_lambda,v_lambda)<=1.0D-10) THEN
 							error=0
 						   ELSE
 							error=2
 				END IF lambda_if
-				
+
 				IF (error==2) EXIT
-				
+
 END DO outer_do2
 
 !Loop per il rewind dei file
@@ -929,7 +929,7 @@ IMPLICIT NONE
 ! Dichiarazione dei dummy argument
 REAL(dbl), INTENT(IN) :: lambda,r 				! Raggio della particella
 REAL(dbl), DIMENSION(:), INTENT(IN) ::	par		! Array parametri
-REAL(dbl), INTENT(INOUT) :: e1,e2				! Lunghezza d'onda, parte reale immaginaria funzione dielettrica 
+REAL(dbl), INTENT(INOUT) :: e1,e2				! Lunghezza d'onda, parte reale immaginaria funzione dielettrica
 
 ! Dichiarazione variabili interne
 REAL(dbl) :: omega_drude,gamma_inf,gamma,omega,leff						! Parametri correzioni
@@ -939,7 +939,7 @@ REAL(dbl) :: corr1,corr2										! Correzioni funzione dielettrica
 
 ! Parametri necessari alla correzione
 leff=(4.0D0*r*1.0D-9)/3.0D0
-omega_drude=SQRT((par(1)*(e**2))/(e0*me))			
+omega_drude=SQRT((par(1)*(e**2))/(e0*me))
 gamma_inf=1/par(2)
 gamma=gamma_inf + par(3)/(leff)
 
@@ -974,7 +974,7 @@ IMPLICIT NONE
 ! Dichiarazione dei dummy argument
 REAL(dbl), INTENT(IN) :: lambda,r,r_shell			! Raggio della particella
 REAL(dbl), DIMENSION(:), INTENT(IN) ::par			! Array parametri
-REAL(dbl), INTENT(INOUT) :: e1,e2				! Lunghezza d'onda, parte reale immaginaria funzione dielettrica 
+REAL(dbl), INTENT(INOUT) :: e1,e2				! Lunghezza d'onda, parte reale immaginaria funzione dielettrica
 
 ! Dichiarazione variabili interne
 REAL(dbl) :: omega_drude,gamma_inf,gamma,omega,leff,q						! Parametri correzioni
@@ -985,7 +985,7 @@ REAL(dbl) :: corr1,corr2										! Correzioni funzione dielettrica
 ! Parametri necessari alla correzione
 q=r/r_shell
 leff=((4.0D0*r_shell*1.0D-9)/3.0D0)*(1.0D0-q**3)/(1.0D0+q**2)
-omega_drude=SQRT((par(1)*(e**2))/(e0*me))			
+omega_drude=SQRT((par(1)*(e**2))/(e0*me))
 gamma_inf=1/par(2)
 
 !Con questo if, risolvo il problema della correzione del caso di una particella solo core
@@ -1023,7 +1023,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dei dummy argument
 
-INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali 
+INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali
 REAL(dbl), INTENT(IN) :: lambda									! Lunghezza d'onda
 CHARACTER(len=*), INTENT(IN) :: correction						! Flag correzione
 CHARACTER(len=*) ,DIMENSION(:), INTENT(IN) :: v_eps,v_epseq	! Array nomi funct diel
@@ -1040,13 +1040,13 @@ REAL(dbl), DIMENSION(neq,3) :: m_pareq							! Matrice par eq
 
 out_do: DO i=1,neq
 			in_do: DO j=1,neps
-			
+
 					IF (v_eps(j) /= v_epseq(i)) CYCLE in_do
 					m_epseq(i,1:2)=m_eps(j,1:2)
 					m_pareq(i,1:3)=m_par(j,1:3)
-					
+
 			END DO in_do
-END DO out_do					
+END DO out_do
 
 !Non correggo la funzione dielettrica ed esco
 IF (correction=='no') THEN
@@ -1077,7 +1077,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dei dummy argument
 
-INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali 
+INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali
 REAL(dbl), INTENT(IN) :: lambda									! Lunghezza d'onda
 CHARACTER(len=*), INTENT(IN) :: correction						! Flag correzione
 CHARACTER(len=*) ,DIMENSION(:), INTENT(IN) :: v_eps,v_epseq	! Array nomi funct diel
@@ -1094,13 +1094,13 @@ REAL(dbl), DIMENSION(neq,3) :: m_pareq							! Matrice par eq
 
 out_do: DO i=1,neq
 			in_do: DO j=1,neps
-			
+
 					IF (v_eps(j) /= v_epseq(i)) CYCLE in_do
 					m_epseq(i,1:2)=m_eps(j,1:2)
 					m_pareq(i,1:3)=m_par(j,1:3)
-					
+
 			END DO in_do
-END DO out_do					
+END DO out_do
 
 !Non correggo la funzione dielettrica ed esco
 IF (correction=='no') THEN
@@ -1125,8 +1125,8 @@ END SUBROUTINE lambdaepsilon_singleshell
 !**********************************************************************************************************************
 !**********************************************************************************************************************
 !6tris) SUBROUTINE lambdaepsilon_shell: per ogni lunghezza d'onda costruisco due vettori per la parte reale e per la parte
-!immaginaria della funzione dielettrica che mi serve, e cosi' poi posso fare i miei calcoli in relativa tranquillita', 
-!in più correggo per le dimensioni, sia per il core sia per la shell, con mean free path diversi
+!immaginaria della funzione dielettrica che mi serve, e cosi' poi posso fare i miei calcoli in relativa tranquillita',
+!in piu correggo per le dimensioni, sia per il core sia per la shell, con mean free path diversi
 !**********************************************************************************************************************
 !**********************************************************************************************************************
 !**********************************************************************************************************************
@@ -1138,7 +1138,7 @@ IMPLICIT NONE
 
 ! Dichiarazione dei dummy argument
 
-INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali 
+INTEGER(lo), INTENT(IN) :: neps,neq							! Numero materiali e numero gruppi di sfere uguali
 REAL(dbl), INTENT(IN) :: lambda								! Lunghezza d'onda
 CHARACTER(len=*), INTENT(IN) :: correction,correction_shell				! Flag correzione
 CHARACTER(len=*) ,DIMENSION(:), INTENT(IN) :: v_eps,v_epseq,v_epseq_shell	! Array nomi funct diel
