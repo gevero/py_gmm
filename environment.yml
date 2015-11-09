@@ -21,7 +21,6 @@ dependencies:
 - cffi=1.2.1=py34_0
 - clyent=1.0.0=py34_0
 - colorama=0.3.3=py34_0
-- conda=3.18.3=py34_0
 - conda-build=1.18.1=py34_0
 - conda-env=2.4.4=py34_0
 - configobj=5.0.6=py34_0
