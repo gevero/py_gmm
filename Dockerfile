@@ -3,7 +3,8 @@ FROM andrewosh/binder-base
 MAINTAINER Andrew Osheroff <andrewosh@gmail.com>
 
 # install conda environment
-RUN conda env create --name python3 -f environment.yml
+RUN conda env create -f /home/main/environment.yml
+RUN source activate root
 
 USER root
 
