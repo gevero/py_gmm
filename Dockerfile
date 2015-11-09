@@ -3,7 +3,7 @@ FROM andrewosh/binder-base
 MAINTAINER Andrew Osheroff <andrewosh@gmail.com>
 
 # install conda environment
-RUN cd /home/main/notebooks
+RUN /bin/bash -c "cd /home/giovi/notebooks"
 RUN conda env create -n py3 -f environment.yml
 RUN source activate py3
 
