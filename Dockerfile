@@ -5,7 +5,8 @@ MAINTAINER Andrew Osheroff <andrewosh@gmail.com>
 # install conda environment
 # RUN /bin/bash -c "cd /home/main/notebooks"
 RUN pwd
-RUN conda env create -n py3 -f notebooks/environment.yml
+RUN ls
+RUN conda env create -f notebooks/environment.yml
 RUN source activate py3
 
 USER root
