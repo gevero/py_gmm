@@ -1,3 +1,3 @@
 FROM andrewosh/binder-base
-ADD repo/environment.yml environment.yml
+ADD gevero/py_gmm_binder4/environment.yml environment.yml
 RUN conda env create -n binder
