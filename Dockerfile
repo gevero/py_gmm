@@ -1,6 +1,5 @@
 # 0) calling the base image
-FROM gcr.io/generic-notebooks/binder-base
-
+FROM andrewosh/binder-base
 # 1) adding my environment.yml file
 ADD repo/environment.yml environment.yml
 
