@@ -24,6 +24,6 @@ RUN ls $HOME
 
 RUN ls $HOME/notebooks
 
-ADD ./environment.yml environment.yml
+ADD environment.yml environment.yml
 
 RUN conda env create -n binder
