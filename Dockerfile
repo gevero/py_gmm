@@ -1,15 +1,19 @@
 FROM andrewosh/binder-base
 
-USER main
+ADD . $HOME/notebooks
 
-# ADD . $HOME/notebooks
+USER root
 
-# USER root
-
-# RUN chown -R main:main $HOME/notebooks
+RUN chown -R main:main $HOME/notebooks
 
 USER main
 
-ADD environment.yml environment.yml
+WORKDIR $HOME/notebooks
 
 RUN conda env create -n binder
+
+RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --user"
+
+WORKDIR $HOME/notebooks/py_gmm
+
+RUN sh f2py.sh
