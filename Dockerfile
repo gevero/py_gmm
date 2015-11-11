@@ -2,6 +2,10 @@ FROM andrewosh/binder-base
 
 USER main
 
+RUN ls .
+
+RUN ls $HOME
+
 ADD . $HOME/notebooks
 
 USER root
