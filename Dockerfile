@@ -16,4 +16,4 @@ RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --us
 
 WORKDIR $HOME/notebooks/py_gmm
 
-RUN sh f2py.sh
+RUN /bin/bash -c "source activate binder && sh f2py.sh"
