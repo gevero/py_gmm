@@ -12,10 +12,10 @@ WORKDIR $HOME/notebooks
 
 RUN conda env create -n binder
 
-RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --user"
-
 WORKDIR $HOME/notebooks/py_gmm
 
 RUN /bin/bash -c "source activate binder && sh f2py.sh"
+
+WORKDIR $HOME/notebooks
 
 RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --user"

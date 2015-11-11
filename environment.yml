@@ -1,4 +1,4 @@
-name: root
+name: binder
 dependencies:
 - _license=1.1=py34_1
 - abstract-rendering=0.5.1=np19py34_0
@@ -173,4 +173,3 @@ dependencies:
   - sphinx-rtd-theme==0.1.7
   - tables==3.2.2
   - yapf==0.3.0
-
