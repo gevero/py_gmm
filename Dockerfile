@@ -1,5 +1,11 @@
 FROM andrewosh/binder-base
 
+USER root
+
+RUN ls .
+
+RUN ls $HOME
+
 USER main
 
 RUN ls .
