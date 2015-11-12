@@ -18,4 +18,6 @@ RUN /bin/bash -c "source activate binder && sh f2py.sh"
 
 WORKDIR $HOME/notebooks
 
+RUN echo \"export PATH=/home/main/anaconda/envs/binder/bin/:$PATH\" >> ~/.binder_start\n
+
 RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --user"
