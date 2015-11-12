@@ -18,6 +18,8 @@ RUN /bin/bash -c "source activate binder && sh f2py.sh"
 
 WORKDIR $HOME/notebooks
 
-RUN echo \"export PATH=/home/main/anaconda/envs/binder/bin/:$PATH\" >> ~/.binder_start\n
+RUN echo \"export PATH=/home/main/anaconda/envs/binder/bin/:$PATH\" >> ~/.binder_start
+
+RUN conda install -n binder jupyter
 
 RUN /bin/bash -c "source activate binder && ipython kernelspec install-self --user"
