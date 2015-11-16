@@ -1,10 +1,16 @@
 # py_gmm
 
+[![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/gevero/py_gmm)
+
 <img src="https://github.com/gevero/py_gmm/blob/master/images/array.png" width="600">
 
 A Fortran 90 implementation of the **Generalized Multiparticle Mie** method. If you find py_gmm useful for generating results included in publications, please consider citing the following paper:
 
 Pellegrini G., Mattei G., Bello V. and Mazzoldi P. (2007) **Interacting metal nanoparticles: Optical properties from nanoparticle dimers to core-satellite systems** *Materials Science and Engineering: C 27:1347–1350*. [doi:10.1016/j.msec.2006.07.025](http://dx.doi.org/10.1016/j.msec.2006.07.025)
+
+## Use it right away
+
+Do you want to try **py_gmm** without even installing it? Well, just click this badge [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/gevero/py_gmm) or the one on top of the page! Then simply navigate to the **examples** folder and run one of the [Jupyter Notebooks](http://ipython.org/notebook.html). Modify the examples to suite your needs and run it! **Just one thing: please run only light calculations!!!** If instead you want to install **py_gmm** on your computer please read below.
 
 ## Installation
 
