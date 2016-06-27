@@ -355,7 +355,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      v_ab=v_p/v_diag
 
      !BicgSTAB linear solver: initializing parameters
-     mxmv0=20000
+     mxmv0=5000
      tol0=1.0D-15
      work=(1.0d0,1.0d0)
      logic1=.TRUE.
