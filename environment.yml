@@ -7,5 +7,6 @@ dependencies:
 - numpy
 - scipy
 - matplotlib
+- openblas
 - pip:
   - plotly
