@@ -10,7 +10,7 @@ USER main
 
 WORKDIR $HOME/notebooks
 
-RUN conda env create -n binder
+RUN conda env create -n binder python=3.6
 
 ENV PATH /home/main/anaconda/envs/binder/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
