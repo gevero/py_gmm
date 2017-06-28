@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -y &&\
     apt-get install --fix-missing -y curl git vim wget build-essential python-dev bzip2 libsm6\
-      openblas\
+      libopenblas-base libopenblas-dev\
       locales nodejs-legacy npm python-virtualenv python-pip gcc gfortran libglib2.0-0 python-qt4 &&\
     apt-get clean &&\
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*tmp
