@@ -1,9 +1,5 @@
 name: binder
 dependencies:
-- jupyter
-- jupyter_client
-- jupyter_core
-- jupyter_console
 - numpy
 - scipy
 - matplotlib
