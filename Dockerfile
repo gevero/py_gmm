@@ -4,7 +4,7 @@ ADD . $HOME/notebooks
 
 USER root
 
-RUN apt-get install -y libopenblas-base libopenblas-dev
+RUN apt-cache search openblas
 
 RUN chown -R main:main $HOME/notebooks
 
