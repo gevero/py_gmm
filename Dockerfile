@@ -1,10 +1,10 @@
-FROM andrewosh/binder-base
+FROM jupyter/datascience-notebook
 
 ADD . $HOME/notebooks
 
 USER root
 
-RUN apt-cache search openblas
+RUN apt-get install libopenblas-base libopenblas-dev
 
 RUN chown -R main:main $HOME/notebooks
 
