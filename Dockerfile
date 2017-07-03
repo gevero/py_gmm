@@ -6,9 +6,9 @@ USER root
 
 RUN apt-get install libopenblas-base
 
-RUN chown -R main:main $HOME/notebooks
+RUN chown -R $NB_USER:$NB_USER $HOME/notebooks
 
-USER main
+USER $NB_USER
 
 WORKDIR $HOME/notebooks
 
