@@ -4,7 +4,7 @@ ADD . $HOME/notebooks
 
 USER root
 
-# RUN apt-get install libopenblas-base
+RUN apt-get install libopenblas-base gfortran
 
 RUN chown -R $NB_USER:users $HOME/notebooks
 
