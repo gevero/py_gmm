@@ -18,7 +18,8 @@ USER $NB_USER
 
 WORKDIR $HOME/notebooks/py_gmm
 
-RUN /bin/bash -c "source activate binder && sh f2py.sh"
+# RUN /bin/bash -c "source activate binder && sh f2py.sh"
+RUN /bin/bash -c "sh f2py.sh"
 
 WORKDIR $HOME/notebooks
 
