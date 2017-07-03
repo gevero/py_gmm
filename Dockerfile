@@ -1,6 +1,6 @@
 FROM jupyter/scipy-notebook
 
-# ADD . $HOME/notebooks
+ADD . $HOME/notebooks
 
 USER root
 
