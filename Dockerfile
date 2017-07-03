@@ -1,12 +1,12 @@
-FROM jupyter/datascience-notebook
+FROM jupyter/scipy-notebook
 
-ADD . $HOME/notebooks
+# ADD . $HOME/notebooks
 
 USER root
 
-RUN apt-get install libopenblas-base
+# RUN apt-get install libopenblas-base
 
-# RUN chown -R $NB_USER:$NB_USER $HOME/notebooks
+RUN chown -R $NB_USER:users $HOME/notebooks
 
 USER $NB_USER
 
