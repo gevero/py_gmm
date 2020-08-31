@@ -10,9 +10,18 @@ Pellegrini G., Mattei G., Bello V. and Mazzoldi P. (2007) **Interacting metal na
 
 ## Use it right away
 
-Do you want to try **py_gmm** without even installing it? Well, just click this badge [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/gevero/py_gmm) or the one on top of the page! Then simply navigate to the **examples** folder and run one of the [Jupyter Notebooks](http://ipython.org/notebook.html). Modify the examples to suite your needs and run it! **Just one thing: please run only light calculations!!!** If instead you want to install **py_gmm** on your computer please read below.
+Do you want to try **py_gmm** without even installing it? Well, just click this badge [![Binder](http://mybinder.org/badge.svg)](http://mybinder.org/repo/gevero/py_gmm) or the one on top of the page! Then simply navigate to the **examples** folder and run one of the [Jupyter Notebooks](http://ipython.org/notebook.html). Modify the examples to suite your needs and run it! **Just one thing: please run only light calculations!!!** 
 
-## Installation
+## Use Docker
+
+Another option is to use docker. The instructions below are for linux, but should work on other platforms with minor [modifications](https://docs.docker.com/get-started/):
+
+1. Install docker on your machine (do this, and the following, as root if using linux).
+2. In the py_gmm base folder, the one that contains the Dockerfile, run `docker build --tag pygmm:1.0 .` to build the py_gmm image.
+3. Run `sudo docker run --publish 8888:8888 --detach --name pygmm pygmm:1.0` to start a container named **pygmm** and forward the 8888 port from the container to your machine. A jupyter server that is already running inside the container.
+4. Run `docker exec -it pygmm jupyter notebook list` to get the token that will give you access to the jupyter server.
+
+## Installation the hard way
 
 Installing **py_gmm** should be fairly easy. First of all you need a python distribution on your system. The simplest thing to do, for any operating system (**Windows**, **OSX** or **Linux**), would be to install [Anaconda](https://store.continuum.io/cshop/anaconda/), a beautiful, free, and easy to use python distribution: the relevant installations instructions are found [here](http://docs.continuum.io/anaconda/install.html). Then you must also install The [Jupyter Notebook](http://ipython.org/notebook.html), which is already bundled in Anaconda.
 
@@ -24,7 +33,7 @@ The second step would be installing a Fortran compiler. If you are not new to co
 
 The third step would be to get **py_gmm** itself. If you are familiar with [git](http://git-scm.com/) and [github](https://github.com/) you can simply clone the repository, otherwise just [download](https://github.com/gevero/py_gmm/archive/master.zip) the zipped version of the repo and unpack it wherever you like.
 
-Then we finally come to compiling: if you are under **Linux** or **OSX** `sh f2py.sh` should be sufficient to build everything. Under **Windows** try and change `f2py.sh` to `f2py.bat` and see happens. If it does not work open an issue and we'll work it out.
+Then we finally come to compiling: if you are under **Linux** or **OSX** `sh f2py.sh` should be sufficient to build everything. Under **Windows** try and change `f2py.sh` to `f2py.bat` and see what happens. If it does not work open an issue and we'll work it out.
 
 ## Usage
 
