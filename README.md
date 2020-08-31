@@ -18,7 +18,7 @@ Another option is to use docker. The instructions below are for linux, but shoul
 
 1. Install docker on your machine (do this, and the following, as root if using linux).
 2. In the py_gmm base folder, the one that contains the Dockerfile, run `docker build --tag pygmm:1.0 .` to build the py_gmm image.
-3. Run `sudo docker run --publish 8888:8888 --detach --name pygmm pygmm:1.0` to start a container named **pygmm** and forward the 8888 port from the container to your machine. A jupyter server that is already running inside the container.
+3. Run `docker run --publish 8888:8888 --detach --name pygmm pygmm:1.0` to start a container named **pygmm** and forward the 8888 port from the container to your machine. A jupyter server that is already running inside the container.
 4. Run `docker exec -it pygmm jupyter notebook list` to get the token that will give you access to the jupyter server.
 
 ## Installation the hard way
