@@ -6,8 +6,9 @@ USER root
 
 RUN apt update
 
-# RUN apt -y install libopenblas-base gfortran
-RUN apt -y install gfortran
+
+RUN apt -y install liblapack-dev liblapack3 libopenblas-base libopenblas-dev gfortran
+RUN ln -s /opt/OpenBLAS/lib/libopenblas.so /usr/lib/libopenblas.so
 
 RUN chown -R $NB_USER:users $HOME/notebooks
 
