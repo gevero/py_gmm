@@ -46,8 +46,8 @@ USE basicsubs			! "low level" subroutines
 USE gmmsubs				! "high level" subroutines
 USE sing_part			! single particle subroutines
 USE vec_trans			! vector translation coefficients subroutines
-USE local_field			! local field computation subroutines
-USE shared_data			! shared data subroutines
+USE local_field		! local field computation subroutines
+USE shared_data		! shared data subroutines
 USE linear_solver		! linear solver subroutines
 
 CONTAINS
@@ -84,7 +84,6 @@ n_do: DO n=1,nstop
 
 		logw=lnf(nr-mr,error)-lnf(nr+mr,error)
 		v_emn(i)=((0.0D0,1.0D0)**n)*SQRT(EXP(logw)*(2*nr+1.0D0)/(nr*(nr+1.0D0)))
-!		WRITE(*,*) m,n,v_emn(i)
 
 	END DO m_do
 END DO n_do
@@ -95,11 +94,12 @@ END SUBROUTINE emn
 !2) SUBROUTINE shell_coefficients: shell multipolar coefficients
 !--------------------------------------------------------------------------------
 SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
-                                 &ref_index,lambda_inp,alpha0,beta0,gamma0,nstop,&
-								 							   &quasi_static_flag,&
+                                 &ref_index,lambda_inp,&
+                                 &alpha0,beta0,gamma0,pol_flag,nstop,&
+								 			&quasi_static_flag,&
                                  &m_coeff,v_cext,v_csca,v_cabs)
 
-  USE local_kinds				! Kinds numerici, come single e double precision
+  USE local_kinds
 
 
   IMPLICIT NONE
@@ -107,17 +107,18 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ! Dummy arguments declaration
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  REAL(dbl), DIMENSION(ns,3), INTENT(IN) :: m_xyz_inp			! Sphere coordinates
-  REAL(dbl), DIMENSION(ns), INTENT(IN) :: v_r_inp				! Sphere radii
-  REAL(dbl), DIMENSION(ns,2), INTENT(IN) :: m_eps_inp			! Sphere e1,e2
-  REAL(dbl), INTENT(IN) :: fint                                 ! Interaction parameter
-  REAL(dbl), INTENT(IN) :: ref_index							! Matrix Refractive Index
-  REAL(dbl), INTENT(INOUT) :: lambda_inp							! Vacuum Wavelength
-  REAL(dbl), INTENT(INOUT) :: alpha0,beta0,gamma0				! Euler angles for incident light
-  INTEGER(lo), INTENT(IN) :: ns,nstop							! Spheres and Multipolar expansions
-  CHARACTER(len=3), INTENT(IN) :: quasi_static_flag				!Flag to force quasi-static incident field
-  COMPLEX(dbl), DIMENSION(2*nstop*(nstop+2)*ns,2), INTENT(OUT):: m_coeff! Expansion coefficients
-  REAL(dbl), DIMENSION(ns), INTENT(OUT) :: v_cext,v_csca,v_cabs         ! Cross Sections
+  REAL(dbl), DIMENSION(ns,3), INTENT(IN) :: m_xyz_inp			               ! Sphere coordinates
+  REAL(dbl), DIMENSION(ns), INTENT(IN) :: v_r_inp				               ! Sphere radii
+  REAL(dbl), DIMENSION(ns,2), INTENT(IN) :: m_eps_inp			               ! Sphere e1,e2
+  REAL(dbl), INTENT(IN) :: fint                                            ! Interaction parameter
+  REAL(dbl), INTENT(IN) :: ref_index							                  ! Matrix Refractive Index
+  REAL(dbl), INTENT(INOUT) :: lambda_inp							               ! Vacuum Wavelength
+  REAL(dbl), INTENT(INOUT) :: alpha0,beta0,gamma0				               ! Euler angles for incident light
+  INTEGER(lo), INTENT(IN) :: ns,nstop           			                  ! Spheres and Multipolar expansions
+  INTEGER(lo), INTENT(IN) :: pol_flag           			                  ! =0 Linear, =1 Left Circular, =2 Right Circular
+  CHARACTER(len=3), INTENT(IN) :: quasi_static_flag				            !Flag to force quasi-static incident field
+  COMPLEX(dbl), DIMENSION(2*nstop*(nstop+2)*ns,2), INTENT(OUT):: m_coeff   ! Expansion coefficients
+  REAL(dbl), DIMENSION(ns), INTENT(OUT) :: v_cext,v_csca,v_cabs            ! Cross Sections
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ! Internal Variables
@@ -127,7 +128,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   INTEGER(lo) :: status_in, status_arr		! Status apertura file principale e allocazione array
   INTEGER(lo) :: neq,matrixside,i,j,m		! Numero sfere totali, numero materiali e numero gruppi di sfere uguali
   INTEGER(lo) :: nnb,NNZab,NNZd,blockside	! Non zero blocks, elements Aij Bij, elements Dij, block side
-  INTEGER(lo) :: error			        ! Flag di errore
+  INTEGER(lo) :: error			            ! Flag di errore
 
   REAL(dbl) :: t1,t2				! Tempi
   REAL(dbl) :: lambda0,lambda1,lambda2,k,m1,m2	! Lunghezza d'onda
@@ -163,19 +164,6 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      v_patt(i)=i
   END DO
 
-
-
-!!$  WRITE(*,*) 'ns',ns
-!!$  WRITE(*,*) 'm_xyz_inp',m_xyz_inp
-!!$  WRITE(*,*) 'v_r_inp',v_r_inp
-!!$  WRITE(*,*) 'm_eps_inp',m_eps_inp
-!!$  WRITE(*,*) 'fint',fint
-!!$  WRITE(*,*) 'ref_index',ref_index
-!!$  WRITE(*,*) 'lambda_inp',lambda_inp
-!!$  WRITE(*,*) 'alpha0,beta0,gamma0',alpha0,beta0,gamma0
-!!$  WRITE(*,*) 'nstop',nstop
-!!$  WRITE(*,*) 'v_patt',v_patt
-
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ! Checking sphere intersection
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -194,7 +182,6 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   CALL nnb_sparse(ns,m_xyz_inp,v_r_inp,fint,nnb) !Divided by two because i store only the upper triangular part
   nnb=nnb/2
-!!$  WRITE(*,*) "Non zero blocks:", nnb
 
   !Initializing v_ic to eliminate the load on the intrinsic library pow
   ic_do: DO i=0,400
@@ -216,10 +203,6 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      ALLOCATE (v_jBlock(1:nnb),v_iBlock(1:ns+1),STAT=status_arr)
      CALL fill_jBlock_iBlock_sparse(ns,m_xyz_inp,v_r_inp,fint,v_jBlock,v_iBlock)
 
-     !--------------Filling diagnostics-----------------------------
-!!$     WRITE(*,*) 'v_iBlock',v_iBlock
-!!$     WRITE(*,*) 'v_jBlock',v_jBlock
-     !--------------------------------------------------------------
 
      !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      !Elements for Aij e Dij, matrix sizes and so on
@@ -230,9 +213,10 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      !Non zero elements Dij
      NNZd=nstop*(11+12*nstop+4*(nstop**2))
      NNZd=NNZd/3
-     !Lato di un blocco
+     !Matrix block side lenght
      blockside=nstop*(nstop+2)
      matrixside=2*ns*blockside
+
 
      !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      ! Vector allocation
@@ -242,13 +226,10 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      ALLOCATE (m_Dij(1:NNZd,1:nnb),m_jDij(1:NNZd,1:nnb),m_iDij(1:blockside+1,1:nnb),&
           &m_exphi(-nstop:nstop,1:nnb),STAT=status_arr)
      ALLOCATE(work(1:matrixside,1:3+2*(lvanilla+1)),STAT=status_arr)
-     !Filling the rotational part
+
+     !Filling the matrix for the roto-translation rotational part
      CALL fill_D_PHI_sparse(ns,nstop,nnb,m_xyz_inp,v_jBlock,v_iBlock,m_Dij,m_jDij,m_iDij,m_exphi)
 
-!!$     WRITE(*,*) 'm_Dij',m_Dij
-!!$     WRITE(*,*) 'm_jDij',m_jDij
-!!$     WRITE(*,*) 'm_iDij',m_iDij
-!!$     WRITE(*,*) 'm_exphi',m_exphi
 
      !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
      !Aij Bij wavelength independent coefficients
@@ -268,8 +249,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      ALLOCATE(m_Apmn(1:NNZab,1:(2*nstop)+1),STAT=status_arr)
      ALLOCATE(v_jABij_template(1:NNZab),v_iABij_template(1:blockside+1),v_mask(1:NNZab),STAT=status_arr)
      CALL fill_index(nstop,m_index,m_Apmn,v_jABij_template,v_iABij_template,v_mask,error)
-     !		Write(*,600) m_index(:,4)
-600  FORMAT (I5)
+
   END IF zero_Blockif1
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -284,8 +264,8 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   jmin=1
   jmax=ns
 
-  ALLOCATE (v_p(matrixside),v_ab(matrixside),v_diag(matrixside),&
-       v_dc(matrixside),v_ab_sca(matrixside),v_ab1(matrixside),STAT=status_arr)
+  ALLOCATE (v_p(matrixside),v_p1(matrixside),v_ab(matrixside),v_diag(matrixside),&
+            v_dc(matrixside),v_ab_sca(matrixside),v_ab1(matrixside),STAT=status_arr)
 
   !quasi static approximation
   qs_if: IF (quasi_static_flag=='yes') THEN
@@ -294,7 +274,6 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
 
   !Wavevector
   k=2*Pi_d*ref_index/(lambda_inp)
-
 
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -340,190 +319,77 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
      END DO
   END DO
 
-  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ! Filling the RHS
-  !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  !Incident field expansion coefficients
-  CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0,v_p,error)
+   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ! Filling the RHS
+   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ! Linear polarization
+   inc_field_if: IF (pol_flag==0) THEN
+
+      !Incident field expansion coefficients
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0,v_p,error)
+
+   ! Right polarization
+   ELSEIF (pol_flag==1) THEN
+
+      !Incident field expansion coefficients
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0,v_p,error)
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0+0.5*Pi_D,v_p1,error)
+      ! v_p = (v_p + (0.0D0,-1.0D0)*v_p)/SQRT2_D
+      v_p = (v_p + (0.0D0,1.0D0)*v_p1)/SQRT2_D
+
+   ! Left polarization
+   ELSEIF (pol_flag==2) THEN
+
+      !Incident field expansion coefficients
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0,v_p,error)
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0+0.5*Pi_D,v_p1,error)
+      ! v_p = (v_p + (0.0D0,1.0D0)*v_p)/SQRT2_D
+      v_p = (v_p - (0.0D0,1.0D0)*v_p1)/SQRT2_D
+
+   ! Fall back to linear polarization
+   ELSE
+
+      !Incident field expansion coefficients
+      CALL field_expRandom_sub(nstop,ns,k,zerodbl,m_xyz_inp,alpha0,beta0,gamma0,v_p,error)
+
+   ENDIF inc_field_if
 
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ! Solving the linear system
   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   zero_Blockif3: IF (nnb/=0) THEN
 
-     !Initial guess
-     v_ab=v_p/v_diag
+      !Initial guess
+      v_ab=v_p/v_diag
 
-     !BicgSTAB linear solver: initializing parameters
-     mxmv0=5000
-     tol0=1.0D-15
-     work=(1.0d0,1.0d0)
-     logic1=.TRUE.
-     logic2=.TRUE.
-     mxmv=mxmv0
-     tol=tol0
-     info=0
-!!$     WRITE(*,*) "l,lambda,mxmv,tol,matrixside,info: " ,lvanilla,lambda_inp,mxmv,tol,matrixside,info
+      !BicgSTAB linear solver: initializing parameters
+      mxmv0=5000
+      tol0=1.0D-15
+      work=(1.0d0,1.0d0)
+      logic1=.TRUE.
+      logic2=.TRUE.
+      mxmv=mxmv0
+      tol=tol0
+      info=0
 
-!!$     !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!!$     ! INPUT DIAGNOSTICS
-!!$     !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-!!$     !		!Logic Variables----------------------------------------
-!!$     WRITE(*,*) "logic1",logic1
-!!$     WRITE(*,*) "logic2",logic2
-!!$     !Integer Parameters-------------------------------------
-!!$     WRITE(*,*) "nstop",nstop
-!!$     WRITE(*,*) "lvanilla",lvanilla
-!!$     WRITE(*,*) "matrixside",matrixside
-!!$     WRITE(*,*) "blockside",blockside
-!!$     WRITE(*,*) "imin,imax,jmin,jmax,mxmv,info"
-!!$     WRITE(*,200) imin,imax,jmin,jmax,mxmv,info
-!!$200  FORMAT (6I10)
-!!$     !Block Matrix Parameters--------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "v_iBlock"
-!!$     DO i=1,ns+1
-!!$        WRITE(*,205) v_iBlock(i)
-!!$205     FORMAT (I)
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "v_jBlock"
-!!$     DO i=1,nnb
-!!$        WRITE(*,210) v_jBlock(i)
-!!$210     FORMAT (I)
-!!$     END DO
-!!$
-!!$     !D Matrix Parameters------------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_iD"
-!!$     DO i=1,nnb
-!!$        DO j=1,ns+1
-!!$           WRITE(*,215) m_iDij(j,i)
-!!$215        FORMAT (I)
-!!$        END DO
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_jD"
-!!$     DO i=1,nnb
-!!$        DO j=1,NNZd
-!!$           WRITE(*,220) m_jDij(j,i)
-!!$220        FORMAT (I)
-!!$        END DO
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_D"
-!!$     DO i=1,nnb
-!!$        DO j=1,NNZd
-!!$           WRITE(*,225) m_Dij(j,i)
-!!$225        FORMAT (1ES16.7)
-!!$        END DO
-!!$     END DO
-!!$
-!!$     !AB Matrix Parameters-----------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_iAB"
-!!$     DO i=1,nnb
-!!$        DO j=1,ns+1
-!!$           WRITE(*,230) m_iABij(j,i)
-!!$230        FORMAT (I)
-!!$        END DO
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_jAB"
-!!$     DO i=1,nnb
-!!$        DO j=1,NNZab
-!!$           WRITE(*,235) m_jABij(j,i)
-!!$235        FORMAT (I)
-!!$        END DO
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_A"
-!!$     DO i=1,nnb
-!!$        DO j=1,NNZab
-!!$           WRITE(*,240) m_sAij(j,i)
-!!$240        FORMAT (2ES16.7)
-!!$        END DO
-!!$     END DO
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_B"
-!!$     DO i=1,nnb
-!!$        DO j=1,NNZab
-!!$           WRITE(*,245) m_sBij(j,i)
-!!$245        FORMAT (2ES16.7)
-!!$        END DO
-!!$     END DO
-!!$
-!!$     !Phi Matrix Parameters----------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "m_phi"
-!!$     DO i=1,nnb
-!!$        DO j=-nstop,nstop
-!!$           WRITE(*,250) m_exphi(j,i)
-!!$250        FORMAT (2ES16.7)
-!!$        END DO
-!!$     END DO
-!!$
-!!$     !Matrix Diagonal---------------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "v_diag"
-!!$     DO i=1,matrixside
-!!$        WRITE(*,255) v_diag(i)
-!!$255     FORMAT (2ES16.7)
-!!$     END DO
-!!$
-!!$     !Unknown vector-----------------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "v_ab"
-!!$     DO i=1,matrixside
-!!$        WRITE(*,260) v_ab(i)
-!!$260     FORMAT (2ES16.7)
-!!$     END DO
-!!$
-!!$     !RHS----------------------------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "v_p"
-!!$     DO i=1,matrixside
-!!$        WRITE(*,265) v_p(i)
-!!$265     FORMAT (2ES16.7)
-!!$     END DO
-!!$
-!!$     !workspace----------------------------------------------
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "work"
-!!$     DO j=1,3+2*(lvanilla+1)
-!!$        DO i=1,matrixside
-!!$           WRITE(*,270) work(i,j)
-!!$270        FORMAT (2ES16.7)
-!!$        END DO
-!!$     END DO
-!!$
-!!$     WRITE(*,*)
-!!$     WRITE(*,*) "tolerance"
-!!$     WRITE(*,275) tol
-!!$275  FORMAT (1ES16.7)
-!!$
-!!$     !BicgSTAB linear solver: calling the solver
-!!$     WRITE(*,*) "nstop just outside the solver",nstop
-     CALL zbcg2_gen(nstop,logic1,logic2,&
+      ! Call solver
+      CALL zbcg2_gen(nstop,logic1,logic2,&
           lvanilla,matrixside,blockside,imin,imax,jmin,jmax,&
           v_iBlock,v_jBlock,m_Dij,m_iDij,m_jDij,m_exphi,m_sAij,m_sBij,m_iABij,m_jABij,v_diag,&
           v_ab,v_p,tol,mxmv,work,info)
 
-
-!!$     WRITE(*,*) 'qui1'
-
-
-     info_if: IF (info /= 0) THEN
-        WRITE(*,*) "Problem in bicgstab", info
-        STOP
-     END IF info_if
+   
+      ! Stop if there's a problem
+      info_if: IF (info /= 0) THEN
+         WRITE(*,*) "Problem in bicgstab", info
+         STOP
+      END IF info_if
 
 
   ELSE	!No interaction among the nanoparticles
      v_ab=v_p/v_diag
   END IF zero_Blockif3
 
-!!$  WRITE(*,*) 'qui2'
 
   !Computing v_ab_sca
   v_diag=1.0D0
@@ -531,7 +397,6 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
        v_iBlock,v_jBlock,m_Dij,m_iDij,m_jDij,m_exphi,m_sAij_sca,m_sBij_sca,m_iABij,m_jABij,v_diag,&
        v_ab,v_ab_sca,error)
 
-!!$  WRITE(*,*) 'qui3'
 
   !Internal field coefficients
   CALL dmncmn_sub(nstop,ns,v_patt,m_da,m_cb,v_ab,v_dc)
@@ -566,7 +431,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   DEALLOCATE(m_index)
   DEALLOCATE(m_Apmn)
   DEALLOCATE(v_jABij_template,v_iABij_template,v_mask)
-  DEALLOCATE (v_p,v_ab,v_diag,v_dc,v_ab_sca,v_ab1)
+  DEALLOCATE (v_p,v_p1,v_ab,v_diag,v_dc,v_ab_sca,v_ab1)
   DEALLOCATE(m_a,m_b,m_da,m_cb)
 
   RETURN
@@ -579,10 +444,11 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
   !-------------------------------------------------------------------------------
   !3) Exyz_sub: calculating field in the (x,y,z) coordinates
   !-------------------------------------------------------------------------------
-  SUBROUTINE Exyz(flaginc,ns,nstop,ratio,lambda_inp,alpha0,beta0,gamma0,x,y,z,v_amnbmn,&
-       &v_dmncmn,v_emn,m_xyz_inp,m_eps_inp,v_r_inp,ref_index,&
-	   &quasi_static_flag,&
-	   &Ex,Ey,Ez,Eabs,error)
+  SUBROUTINE Exyz(flaginc,ns,nstop,pol_flag,&
+                  &ratio,lambda_inp,alpha0,beta0,gamma0,x,y,z,v_amnbmn,&
+                  &v_dmncmn,v_emn,m_xyz_inp,m_eps_inp,v_r_inp,ref_index,&
+                  &quasi_static_flag,&
+                  &Ex,Ey,Ez,Eabs,error)
 
     USE local_kinds
 
@@ -596,15 +462,16 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
     COMPLEX(dbl), DIMENSION(nstop*(nstop+2)), INTENT(IN) :: v_emn		!Vettore normalizzazione
     REAL(dbl), DIMENSION(ns,2), INTENT(IN) :: m_eps_inp		!Funzioni dielettriche corrette
     REAL(dbl), DIMENSION(ns), INTENT(IN) :: v_r_inp		!Raggi equivalenti
-    REAL(dbl), INTENT(IN) :: ref_index				!Indice di rifrazione matrice
+    REAL(dbl), INTENT(IN) :: ref_index				      !Indice di rifrazione matrice
     INTEGER(lo), INTENT(IN) :: nstop,ratio,ns			!Numero di espansioni multipolari e raggi non calcolo
-    REAL(dbl), INTENT(IN) :: x,y,z				!Coordinate punto nello spazio
-    REAL(dbl), INTENT(INOUT) :: lambda_inp	        		! Vacuum Wavelength
+    INTEGER(lo), INTENT(IN) :: pol_flag           		! =0 Linear, =1 Left Circular, =2 Right Circular
+    REAL(dbl), INTENT(IN) :: x,y,z				         !Coordinate punto nello spazio
+    REAL(dbl), INTENT(INOUT) :: lambda_inp	        	! Vacuum Wavelength
     REAL(dbl), INTENT(IN) :: alpha0,beta0,gamma0		! Euler angles for incident light
-	CHARACTER(len=3), INTENT(IN) :: quasi_static_flag				!Flag to force quasi-static incident field
-    COMPLEX(dbl), INTENT(OUT) :: Ex,Ey,Ez			!Campo cartesiano
-    REAL(dbl), INTENT(OUT) :: Eabs      			!Field module
-    INTEGER(lo) , INTENT(OUT) :: error				!Flag di errore
+	CHARACTER(len=3), INTENT(IN) :: quasi_static_flag	!Flag to force quasi-static incident field
+    COMPLEX(dbl), INTENT(OUT) :: Ex,Ey,Ez			      !Campo cartesiano
+    REAL(dbl), INTENT(OUT) :: Eabs      			      !Field module
+    INTEGER(lo) , INTENT(OUT) :: error				      !Flag di errore
 
     !Dichiarazione variabili interne
     COMPLEX(dbl) :: Exinc,Eyinc,Ezinc,pshift			!Onda incidente cartesiana
@@ -644,30 +511,58 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
     v_kinc(2)=k*SIN(alpha0)*SIN(beta0)
     v_kinc(3)=k*COS(beta0)
 
-    !Calcolo E
     v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
     v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
     v_Einc(3)=-SIN(beta0)*COS(gamma0)
 
-    !Input monitoring
-!!$    IF ((ABS(x)<1.0D-10) .AND. ((ABS(y)<1.0D-10))) THEN
-!!$
-!!$       WRITE(*,*) 'v_kinc',v_kinc
-!!$       WRITE(*,*) 'v_Einc',v_Einc
-!!$       WRITE(*,*) 'flaginc',flaginc
-!!$       WRITE(*,*) 'nstop',nstop
-!!$       WRITE(*,*) 'ratio',ratio
-!!$       WRITE(*,*) 'lambda_inp',lambda_inp
-!!$       WRITE(*,*) 'x,y,z',x,y,z
-!!$       WRITE(*,*) 'v_amnbmn',v_amnbmn
-!!$       WRITE(*,*) 'v_dmncmn',v_dmncmn
-!!$       WRITE(*,*) 'v_emn',v_emn
-!!$       WRITE(*,*) 'm_xyz_inp',m_xyz_inp
-!!$       WRITE(*,*) 'm_eps',m_eps_inp
-!!$       WRITE(*,*) 'v_req',v_r_inp
-!!$       WRITE(*,*) 'ref_index',ref_index
-!!$
-!!$    END IF
+
+   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ! Explicit incident field
+   !~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ! Linear polarization
+    inc_field_if: IF (pol_flag==0) THEN
+
+      v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(3)=-SIN(beta0)*COS(gamma0)
+  
+
+   ! Right polarization
+   ELSEIF (pol_flag==1) THEN
+
+      ! First component
+      v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(3)=-SIN(beta0)*COS(gamma0)
+
+      ! Second component
+      v_Einc(1)=(v_Einc(1) + COS(alpha0)*COS(beta0)*COS(gamma0-0.5*Pi_D)-SIN(alpha0)*SIN(gamma0-0.5*Pi_D))/SQRT2_D
+      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0-0.5*Pi_D)-COS(alpha0)*SIN(gamma0-0.5*Pi_D))/SQRT2_D
+      v_Einc(3)=(v_Einc(3) -SIN(beta0)*COS(gamma0-0.5*Pi_D))/SQRT2_D
+  
+
+   ! Left polarization
+   ELSEIF (pol_flag==2) THEN
+
+      ! First component
+      v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(3)=-SIN(beta0)*COS(gamma0)
+
+      ! Second component
+      v_Einc(1)=(v_Einc(1) + COS(alpha0)*COS(beta0)*COS(gamma0+0.5*Pi_D)-SIN(alpha0)*SIN(gamma0+0.5*Pi_D))/SQRT2_D
+      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0+0.5*Pi_D)-COS(alpha0)*SIN(gamma0+0.5*Pi_D))/SQRT2_D
+      v_Einc(3)=(v_Einc(3) -SIN(beta0)*COS(gamma0+0.5*Pi_D))/SQRT2_D
+
+   ! Fall back to linear polarization
+   ELSE
+
+      v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(3)=-SIN(beta0)*COS(gamma0)
+  
+
+   ENDIF inc_field_if
 
     !Faccio un ciclo per vedere se interseco sulle sfere
     int_do: DO i=1,ns

@@ -1,0 +1,8 @@
+*.mod
+*.o
+*.so
+py_gmm/tmp/**
+py_gmm/__pycache__/**
+*.pyf
+.ipynb_checkpoints/**
+examples/.ipynb_checkpoints/**
