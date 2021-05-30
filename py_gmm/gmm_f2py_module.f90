@@ -512,7 +512,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
     v_kinc(3)=k*COS(beta0)
 
     v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
-    v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+    v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)+COS(alpha0)*SIN(gamma0)
     v_Einc(3)=-SIN(beta0)*COS(gamma0)
 
 
@@ -523,7 +523,7 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
     inc_field_if: IF (pol_flag==0) THEN
 
       v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
-      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)+COS(alpha0)*SIN(gamma0)
       v_Einc(3)=-SIN(beta0)*COS(gamma0)
   
 
@@ -532,12 +532,12 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
 
       ! First component
       v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
-      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)+COS(alpha0)*SIN(gamma0)
       v_Einc(3)=-SIN(beta0)*COS(gamma0)
 
       ! Second component
       v_Einc(1)=(v_Einc(1) + COS(alpha0)*COS(beta0)*COS(gamma0-0.5*Pi_D)-SIN(alpha0)*SIN(gamma0-0.5*Pi_D))/SQRT2_D
-      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0-0.5*Pi_D)-COS(alpha0)*SIN(gamma0-0.5*Pi_D))/SQRT2_D
+      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0-0.5*Pi_D)+COS(alpha0)*SIN(gamma0-0.5*Pi_D))/SQRT2_D
       v_Einc(3)=(v_Einc(3) -SIN(beta0)*COS(gamma0-0.5*Pi_D))/SQRT2_D
   
 
@@ -546,19 +546,19 @@ SUBROUTINE expansion_coefficients(ns,m_xyz_inp,v_r_inp,m_eps_inp,fint,&
 
       ! First component
       v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
-      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)+COS(alpha0)*SIN(gamma0)
       v_Einc(3)=-SIN(beta0)*COS(gamma0)
 
       ! Second component
       v_Einc(1)=(v_Einc(1) + COS(alpha0)*COS(beta0)*COS(gamma0+0.5*Pi_D)-SIN(alpha0)*SIN(gamma0+0.5*Pi_D))/SQRT2_D
-      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0+0.5*Pi_D)-COS(alpha0)*SIN(gamma0+0.5*Pi_D))/SQRT2_D
+      v_Einc(2)=(v_Einc(2) + SIN(alpha0)*COS(beta0)*COS(gamma0+0.5*Pi_D)+COS(alpha0)*SIN(gamma0+0.5*Pi_D))/SQRT2_D
       v_Einc(3)=(v_Einc(3) -SIN(beta0)*COS(gamma0+0.5*Pi_D))/SQRT2_D
 
    ! Fall back to linear polarization
    ELSE
 
       v_Einc(1)=COS(alpha0)*COS(beta0)*COS(gamma0)-SIN(alpha0)*SIN(gamma0)
-      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)-COS(alpha0)*SIN(gamma0)
+      v_Einc(2)=SIN(alpha0)*COS(beta0)*COS(gamma0)+COS(alpha0)*SIN(gamma0)
       v_Einc(3)=-SIN(beta0)*COS(gamma0)
   
 
